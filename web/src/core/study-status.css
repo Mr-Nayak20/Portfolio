@@ -1,0 +1,8 @@
+.study-status {display:none;position:fixed;z-index:2147483646;inset:auto 16px 16px;margin:auto;max-width:640px;padding:24px;background:#faf9f6;color:#161616;border:1px solid #bbb;font:16px/1.5 Arial,sans-serif;box-shadow:0 12px 36px #0003;}
+.study-status.is-visible {display:block;}
+.study-status.is-error {inset:0;max-width:none;overflow:auto;padding:clamp(20px,5vw,64px);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;}
+.study-status img {width:min(720px,100%);max-height:55vh;object-fit:contain;}
+.study-status p {max-width:620px;}
+.study-status div {display:flex;flex-wrap:wrap;justify-content:center;gap:16px;}
+.study-status a,.study-status button {font:inherit;color:inherit;padding:10px 14px;border:1px solid #aaa;background:transparent;cursor:pointer;}
+.study-status [hidden],.loader[hidden] {display:none!important;}

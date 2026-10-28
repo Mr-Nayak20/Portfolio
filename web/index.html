@@ -1,36 +1,36 @@
 <!doctype html>
-<html lang="en">
+<html lang="en-GB">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Shivansh Nayak — Websites, software, AI, and writing</title>
-  <meta name="description" content="Portfolio of Shivansh Nayak. Twenty interactive studies, four services, and tools that run in the browser.">
+  <title>Shivansh Nayak — Websites, software, AI & writing</title>
+  <meta name="description" content="Shivansh Nayak. Websites, software, AI agents and automation, writing and design. Explore the work and start a conversation.">
+  <link rel="preload" as="image" href="/img/index/reliquary.webp" imagesrcset="/img/index/reliquary-640.webp 640w, /img/index/reliquary.webp 1280w" imagesizes="100vw">
   <link rel="stylesheet" href="/site/site.css">
 </head>
 <body data-page="home">
   <main>
-    <section class="hero">
+    <section class="hero" data-nav-title="Work" data-nav-link="/works/">
       <div class="bg-container" id="bgs"></div>
       <a class="hero-project-link" id="hero-link" href="/works/reliquary/" aria-label="View Reliquary"></a>
-      <div class="gallery-strip" id="strip"></div>
+      <h1 class="hero-title">Good ideas.<br>Properly built.</h1>
+      <div class="gallery-strip" id="strip" aria-label="Preview the studies"></div>
+      <a class="hero-touch-link" href="/works/">Explore the work ↗</a>
     </section>
     <div class="hero-view-label" id="view-label">View the project</div>
-    <section class="what-we-do">
+    <section class="what-we-do" data-nav-title="About" data-nav-link="/about/">
       <p class="whero">About</p>
-      <h1 class="sentence">I build what <span class="hover" data-img="reliquary">matters</span> — websites, software, and tools — with a clear <span class="hover" data-img="nocturne">direction</span> and work you can <span class="hover" data-img="velocity">open</span>.</h1>
-      <img class="hover-photo" id="hover-photo" alt="">
+      <h2 class="sentence">I’m Shivansh Nayak. I bring <span class="hover" data-img="velocity">websites</span>, <span class="hover" data-img="monolith">software</span> and <span class="hover" data-img="nocturne">AI</span> to life, with the writing and design to give each a clear identity.</h2>
+      <img class="hover-photo" id="hover-photo" alt="" decoding="async">
     </section>
-    <section class="aboutus">
-      <p class="html-content">I design and build websites, software, in-browser AI, and the writing that has to agree with the picture. The studies on this site are the proof. Each one is a small site, not a slide.</p>
-    </section>
-    <section class="reel"><div class="reel__wrap"><img src="/img/index/atlas.webp" alt="Atlas, a map of islands"></div></section>
-    <section class="clients-marquee">
-      <h2>Studies</h2>
+    <section class="aboutus" aria-label="Selected work in detail"><div class="reel"><div class="reel__wrap"><img src="/img/index/atlas.webp" srcset="/img/index/atlas-640.webp 640w, /img/index/atlas.webp 1280w" sizes="100vw" width="1280" height="800" alt="Atlas — an interactive study of floating islands" loading="lazy" decoding="async"></div></div></section>
+    <section class="clients-marquee" aria-label="Selected studies">
+      <h2>Selected studies</h2>
       <div class="marquee"><div class="marquee-track" id="marquee"></div></div>
     </section>
-    <section id="chapters"></section>
-    <section class="blog-home">
-      <h2>What’s new</h2>
+    <section id="chapters" aria-label="Four services" data-nav-title="Services" data-nav-link="/services/"></section>
+    <section class="blog-home" data-nav-title="Journal" data-nav-link="/blog/">
+      <h2>Notes on the work</h2>
       <div class="blog-row" id="notes"></div>
     </section>
   </main>

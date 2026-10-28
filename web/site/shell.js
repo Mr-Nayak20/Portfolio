@@ -1,6 +1,4 @@
 import gsap from 'gsap';
-import Lenis from 'lenis';
-import 'lenis/dist/lenis.css';
 import {nav, notes, profile, services, shot, tools} from './data.js';
 
 const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -33,8 +31,8 @@ function shellParts() {
     <nav class="bottom-nav" aria-label="Primary">
       <div class="bottom-nav__container">
         <div class="bottom-nav__progress" id="scroll-progress"></div>
-        <button class="bottom-nav__toggle" type="button" aria-expanded="false">Menu</button>
-        <div class="bottom-nav__links">${links}</div>
+        <button class="bottom-nav__toggle" type="button" aria-expanded="false" aria-controls="main-menu" aria-label="Open menu"><span aria-hidden="true">☰</span></button><div class="bottom-nav__context"><span id="nav-context-title">Work</span><a id="nav-context-link" href="/works/">View all</a></div>
+        <div class="bottom-nav__links" id="main-menu" inert>${links}</div>
       </div>
     </nav>
     <div class="form-overlay" id="form-overlay"></div>
@@ -144,12 +142,6 @@ export function boot(start) {
   onScroll();
   window.addEventListener('scroll', onScroll, {passive: true});
 
-  if (!reduce) {
-    const lenis = new Lenis({lerp: 0.085, smoothWheel: true});
-    const raf = t => { lenis.raf(t); requestAnimationFrame(raf); };
-    requestAnimationFrame(raf);
-    lenis.on('scroll', onScroll);
-  }
 
   setInterval(() => {
     document.querySelectorAll('[data-clock]').forEach(el => { el.textContent = clock(); });
@@ -169,11 +161,34 @@ export function boot(start) {
   writeStatus(true);
   if (!reduce) setInterval(() => writeStatus(false), 8000);
 
-  document.querySelector('.bottom-nav__toggle').onclick = e => {
-    const navEl = e.target.closest('.bottom-nav');
-    const open = navEl.classList.toggle('is-open');
-    e.target.setAttribute('aria-expanded', String(open));
-  };
+  const bottomNav = document.querySelector('.bottom-nav');
+  const navToggle = bottomNav.querySelector('.bottom-nav__toggle');
+  const menu = document.getElementById('main-menu');
+  function setMenu(open) {
+    bottomNav.classList.toggle('is-open', open);
+    navToggle.setAttribute('aria-expanded', String(open));
+    navToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    menu.inert = !open;
+  }
+  navToggle.onclick = () => setMenu(!bottomNav.classList.contains('is-open'));
+  window.addEventListener('keydown', e => {if (e.key === 'Escape') setMenu(false);});
+  const contextTitle = document.getElementById('nav-context-title');
+  const contextLink = document.getElementById('nav-context-link');
+  const pageNames = {home:'Work', about:'About',services:'Services',service:'Services',works:'Work',study:'Work',clients:'Studies',blog:'Journal',article:'Journal',jobs:'Collaborate',archive:'Archive',contact:'Contact'};
+  contextTitle.textContent = pageNames[document.body.dataset.page] || 'Explore';
+  contextLink.href = document.body.dataset.page === 'service' ? '/services/' : '/works/';
+  contextLink.hidden = !['home','service','study','article'].includes(document.body.dataset.page);
+  if (document.body.dataset.page === 'article') contextLink.href = '/blog/';
+  const sections = [...document.querySelectorAll('[data-nav-title]')];
+  if (sections.length) {
+    const visible = new Map();
+    const sectionObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {if (entry.isIntersecting) visible.set(entry.target, entry.intersectionRatio); else visible.delete(entry.target);});
+      const best = [...visible].sort((a,b) => b[1] - a[1])[0]?.[0];
+      if (best) {contextTitle.textContent = best.dataset.navTitle; contextLink.href = best.dataset.navLink; contextLink.hidden = false;}
+    }, {rootMargin:'-20% 0px -30% 0px', threshold:[0,.1,.5]});
+    sections.forEach(section => sectionObserver.observe(section));
+  }
 
   const widget = document.getElementById('widget');
   widget.querySelector('.widget-trigger').onclick = e => {
@@ -221,26 +236,29 @@ export function boot(start) {
     try { url = new URL(a.href, location.href); } catch { return; }
     if (url.origin !== location.origin) return;
     if (url.pathname === location.pathname && url.search === location.search) return;
-    if (reduce) return;
+    if (reduce || a.hasAttribute('download') || e.button !== 0) return;
     e.preventDefault();
-    sessionStorage.setItem('pt', '1');
+    try {sessionStorage.setItem('pt', '1');} catch {}
     document.documentElement.classList.add('is-page-transitioning');
-    setTimeout(() => { location.href = url.href; }, 1150);
+    setTimeout(() => { location.href = url.href; }, 280);
   });
 
-  if (sessionStorage.getItem('pt') === '1') {
-    sessionStorage.removeItem('pt');
+  // A paintable arrival state; restore after bfcache navigation too.
+  let arriving = false;
+  try {arriving = sessionStorage.getItem('pt') === '1'; sessionStorage.removeItem('pt');} catch {}
+  if (arriving && !reduce) {
     document.documentElement.classList.add('is-arriving');
-    requestAnimationFrame(() => {
+    requestAnimationFrame(() => requestAnimationFrame(() => {
       document.documentElement.classList.add('is-ready');
       document.documentElement.classList.remove('is-arriving');
-    });
+    }));
   }
+  window.addEventListener('pageshow', () => document.documentElement.classList.remove('is-page-transitioning'));
 
   const photo = document.getElementById('hover-photo');
   if (photo) {
-    const xTo = gsap.quickTo(photo, 'left', {duration: reduce ? 0 : 0.35, ease: 'power3.out'});
-    const yTo = gsap.quickTo(photo, 'top', {duration: reduce ? 0 : 0.35, ease: 'power3.out'});
+    const xTo = gsap.quickTo(photo, 'x', {duration: reduce ? 0 : 0.35, ease: 'power3.out'});
+    const yTo = gsap.quickTo(photo, 'y', {duration: reduce ? 0 : 0.35, ease: 'power3.out'});
     document.querySelectorAll('.hover').forEach(word => {
       word.addEventListener('mouseenter', () => {
         photo.src = shot(word.dataset.img);
@@ -268,7 +286,7 @@ export function boot(start) {
     const io = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (!entry.isIntersecting) return;
-        gsap.to(entry.target, {clipPath: 'inset(0% 0% 0% 0%)', duration: 1.1, ease: 'power3.inOut'});
+        gsap.to(entry.target, {clipPath: 'inset(0% 0% 0% 0%)', duration: .55, ease: 'power2.out'});
         io.unobserve(entry.target);
       });
     }, {threshold: 0.12, rootMargin: '0px 0px -8% 0px'});
@@ -276,7 +294,7 @@ export function boot(start) {
       gsap.set(el, {clipPath: 'inset(0% 100% 0% 0%)'});
       io.observe(el);
     });
-    document.querySelector('main')?.classList.add('rise-in');
+
   }
 
   start?.();

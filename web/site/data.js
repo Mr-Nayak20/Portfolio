@@ -11,10 +11,9 @@ export const profile = {
     ['Substack', 'https://shivanshnayak.substack.com']
   ],
   status: [
-    'The studies are open. Walk through one.',
-    'Writing in the margin of a scene.',
-    'A page should answer when you touch it.',
-    'The kettle is on. The models can wait.'
+    'A considered approach to websites, software, AI, and writing.',
+    'Explore the studies, or get in touch about your next project.',
+    'Independent work. Four disciplines. One point of view.'
   ]
 };
 
@@ -24,14 +23,14 @@ export const services = [
     name: 'Website development',
     image: 'velocity',
     poster: '/media/websites.png',
-    line: 'Pages you move through, not pages you skim.',
-    body: 'Scroll, type, and WebGL, built as one piece. The twenty studies on this site are the work: each one is a site of its own, with its own pace.',
+    line: 'A strong first impression. A website that earns the second.',
+    body: 'I build websites from the first layout to the finished experience: front end, back end, and e-commerce. Structure, typography and motion serve the same purpose — helping people understand the business and take the next step.',
     items: [
       ['Interactive pages', 'A homepage that is the project, not a menu in front of it.'],
       ['Editorial layout', 'Long reading, large type, and images that wait for the sentence.'],
       ['Motion', 'Filmstrips, wipes, and hover states with a measured duration. Nothing loops for decoration.'],
       ['Front-end build', 'Vite, and a page that still works when the idea is strange.'],
-      ['Study sites', 'Small worlds, hosted beside the portfolio, credited, and rewritten in this voice.']
+      ['Study sites', 'Twenty interactive studies, with their open-source foundations credited.']
     ]
   },
   {
@@ -39,10 +38,10 @@ export const services = [
     name: 'Software',
     image: 'monolith',
     poster: '/media/software.png',
-    line: 'Interfaces for a job someone has to finish.',
-    body: 'Screens, states, and the quiet parts: empty, loading, error, and the moment a task is done. The aim is a tool that feels inevitable after a day of use.',
+    line: 'Software shaped around the people who use it.',
+    body: 'I turn a product idea into a clear, usable interface. The work begins with the task at hand, then follows it through: the right information, sensible controls, and careful attention to what happens when something goes wrong.',
     items: [
-      ['Product screens', 'The path from opening the app to finishing the task, drawn before it is built.'],
+      ['Product screens', 'A considered path from opening an application to completing the task.'],
       ['States', 'Empty, busy, failed, and saved. Each one is designed, not left to the browser.'],
       ['Prototypes', 'Clickable or running, so a decision can be made on the real behaviour.'],
       ['Design systems', 'Type, space, and components that stay put when a second screen arrives.'],
@@ -54,10 +53,10 @@ export const services = [
     name: 'AI development',
     image: 'nocturne',
     poster: '/media/ai.png',
-    line: 'Tools a visitor can run in the browser.',
-    body: 'No key, no account, no black box on a server you cannot see. Brief, Tone, Sight, and Voice run on the machine of the person using them.',
+    line: 'AI agents and automation, put to practical use.',
+    body: 'I build AI agents, assistants and automations around useful work. These browser tools offer a small, direct introduction: summarise a passage, refine a line, describe an image, or capture a spoken note.',
     items: [
-      ['In-browser models', 'Summaries and captions that download once and then stay local.'],
+      ['In-browser models', 'Summaries and image captions processed locally after the model downloads.'],
       ['Brief', 'A long page goes in. A short brief comes out.'],
       ['Tone', 'The same line, said in another voice, without sending it away.'],
       ['Sight', 'An image, described on the device that is looking at it.'],
@@ -69,13 +68,13 @@ export const services = [
     name: 'Writing & design',
     image: 'horologie',
     poster: '/media/writing.png',
-    line: 'The sentence and the picture have to agree.',
-    body: 'Headlines, identity, and layout. If the line is vague, the design cannot rescue it. This service is the words and the visual system together.',
+    line: 'Clear words. A distinct visual point of view.',
+    body: 'I write and design with the same question in mind: what deserves the reader’s attention? From a headline to a visual identity, I give an idea a clear voice and a form that carries it well.',
     items: [
       ['Headlines', 'A line that can carry a whole page, then the page that deserves it.'],
-      ['Voice', 'One register for the product, the studies, and the note under the footer.'],
+      ['Voice', 'A consistent voice across the product, its website and the details people remember.'],
       ['Visual identity', 'A palette, a type ramp, and rules that survive a second page.'],
-      ['Art direction', 'What the picture is for, and what it is willing to leave out.'],
+      ['Art direction', 'A clear purpose for each image, with colour, composition and context considered together.'],
       ['Page structure', 'The order of a story: hero, proof, offer, and the way out.']
     ]
   }
@@ -106,58 +105,60 @@ export const studies = [
 
 export const notes = [
   {
-    slug: 'a-room-you-can-walk',
-    title: 'A room you can walk through',
-    dek: 'Why a portfolio study should behave like a place, and what that asks of the first screen.',
-    author: 'Shivansh Nayak',
-    minutes: 4,
-    image: 'reliquary',
-    body: [
-      'The first screen of a portfolio is usually a sentence about the person who made it. That sentence can wait. A room cannot. If the work is interactive, the homepage should be the work, and the sentence should arrive when the visitor has already seen something move.',
-      'DontMatter, and a few studios like it, understood this as a filmstrip: one project fills the viewport, a row of thumbs sits low, and the pointer itself becomes the link. The headline is in the page, but it is not the picture. I wanted that order for this site. The studies lead. The name follows.',
-      'A study is not a case study about a client who did not hire me. It is a small site with a rule. Hold the throttle. Drag the sun. Wipe the glass. The writing under it has to admit what it is, so the room stays honest.',
-      'Walking through twenty of them is the portfolio. The index, the grid, the list, and the archive are four ways of entering the same rooms.'
+    "slug": "a-room-you-can-walk",
+    "title": "A website is an experience",
+    "dek": "What the interactive studies explore, and why the details matter.",
+    "author": "Shivansh Nayak",
+    "minutes": 2,
+    "image": "reliquary",
+    "body": [
+      "A website begins before its first sentence. The scale of an image, the rhythm of the type and the way a page responds tell the visitor what sort of care has gone into it. I want those details to make the purpose clearer.",
+      "The twenty studies collected here explore a particular interaction each: moving a light through a museum, changing the sun over a house, or examining the construction of a shoe. Their foundations come from the open-source Dioramas collection and are credited throughout.",
+      "A study gives an idea room to be tested. It is a place to examine what an interaction contributes, what it costs to load, and whether it remains useful on a smaller screen. These are experiments, rather than claims of commissioned client work.",
+      "For a business website, the brief comes first. The choice of motion, layout or technology follows from the people using it and the decision they need to make. The finished work should make that decision easier."
     ]
   },
   {
-    slug: 'tools-before-the-server',
-    title: 'Tools that run before the server does',
-    dek: 'Brief, Tone, Sight, and Voice stay on the visitor’s machine. That is the product.',
-    author: 'Shivansh Nayak',
-    minutes: 5,
-    image: 'nocturne',
-    body: [
-      'An AI page that links to Langflow is a bookmark. A visitor cannot tell whether anything works. The tools on this site download a small model into the browser and then do the job there: summarise, rewrite, caption, listen.',
-      'Local has a cost. The first run is slow, and a weak laptop will feel it. The gain is that a paragraph never has to leave the machine to be shortened. That is a better promise than a demo video.',
-      'Sight falls back to colour if the caption model is tired. Voice keeps the note in localStorage. Tone can be a set of rules before it is a model. The interface has to say which of those is happening.',
-      'I would rather show a plain tool that finishes than a diagram of agents that never run.'
+    "slug": "tools-before-the-server",
+    "title": "AI you can try for yourself",
+    "dek": "Four tools, a clear purpose for each, and an honest account of how they run.",
+    "author": "Shivansh Nayak",
+    "minutes": 2,
+    "image": "nocturne",
+    "body": [
+      "An AI tool ought to be understood through use. The tools here are small enough to try directly: Brief summarises text, Tone offers a different phrasing, Sight describes an image, and Voice captures a spoken note.",
+      "Brief and Sight download model files before running inference in the browser. Tone starts with simple text transformations and offers an optional local model. The first model download can take time; speed depends on the connection and the device.",
+      "These tools are demonstrations of a particular approach, rather than a substitute for an entire AI system. Their outputs need judgement. A summary can omit a qualification, and an image caption can be wrong. Sight identifies its simpler colour-based output when its vision model is unavailable.",
+      "Voice uses the browser’s speech-recognition service, which may process audio remotely depending on the browser. Saved notes remain on the device. That distinction matters: privacy should be described accurately, not assumed from the interface.",
+      "My wider interest is in agents and automation that take a useful task through to completion. The interface should let a person see what happened, correct it when necessary, and remain in control."
     ]
   },
   {
-    slug: 'the-sentence-is-the-layout',
-    title: 'The sentence is the layout',
-    dek: 'Underlines, hover images, and why three words should be able to hold a picture.',
-    author: 'Shivansh Nayak',
-    minutes: 3,
-    image: 'florae',
-    body: [
-      'A paragraph in the middle of a homepage is easy to skip. It gets read when a few words are obviously touchable. Underline them. When the pointer arrives, bring a picture, and take the picture away when the pointer leaves.',
-      'The picture has to be one of the studies, not a stock gesture. The word and the room should be about the same thing: matters, development, direction. If the word is only there for the effect, the effect is a trick.',
-      'The rest of the paragraph can be quiet. Helvetica, a large size, a short measure, cream paper. The motion is the underline and the image. Nothing else needs to bounce.'
+    "slug": "the-sentence-is-the-layout",
+    "title": "Writing and design belong together",
+    "dek": "The message deserves as much attention as the way it is presented.",
+    "author": "Shivansh Nayak",
+    "minutes": 2,
+    "image": "florae",
+    "body": [
+      "Writing establishes what a page means. Design establishes the order in which it is understood. When they develop together, a heading can do the work of a paragraph and a well-chosen image can give a sentence its setting.",
+      "I favour language that is direct, measured and specific. A business should be able to say what it offers without borrowing a grander vocabulary. Confidence comes from knowing the point, then making it clearly.",
+      "The same care applies to visual identity. Typography, spacing and colour should have a relationship to the subject. A quiet page can feel assured; a more expressive one can still be precise.",
+      "The aim is a coherent piece of work. What the visitor reads, sees and does should lead in the same direction."
     ]
   },
   {
-    slug: 'what-a-study-is-for',
-    title: 'What a study is for',
-    dek: 'Twenty browser worlds, credited, rewritten, and not sold as other people’s brands.',
-    author: 'Shivansh Nayak',
-    minutes: 4,
-    image: 'horologie',
-    body: [
-      'The scenes came from Dioramas, an open project. The code is MIT. The generated pictures are CC BY. The credit stays on the credits page, and in the footer of this thought.',
-      'What changed is the voice. Titles, descriptions, and the lines in the index are written for this portfolio. A fragrance bottle is not a client. A watch taken apart is not a maison. Calling them studies is the whole correction.',
-      'They still have to run. A loader stuck at zero is not a study, it is a broken door. The heavy render path is eased unless you ask for full quality. The hub, the grid, and the case page all point at the same door.',
-      'A study is for practice in public: one interaction, carried all the way to a page someone can open.'
+    "slug": "what-a-study-is-for",
+    "title": "Software begins with the task",
+    "dek": "Useful interfaces are built around the work someone needs to finish.",
+    "author": "Shivansh Nayak",
+    "minutes": 2,
+    "image": "horologie",
+    "body": [
+      "A product screen should make its purpose apparent. What can I do here? What information do I need? What happens next? These questions are a useful starting point for both design and development.",
+      "The main flow is only part of the work. An empty account, a slow request, an invalid entry and a failed save all deserve an intelligible response. They are ordinary moments in the life of software.",
+      "Automation adds another responsibility. A person should know which action has been proposed, which has been completed, and which still needs attention. A polished interface is valuable when it helps make those distinctions clear.",
+      "I approach software as a sequence of decisions and consequences. The result should be straightforward to use and careful with the trust a person places in it."
     ]
   }
 ];

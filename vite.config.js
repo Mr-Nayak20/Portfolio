@@ -16,14 +16,7 @@ export default defineConfig({
   server: {
     host: '127.0.0.1',
     port: 5173,
-    strictPort: true,
-    proxy: {
-      '/examples': {target: 'http://127.0.0.1:5190', changeOrigin: true},
-      '/src': {target: 'http://127.0.0.1:5190', changeOrigin: true},
-      '/img': {target: 'http://127.0.0.1:5190', changeOrigin: true},
-      '/models': {target: 'http://127.0.0.1:5190', changeOrigin: true},
-      '/draco': {target: 'http://127.0.0.1:5190', changeOrigin: true}
-    }
+    strictPort: true
   },
   plugins: [{
     name: 'portfolio-routes',
@@ -56,6 +49,7 @@ export default defineConfig({
     chunkSizeWarningLimit: 3000,
     rollupOptions: {
       input: {
+        ...Object.fromEntries(studies.map(s => ['world-' + s.slug, path.resolve('web/examples/' + s.slug + '/index.html')])),
         portfolio: path.resolve('web/index.html'),
         virality: path.resolve('web/virality/index.html'),
         fizzi: path.resolve('web/fizzi/index.html'),
