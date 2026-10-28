@@ -1,0 +1,3 @@
+import {defineConfig} from 'vite';
+import path from 'node:path';
+export default defineConfig({root:'web',publicDir:'public',appType:'mpa',server:{host:'127.0.0.1',port:5173,strictPort:true},build:{outDir:'../dist',emptyOutDir:true,chunkSizeWarningLimit:2000,rollupOptions:{input:{portfolio:path.resolve('web/index.html'),virality:path.resolve('web/virality/index.html'),fizzi:path.resolve('web/fizzi/index.html'),substance:path.resolve('web/substance/index.html'),sleepy:path.resolve('web/sleepy/index.html'),nocturne:path.resolve('web/nocturne/index.html'),velocity:path.resolve('web/velocity/index.html')}}}});

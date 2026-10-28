@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>sleepy — portable humidifiers &amp; deep sleep</title>
+  <meta name="description" content="sleepy is charting the future of portable humidifiers designed to transform your sleep. Breathe better, sleep deeper."/>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/sleepy/favicon.svg"/>
+  <meta name="theme-color" content="#0d0e10"/>
+
+  <!-- Open Graph / Facebook / LinkedIn -->
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://github.com/hdezdav/sleepy"/>
+  <meta property="og:title" content="sleepy — Interactive Hardware Showcase &amp; E-Commerce"/>
+  <meta property="og:description" content="A high-performance, scroll-driven interactive e-commerce showcase featuring canvas-rendered frame sequences and GSAP animations."/>
+  <meta property="og:image" content="/sleepy/images/hand.webp"/>
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="sleepy — Interactive Hardware Showcase"/>
+  <meta name="twitter:description" content="High-performance, scroll-driven interactive experience built with HTML5 Canvas, GSAP, and Vanilla JS."/>
+  <meta name="twitter:image" content="/sleepy/images/hand.webp"/>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/sleepy/src/styles/main.css">
+</head>
+<body>
+
+  <!-- Preloader Buffering Indicator -->
+  <div class="buffer-progress-bar" id="buffer-bar"></div>
+
+  <!-- ===== NAVIGATION ===== -->
+  <nav class="nav" aria-label="Main Navigation">
+    <a href="#hero" class="nav__logo">sleepy</a>
+
+    <div class="nav__actions"><a class="portfolio-nav" href="/">Portfolio ↗</a>
+      <ul class="nav__links">
+        <li><a href="#hero" class="nav__link">Overview</a></li>
+        <li><a href="#text-reveal" class="nav__link">Science</a></li>
+        <li><a href="#rotation-showcase" class="nav__link">Design</a></li>
+        <li><a href="#shop" class="nav__link">Shop</a></li>
+      </ul>
+
+      <button class="nav__cart-btn" data-action="open-cart" aria-label="View Shopping Cart">
+        <span>Bag</span>
+        <span class="cart-count-badge" style="display: none;">0</span>
+      </button>
+
+      <div class="nav__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M7.67 3.37C7.67 2.06 8.73 1 10.04 1c.81 0 1.53.41 1.96 1.03A2.37 2.37 0 0113.96 1c1.31 0 2.37 1.06 2.37 2.37 0 1.63-.85 3.63-1.65 5.19a27.4 27.4 0 014.39-3.23c1.24-.42 2.59.25 3 1.49.26.77.1 1.58-.34 2.19.73.2 1.35.75 1.61 1.52.42 1.24-.25 2.59-1.49 3 -1.61.54-3.9.34-5.67.06 1.62.78 3.61 1.92 4.62 3.29.78 1.05.56 2.54-.5 3.32-.65.48-1.47.58-2.19.33.03.76-.3 1.51-.95 2-.56.41-1.22.56-1.86.41L12 16.88l-.01.01c-.28 1.74-.85 3.85-1.82 5.16-1.05.78-2.54.56-3.32-.5-.48-.65-.58-1.47-.33-2.19A2.37 2.37 0 013.72 20.2c-.78-1.05-.56-2.54.5-3.32 1.01-1.37 3-2.51 4.62-3.29C7.07 13.89 4.78 14.09 3.17 13.54c-1.24-.42-1.9-1.76-1.49-3 .26-.77.87-1.32 1.61-1.52-.45-.61-.61-1.42-.35-2.19.42-1.24 1.76-1.9 3-1.49a27.4 27.4 0 014.39 3.23C9.52 7 8.67 5 8.67 3.37h-1zM12 14.32c1.27 0 2.3-1.03 2.3-2.3 0-1.27-1.03-2.3-2.3-2.3-1.27 0-2.3 1.03-2.3 2.3 0 1.27 1.03 2.3 2.3 2.3z"/>
+        </svg>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== SIDE SHOP BUTTON ===== -->
+  <a href="#shop" class="side-shop-btn">
+    shop sleepy
+  </a>
+
+  <!-- ============================================================
+       SECTION 1 — HERO (WHITE)
+       ============================================================ -->
+  <section class="hero" id="hero">
+    <div class="hero__holder">
+      <div class="hero__title">
+        <h1>
+          <span><span class="word-inner" id="word-sleep">sleep</span></span>
+          <span><span class="word-inner" id="word-better">better</span></span>
+        </h1>
+        <div class="hero__text">
+          <p id="hero-paragraph">a small object for a quieter ritual — sleepy explores the future of portable humidifiers, thoughtful design and a little room to breathe</p>
+        </div>
+      </div>
+      <div class="hero__img">
+        <img id="hero-image" src="/sleepy/images/hand.webp" alt="Hand holding sleepy portable humidifier"/>
+      </div>
+      <div class="hero__cta">
+        <a href="#shop" id="hero-cta-btn">shop sleepy</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== GLOBAL FOOTER ========== -->
+  <div class="global-footer">
+    <div class="global-footer__left">
+      <span>pure mist</span>
+      <span class="dot"></span>
+      <span>better sleep</span>
+      <span class="dot"></span>
+      <span>portable design</span>
+    </div>
+    <div class="global-footer__center">
+      <span><a href="/">Portfolio / Shivansh Nayak ↗</a></span>
+    </div>
+    <div class="global-footer__right">
+      <div class="scroll-indicator">
+        <span>scroll down</span>
+        <div class="scroll-indicator__bar">
+          <div class="scroll-indicator__progress" id="scroll-progress"></div>
+        </div>
+        <span id="scroll-percent">0%</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       SECTION 2 — TEXT REVEAL (BLACK — SCROLL-LOCKED)
+       ============================================================ -->
+  <section class="text-reveal" id="text-reveal">
+    <svg class="text-reveal__moon" width="22" height="22" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M9.578.69c.075-.343-.158-.687-.509-.69C9.046 0 9.023 0 9 0 4.03 0 0 4.03 0 9s4.03 9 9 9c3.826 0 7.095-2.387 8.397-5.754.126-.327-.111-.67-.458-.703C12.649 10.837 9.367 7.118 9.367 2.633c0-.667.073-1.317.21-1.943z" fill="#fff"/>
+    </svg>
+    <div class="text-reveal__content">
+      <h2 id="reveal-text">sleepy measures the quality of your environment to improve the way you breathe &amp; sleep — bringing humidity, calm, and aromatherapy right to your bedside</h2>
+    </div>
+    <div class="text-reveal__line"></div>
+    <!-- Portal window: oval mask that reveals the fullscreen video canvas -->
+    <div class="text-reveal__portal" id="reveal-portal">
+      <canvas id="water-canvas"></canvas>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 2.5 — ROTATION SHOWCASE (WHITE → BLACK)
+       The product rotates in the center while background transitions
+       ============================================================ -->
+  <section class="rotation-showcase" id="rotation-showcase">
+    <div class="rotation-showcase__bg" id="rotation-bg"></div>
+    <div class="rotation-showcase__sticky">
+      <!-- Phase 1 Top-left descriptive text (Black text on white) -->
+      <div class="rotation-showcase__text-tl rot-phase-1" id="rot-text-tl-1">
+        <h3>
+          <svg class="rot-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M10 2v2h4V2h-4zm9 18c0 1.1-.9 2-2 2H7c-1.1 0-2-.9-2-2v-1.46c0-.65.32-1.26.85-1.63L9 14.61V6h6v8.61l3.15 2.29c.53.37.85.98.85 1.63V20z"/></svg> 
+          the science behind sleepy
+        </h3><hr class="rot-divider">
+        <p>the sleepy pod is designed to <strong>house our aromatic blends</strong> and to provide a <strong>digital bridge</strong> with sleepy's brain. with each mist, the pod exchanges information with the app, generating a journal of your sleep quality, over time.</p>
+      </div>
+
+      <!-- Phase 2 Top-left descriptive text (White text on black) -->
+      <div class="rotation-showcase__text-tl rot-phase-2" id="rot-text-tl-2" style="opacity: 0;">
+        <h3>
+          <svg class="rot-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M15.67 4H14V2h-4v2H8.33C7.6 4 7 4.6 7 5.33v15.33C7 21.4 7.6 22 8.33 22h7.33c.74 0 1.34-.6 1.34-1.33V5.33C17 4.6 16.4 4 15.67 4z"/></svg>
+          long life
+        </h3><hr class="rot-divider">
+        <p>featuring a high-capacity battery with fast <strong>Type-C charging</strong>. stay powered up and ready to transform your rest anywhere, anytime.</p>
+      </div>
+
+      <!-- Phase 3 Top-left descriptive text (Black text on white) -->
+      <div class="rotation-showcase__text-tl rot-phase-3" id="rot-text-tl-3" style="opacity: 0;">
+        <h3>
+          <svg class="rot-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.6 7.6 2.4-7.6 2.4-2.4 7.6-2.4-7.6-7.6-2.4 7.6-2.4z"/></svg>
+          personal &amp; portable
+        </h3><hr class="rot-divider">
+        <p>designed for movement. the sleepy pod fits seamlessly into your lifestyle, bringing deep relaxation and focused aromas wherever you go.</p>
+      </div>
+
+      <!-- Expanding Black Circle -->
+      <div class="rotation-showcase__black-circle" id="rot-black-circle"></div>
+
+      <!-- Giant background text 1 -->
+      <h2 class="rotation-showcase__big-text" id="rot-big-text-1">
+        <span>it all starts with a</span>
+      </h2>
+
+      <!-- Giant background text 2 -->
+      <h2 class="rotation-showcase__big-text rot-text-white" id="rot-big-text-2">
+        <span>sleepy pod</span>
+      </h2>
+
+      <!-- Canvas with the rotating product -->
+      <canvas id="rotation-canvas"></canvas>
+
+      <!-- Phase 1 Bottom-right descriptive text (Black text on white) -->
+      <div class="rotation-showcase__text-br rot-phase-1" id="rot-text-br-1">
+        <h3>
+          <svg class="rot-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>
+          personal playlist
+        </h3><hr class="rot-divider">
+        <p>with the help of your input, sleepy learns more about how different <strong>blends benefit you</strong>, helping to create a <strong>personal playlist</strong> of your favourite <strong>aromas</strong>.</p>
+      </div>
+
+      <!-- Phase 2 Bottom-right descriptive text (White text on black) -->
+      <div class="rotation-showcase__text-br rot-phase-2" id="rot-text-br-2" style="opacity: 0;">
+        <h3>
+          <svg class="rot-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M17.71 7.71L12 2v9.59l-4.3-4.3-1.41 1.41L10.59 13l-4.3 4.3 1.41 1.41L12 14.41V24l5.71-5.71L13.41 13 17.71 7.71zM14 5.83l1.88 1.88L14 9.59V5.83zm1.88 10.46L14 18.17v-3.76l1.88 1.88z"/></svg>
+          connected
+        </h3><hr class="rot-divider">
+        <p>seamless <strong>Bluetooth integration</strong> allows sleepy to journal your sleep quality automatically through the app with every single mist.</p>
+      </div>
+
+      <!-- Phase 3 Bottom-right descriptive text (Black text on white) -->
+      <div class="rotation-showcase__text-br rot-phase-3" id="rot-text-br-3" style="opacity: 0;">
+        <h3>
+          <svg class="rot-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18V4c4.41 0 8 3.59 8 8s-3.59 8-8 8z"/></svg>
+          black or white
+        </h3><hr class="rot-divider">
+        <p>a precise color palette to match your aesthetic. whether you prefer a minimalist white or a bold, sleek black finish, form meets true function.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 2.6 — NATURE SHOWCASE (SCROLL DRIVEN MARQUEE)
+       ============================================================ -->
+  <section class="nature-showcase" id="nature-showcase">
+    <div class="nature-showcase__sticky">
+
+      <!-- Background scrolling text -->
+      <div class="nature-showcase__bg-text-wrapper">
+        <h2 class="nature-showcase__bg-text" id="nature-bg-text">
+          <span>pure &amp; natural aromas</span>
+          <span>pure &amp; natural aromas</span>
+          <span>pure &amp; natural aromas</span>
+        </h2>
+      </div>
+      
+      <!-- Elements that deploy (plant.webp) -->
+      <img src="/sleepy/images/plant.webp" alt="Plant" class="nature-showcase__plant nature-showcase__plant--tl" id="nature-plant-tl"/>
+      <img src="/sleepy/images/plant.webp" alt="Plant" class="nature-showcase__plant nature-showcase__plant--br" id="nature-plant-br"/>
+
+      <!-- Center Image (natural.webp) -->
+      <div class="nature-showcase__center">
+        <img src="/sleepy/images/natural.webp" alt="Natural" class="nature-showcase__natural" id="nature-natural"/>
+      </div>
+
+      <!-- Overlapping black slit that opens like a blink -->
+      <div class="science-reveal" id="science-reveal">
+        <!-- Text 1: The science of sleep -->
+        <div class="science-reveal__content" id="science-content">
+          <p class="science-reveal__label">introducing</p>
+          <h2 class="science-reveal__heading">the science<br>of sleep</h2>
+        </div>
+        
+        <!-- Text 2: It all starts with... (hidden initially) -->
+        <div class="science-reveal__content" id="features-text-wrap" style="opacity: 0; transform: translateY(100px) scale(0.9);">
+          <p class="science-reveal__label">innovation meets rest</p>
+          <h2 class="science-reveal__heading">
+            <span class="white-text" style="display:block">it all starts with a</span>
+            <span class="accent-text" style="display:block; color: var(--accent);">sleepy pod</span>
+          </h2>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 4 — PRODUCTS GRID
+       ============================================================ -->
+  <section class="purchase-grid" id="shop">
+    <div class="purchase-card">
+      <div class="purchase-card__top">
+        <div class="purchase-card__title-wrap">
+          <h3>ocean blue</h3>
+          <p class="subtitle">col.// calming sea presence</p>
+        </div>
+        <span class="purchase-card__category">relax</span>
+      </div>
+      <div class="purchase-card__img">
+        <img src="/sleepy/images/blue.webp" alt="Ocean Blue Pod" />
+      </div>
+      <div class="purchase-card__bottom">
+        <p>target state: <strong>sleep</strong></p>
+        <p>finish: <strong>matte</strong></p>
+        <span class="purchase-card__arrow">&gt;</span>
+      </div>
+      <div class="purchase-card__actions">
+        <span class="purchase-card__price">$79.00</span>
+        <button class="purchase-card__add-btn" data-product-id="ocean-blue">Add to Bag</button>
+      </div>
+    </div>
+
+    <div class="purchase-card">
+      <div class="purchase-card__top">
+        <div class="purchase-card__title-wrap">
+          <h3>midnight black</h3>
+          <p class="subtitle">col.// blends into darkness</p>
+        </div>
+        <span class="purchase-card__category">rest</span>
+      </div>
+      <div class="purchase-card__img">
+        <img src="/sleepy/images/black.webp" alt="Midnight Black Pod" />
+      </div>
+      <div class="purchase-card__bottom">
+        <p>target state: <strong>calm + sleep</strong></p>
+        <p>colourway: <strong>black</strong></p>
+        <span class="purchase-card__arrow">&gt;</span>
+      </div>
+      <div class="purchase-card__actions">
+        <span class="purchase-card__price">$79.00</span>
+        <button class="purchase-card__add-btn" data-product-id="midnight-black">Add to Bag</button>
+      </div>
+    </div>
+
+    <div class="purchase-card">
+      <div class="purchase-card__top">
+        <div class="purchase-card__title-wrap">
+          <h3>cloud gray</h3>
+          <p class="subtitle">col.// soft neutral modern</p>
+        </div>
+        <span class="purchase-card__category">balance</span>
+      </div>
+      <div class="purchase-card__img">
+        <img src="/sleepy/images/gray.webp" alt="Cloud Gray Pod" />
+      </div>
+      <div class="purchase-card__bottom">
+        <p>target state: <strong>calm</strong></p>
+        <p>finish: <strong>soft touch</strong></p>
+        <span class="purchase-card__arrow">&gt;</span>
+      </div>
+      <div class="purchase-card__actions">
+        <span class="purchase-card__price">$79.00</span>
+        <button class="purchase-card__add-btn" data-product-id="cloud-gray">Add to Bag</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       CART DRAWER OVERLAY
+       ============================================================ -->
+  <div class="cart-backdrop" id="cart-backdrop"></div>
+  <aside class="cart-drawer" id="cart-drawer" aria-label="Shopping Cart">
+    <div class="cart-drawer__header">
+      <h3 class="cart-drawer__title">Your Bag</h3>
+      <button class="cart-drawer__close" data-action="close-cart" aria-label="Close Shopping Cart">&times;</button>
+    </div>
+
+    <div class="cart-drawer__body">
+      <div class="cart-empty-state" id="cart-empty-state">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <path d="M16 10a4 4 0 0 1-8 0"></path>
+        </svg>
+        <p>Your bag is currently empty.</p>
+      </div>
+      <div class="cart-items" id="cart-items-container"></div>
+    </div>
+
+    <div class="cart-drawer__footer" id="cart-footer">
+      <div class="cart-summary-row">
+        <span>Shipping</span>
+        <span style="color: #10b981; font-weight: 600;">Complimentary</span>
+      </div>
+      <div class="cart-summary-row total">
+        <span>Subtotal</span>
+        <span id="cart-subtotal">$0.00 USD</span>
+      </div>
+      <button class="cart-checkout-btn" id="cart-checkout-btn">Proceed to Checkout</button>
+    </div>
+  </aside>
+
+  <!-- ============================================================
+       SIMULATED CHECKOUT MODAL
+       ============================================================ -->
+  <div class="checkout-backdrop" id="checkout-backdrop"></div>
+  <div class="checkout-modal" id="checkout-modal" role="dialog" aria-modal="true">
+    <div class="checkout-modal__header">
+      <h3 class="checkout-modal__title">Express Checkout</h3>
+      <button class="cart-drawer__close" data-action="close-checkout" aria-label="Close Checkout">&times;</button>
+    </div>
+
+    <form class="checkout-form" id="checkout-form">
+      <div class="form-group">
+        <label for="checkout-name">Full Name</label>
+        <input type="text" id="checkout-name" required placeholder="e.g. David Hernandez" />
+      </div>
+      <div class="form-group">
+        <label for="checkout-email">Email Address</label>
+        <input type="email" id="checkout-email" required placeholder="david@example.com" />
+      </div>
+      <div class="form-group">
+        <label for="checkout-address">Shipping Address</label>
+        <input type="text" id="checkout-address" required placeholder="123 Serenity Blvd, Apt 4" />
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="checkout-city">City</label>
+          <input type="text" id="checkout-city" required placeholder="San Francisco" />
+        </div>
+        <div class="form-group">
+          <label for="checkout-zip">Postal Code</label>
+          <input type="text" id="checkout-zip" required placeholder="94103" />
+        </div>
+      </div>
+      <button type="submit" class="checkout-submit-btn">Place Test Order</button>
+    </form>
+
+    <div class="checkout-success" id="checkout-success" style="display: none;">
+      <div class="checkout-success__icon">✓</div>
+      <h3>Order Confirmed!</h3>
+      <p>Thank you for choosing sleepy. Your simulated order has been registered.</p>
+      <div class="order-badge" id="order-number">SLP-892103</div>
+      <p style="font-size: 0.78rem; opacity: 0.5;">Delivery estimated in 2-3 business days.</p>
+    </div>
+  </div>
+
+  <!-- ===== APPLICATION ENTRY POINT ===== -->
+  <script type="module" src="/sleepy/src/main.js"></script>
+
+<div class="portfolio-credit" style="padding:20px;text-align:center;font:10px Arial;background:#eee;color:#555">Frontend adaptation by Shivansh Nayak · Original Sleepy by David Hernández · Portfolio demonstration; no real orders.</div></body>
+</html>
