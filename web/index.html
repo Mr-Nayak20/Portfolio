@@ -3,132 +3,149 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#08090c">
-  <meta name="description" content="Shivansh Nayak — AI engineer, coder, reader, writer and artist. A guided tour through websites, AI experiments, art and ideas.">
-  <meta property="og:title" content="Shivansh Nayak — A life in systems and stories">
-  <meta property="og:description" content="Enter the studio. Onyx will show you around.">
-  <title>Shivansh Nayak — A life in systems and stories</title>
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='50' fill='%2308090c'/%3E%3Cpath d='M20 70 31 25l19 26 19-26 11 45H64V48L50 67 36 48v22z' fill='%23d2ff66'/%3E%3C/svg%3E">
+  <meta name="theme-color" content="#10120f">
+  <meta name="description" content="Shivansh Nayak — AI specialist, builder, writer and artist. Enter the studio to explore AI systems, software, websites, ideas and work in progress.">
+  <meta property="og:title" content="Shivansh Nayak — The House of Ideas">
+  <meta property="og:description" content="A personal portfolio in rooms: AI systems, web products, art, writing, reading and open questions. Meet Ezra, the digital concierge.">
+  <title>Shivansh Nayak — The House of Ideas</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='50' fill='%2310120f'/%3E%3Cpath d='M22 76V24h10l18 25 18-25h10v52H66V43L50 64 34 43v33z' fill='%23d8c39a'/%3E%3C/svg%3E">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <a class="skip-link" href="#code">Skip the introduction</a>
-  <div class="scroll-progress" aria-hidden="true"></div>
-  <header class="site-header">
-    <a class="signature" href="#home" aria-label="Shivansh Nayak, home">SHIVANSH<br>NAYAK<span>®</span></a>
+  <a class="skip-link" href="#ai-studio">Skip to the AI studio</a>
+  <header class="topbar">
+    <a class="brand-lockup" href="#home" aria-label="Shivansh Nayak, home"><span class="brand-mark">SN</span><span>SHIVANSH NAYAK<small>AI · SOFTWARE · IDEAS</small></span></a>
     <nav aria-label="Main navigation">
-      <a href="#code">Code</a><a href="#ai">AI studio</a><a href="#studio">The rest of me</a>
+      <a href="#ai-studio">AI studio</a>
+      <a href="#workshop">Web atelier</a>
+      <a href="#life">Library &amp; life</a>
     </nav>
-    <a class="header-cta" href="mailto:shivansh15nayak@gmail.com">Say hello <span>↗</span></a>
+    <button class="ask-ezra top-ask" type="button"><span class="status-dot"></span> Ask Ezra <b>↗</b></button>
   </header>
 
   <main>
-    <section class="hero" id="home" aria-labelledby="hero-title">
-      <div class="hero-grain" aria-hidden="true"></div>
-      <div class="hero-meta"><span>AN OPEN STUDIO / SHIVANSH NAYAK</span><span>INDIA · 2026</span></div>
-      <div class="hero-stage">
-        <div class="hero-copy">
-          <p class="eyebrow"><i></i> AI ENGINEER · BUILDER · WRITER · ARTIST</p>
-          <h1 id="hero-title">A life in<br>systems <em>&amp;</em><br>stories.</h1>
-          <p class="hero-deck">I build useful things, follow difficult questions<br class="desktop-only"> and look for the human story inside both.</p>
-          <div class="hero-actions"><a class="button button-light" href="#code">Enter the studio <span>↓</span></a><button class="text-button tour-open" type="button">Meet Onyx <span>↗</span></button></div>
+    <section class="entrance" id="home" aria-labelledby="hero-title">
+      <div class="entrance-backdrop" aria-hidden="true"></div>
+      <div class="entrance-sky" aria-hidden="true"></div>
+      <figure class="entrance-image">
+        <img src="/villa/lajes.webp" alt="A modern house on a cliff at dusk, with its rooms lit against the dark sea" fetchpriority="high">
+        <figcaption>THE THRESHOLD / AN OPEN-SOURCE SCENE STUDY</figcaption>
+      </figure>
+      <div class="entrance-vignette" aria-hidden="true"></div>
+      <div class="entrance-copy">
+        <p class="eyebrow"><span class="eyebrow-line"></span> WELCOME TO MY HOUSE OF IDEAS</p>
+        <h1 id="hero-title">I’m<br>Shivansh<br><em>Nayak.</em></h1>
+        <p class="hero-description">AI specialist. Builder of agents, automations and software. Writer, reader, painter, and a student of how the world works.</p>
+        <div class="hero-links"><a class="door-link" href="#ai-studio"><span>ENTER THE HOUSE</span><b>↓</b></a><button class="quiet-link ask-ezra" type="button">Meet your concierge <span>↗</span></button></div>
+      </div>
+      <div class="hero-register"><span>SHIVANSH NAYAK</span><i></i><span>PERSONAL PORTFOLIO / 2026</span></div>
+      <aside class="ezra-welcome" aria-labelledby="ezra-welcome-title">
+        <div class="ezra-welcome-head"><span class="ezra-orb" aria-hidden="true"><i></i><b></b></span><span><small>THE CONCIERGE</small><strong id="ezra-welcome-title">Ezra</strong></span><span class="connection-state"><i></i> AWAITING HERMES</span></div>
+        <p>Good evening. I’m Ezra. I can take you through Shivansh’s AI studio, the web atelier, and the rooms beyond the screen.</p>
+        <div class="welcome-actions"><button type="button" class="start-tour">Take the guided route <span>↗</span></button><button type="button" class="ask-ezra welcome-ask" aria-label="Open Ezra concierge">Ask Ezra</button></div>
+      </aside>
+      <div class="entrance-foot"><span>AI SYSTEMS / SOFTWARE / ART &amp; IDEAS</span><a href="#ai-studio">SCROLL TO EXPLORE <b>↓</b></a><span>INDIA</span></div>
+    </section>
+
+    <section class="room ai-room" id="ai-studio" aria-labelledby="ai-title">
+      <div class="room-inner">
+        <div class="section-index"><span><i></i> ROOM 01 / THE ENGINE ROOM</span><span>01 — 06</span></div>
+        <div class="section-heading"><div><p class="eyebrow">ARTIFICIAL INTELLIGENCE / UNDER ACTIVE CONSTRUCTION</p><h2 id="ai-title">Make intelligence<br><em>useful.</em></h2></div><p class="heading-note">I’m interested in the moment software begins to act: an agent that understands its task, a workflow that gives time back, a product that keeps a person in control.</p></div>
+        <div class="ai-feature">
+          <div class="ai-feature-art" aria-hidden="true"><div class="agent-orbit orbit-one"></div><div class="agent-orbit orbit-two"></div><div class="agent-core"><span>H</span></div><div class="orbit-dot dot-one"></div><div class="orbit-dot dot-two"></div><div class="orbit-dot dot-three"></div><span class="art-caption">PRIVATE ASSISTANT / HERMES</span></div>
+          <div class="ai-feature-copy"><span class="work-label">ON THE DESK NOW / 001</span><h3>A personal assistant.<br>A public front door.</h3><p>I’m building my personal AI assistant with Hermes. Ezra will be the concierge on this site: a familiar, helpful way to find a project, ask about my work, or move through the house.</p><p class="integration-note"><span class="status-dot"></span> FRONT END READY / HERMES CONNECTION TO FOLLOW</p><button type="button" class="line-link ask-ezra">Meet Ezra <span>↗</span></button></div>
         </div>
-        <div class="panther-wrap" aria-label="Onyx, a stylized animated black panther guide">
-          <div class="panther-aura" aria-hidden="true"></div>
-          <svg class="panther" viewBox="0 0 620 580" role="img" aria-labelledby="onyx-title onyx-desc">
-            <title id="onyx-title">Onyx, the midnight panther</title><desc id="onyx-desc">A sculptural black panther, alert and ready to guide visitors through the portfolio.</desc>
-            <defs>
-              <radialGradient id="onyxBody" cx="35%" cy="22%" r="85%"><stop stop-color="#62636c"/><stop offset=".22" stop-color="#292b33"/><stop offset=".67" stop-color="#111319"/><stop offset="1" stop-color="#07080b"/></radialGradient>
-              <linearGradient id="onyxEdge" x1=".1" y1="0" x2=".9" y2="1"><stop stop-color="#c8cbd0" stop-opacity=".48"/><stop offset=".32" stop-color="#7b7c86" stop-opacity=".08"/><stop offset=".78" stop-color="#111217" stop-opacity=".1"/><stop offset="1" stop-color="#8c8d96" stop-opacity=".32"/></linearGradient>
-              <radialGradient id="onyxEye"><stop stop-color="#f5ffd1"/><stop offset=".32" stop-color="#d2ff66"/><stop offset="1" stop-color="#8cb239"/></radialGradient>
-              <radialGradient id="onyxGround"><stop stop-color="#d2ff66" stop-opacity=".25"/><stop offset="1" stop-color="#d2ff66" stop-opacity="0"/></radialGradient>
-              <filter id="onyxGlow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="10"/></filter>
-            </defs>
-            <ellipse cx="338" cy="512" rx="205" ry="35" fill="url(#onyxGround)"/>
-            <path class="panther-tail" d="M177 377C108 405 92 488 43 475c-38-10-28-59 14-72" fill="none" stroke="url(#onyxBody)" stroke-width="37" stroke-linecap="round"/>
-            <path d="M136 375c10-54 72-96 157-103 74-6 151 21 194 70 22 25 26 65 4 89-25 27-80 32-129 29l-134-4c-68-2-114-29-92-81Z" fill="url(#onyxBody)" stroke="url(#onyxEdge)" stroke-width="2"/>
-            <path d="M180 348c-47-6-80 32-72 76 5 30 38 46 74 34 28-10 44-43 38-74-4-20-18-33-40-36Z" fill="url(#onyxBody)" stroke="url(#onyxEdge)" stroke-width="2"/>
-            <path d="M251 421c-6 23-11 49-2 67 7 14 29 18 59 13l36-8c10-3 15-17 9-26-7-10-30-8-43-10l-18-41Z" fill="url(#onyxBody)" stroke="url(#onyxEdge)" stroke-width="2"/>
-            <path d="M396 419c-3 23-5 46 6 59 10 11 31 12 59 5l34-9c10-3 13-18 6-26-9-9-30-5-43-6l-27-35Z" fill="url(#onyxBody)" stroke="url(#onyxEdge)" stroke-width="2"/>
-            <path d="M277 315c-20-57 11-137 71-173 48-29 105-21 140 12l40 38c23 22 24 53 6 76l-40 49c-29 37-86 52-142 35-36-11-61-22-75-37Z" fill="url(#onyxBody)" stroke="url(#onyxEdge)" stroke-width="2"/>
-            <path d="m314 183 8-65c2-14 19-19 28-8l39 46M445 155l32-51c8-13 27-8 29 7l8 67" fill="#15171e" stroke="url(#onyxEdge)" stroke-width="3" stroke-linejoin="round"/>
-            <path d="M352 188c20-25 50-38 81-36 34 2 62 18 77 45l-8 61c-7 49-48 82-99 78-47-4-82-38-84-82l-1-34c0-12 10-24 34-32Z" fill="url(#onyxBody)" stroke="url(#onyxEdge)" stroke-width="2"/>
-            <path d="M356 224c18-10 38-9 53-1-10 10-28 14-45 10M433 224c15-8 34-8 48 2-13 9-31 11-45 7" fill="#08090c"/>
-            <ellipse cx="383" cy="230" rx="7" ry="4" fill="url(#onyxEye)"/><ellipse cx="458" cy="231" rx="7" ry="4" fill="url(#onyxEye)"/>
-            <ellipse cx="383" cy="230" rx="2" ry="4" fill="#08090c"/><ellipse cx="458" cy="231" rx="2" ry="4" fill="#08090c"/>
-            <path d="m401 260 25 1-12 11Z" fill="#7d6870"/><path d="M414 272c-8 15-22 21-39 18m39-18c10 15 23 19 39 15" fill="none" stroke="#a5a2a9" stroke-opacity=".5" stroke-width="2" stroke-linecap="round"/>
-            <path d="M342 251c-31 6-48 23-58 44m166-37c32 6 51 21 64 43" fill="none" stroke="#8d8f98" stroke-opacity=".25" stroke-width="4"/>
-            <path d="M333 300c13 15 29 24 49 27m65-2c17-6 31-17 41-31" fill="none" stroke="url(#onyxEdge)" stroke-width="3"/>
-            <circle class="eye-flare" cx="383" cy="230" r="13" fill="#d2ff66" opacity=".32" filter="url(#onyxGlow)"/><circle class="eye-flare" cx="458" cy="231" r="13" fill="#d2ff66" opacity=".32" filter="url(#onyxGlow)"/>
-          </svg>
-          <div class="panther-label"><span>ONYX</span><i></i><span>YOUR GUIDE</span></div>
+        <div class="systems-grid">
+          <article class="system-card"><span class="card-index">02 / AGENTS</span><div class="system-glyph glyph-agent" aria-hidden="true"><i></i><i></i><b></b></div><h3>Agents with a job to do.</h3><p>Research, reasoning, tools and hand-offs—designed around clear goals and human oversight.</p><span class="project-state">EXPERIMENTS IN PROGRESS</span></article>
+          <article class="system-card"><span class="card-index">03 / AUTOMATION</span><div class="system-glyph glyph-flow" aria-hidden="true"><i></i><i></i><i></i><b>→</b></div><h3>Work that moves by itself.</h3><p>Carefully scoped automations that remove repetition and make each step understandable.</p><span class="project-state">WORKFLOWS IN DEVELOPMENT</span></article>
+          <article class="system-card" id="saas"><span class="card-index">04 / PRODUCT</span><div class="system-glyph glyph-product" aria-hidden="true"><i></i><i></i><b></b></div><h3>SaaS, from first principle.</h3><p>Useful products need more than a clever demo: a coherent interface, reliable state and a reason to return.</p><span class="project-state">PRODUCT IDEAS / BUILDING</span></article>
         </div>
-        <div class="hero-side-note">A PERSONAL<br>STUDIO TOUR<br><span>01 — 08</span></div>
-      </div>
-      <div class="hero-bottom"><span>CODE / CONSIDERED</span><span>IDEAS / IN MOTION</span><a href="#code" aria-label="Continue to the coding chapter">SCROLL TO BEGIN <b>↓</b></a></div>
-    </section>
-
-    <section class="chapter code-chapter" id="code" aria-labelledby="code-title">
-      <div class="chapter-heading"><p class="eyebrow"><i></i> CHAPTER 01 / THE WORKSHOP</p><span class="chapter-index">01 — 08</span></div>
-      <div class="chapter-title-row"><h2 id="code-title">First, the<br><em>things I build.</em></h2><p>Websites with a point of view.<br>Each one opens into its own world.</p></div>
-      <div class="work-grid">
-        <a class="work-card work-nayak" href="https://nayakandco.in/" target="_blank" rel="noopener"><span class="work-meta">01 / BRAND WEBSITE <b>↗</b></span><div class="site-art art-nayak"><span>N</span><i></i></div><div><h3>Nayak</h3><p>A considered front door to an AI company.</p></div></a>
-        <a class="work-card work-virality" href="/virality/" target="_blank" rel="noopener"><span class="work-meta">02 / CREATOR SAAS <b>↗</b></span><div class="site-art art-virality"><span>IDEA<br>INTO<br>ORBIT</span><i></i></div><div><h3>Virality OS</h3><p>A creator workspace, from blank page to first draft.</p></div></a>
-        <a class="work-card work-fizzi" href="/fizzi/" target="_blank" rel="noopener"><span class="work-meta">03 / PRODUCT STORY <b>↗</b></span><div class="site-art art-fizzi"><span>F!ZZI</span><i></i><b>CHERRY<br>COLA</b></div><div><h3>Fizzi Soda</h3><p>Playful flavour, motion and a 3D product.</p></div></a>
-        <a class="work-card work-substance" href="/substance/" target="_blank" rel="noopener"><span class="work-meta">04 / DIGITAL STUDIO <b>↗</b></span><div class="site-art art-substance"><span>SUB<br>STANCE</span><i></i></div><div><h3>The Substance</h3><p>A study in material, light and perception.</p></div></a>
-        <a class="work-card work-sleepy" href="/sleepy/" target="_blank" rel="noopener"><span class="work-meta">05 / CINEMATIC COMMERCE <b>↗</b></span><div class="site-art art-sleepy"><span>slow<br>down.</span><i></i></div><div><h3>Sleepy</h3><p>A product story that unfolds as you scroll.</p></div></a>
-        <a class="work-card work-nocturne" href="/nocturne/" target="_blank" rel="noopener"><span class="work-meta">06 / FRAGRANCE <b>↗</b></span><div class="site-art art-nocturne"><span>NOCTURNE</span><i></i></div><div><h3>Nocturne</h3><p>A dark, tactile ritual told in chapters.</p></div></a>
-        <a class="work-card work-velocity" href="/velocity/" target="_blank" rel="noopener"><span class="work-meta">07 / PERFORMANCE OBJECT <b>↗</b></span><div class="site-art art-velocity"><span>VELOCITY<br>LAB</span><i></i><b>RUN THE FUTURE</b></div><div><h3>Velocity Lab</h3><p>Explore a shoe through X-ray, heat and form.</p></div></a>
-      </div>
-      <p class="credit-line">Open each project to explore the experience. Adapted foundations and asset credits are documented inside the relevant project.</p>
-    </section>
-
-    <section class="chapter ai-chapter" id="ai" aria-labelledby="ai-title">
-      <div class="chapter-heading"><p class="eyebrow"><i></i> CHAPTER 02 / THE INTELLIGENCE ROOM</p><span class="chapter-index">02 — 08</span></div>
-      <div class="chapter-title-row"><h2 id="ai-title">The next tool<br>should feel <em>human.</em></h2><p>AI work is most interesting to me<br>when it gives people more agency.</p></div>
-      <div class="lab-grid">
-        <article class="lab-card lab-feature"><span class="lab-index">AI PRODUCT / CASE STUDY</span><div class="lab-symbol symbol-orbit"><i></i><i></i><b>✳</b></div><h3>Intelligence<br>with intention.</h3><p>From thoughtful interfaces to agentic systems, I’m interested in making powerful tools understandable, steerable and genuinely useful.</p><span class="project-state">THE AI STUDIO / IN DEVELOPMENT</span></article>
-        <article class="lab-card"><span class="lab-index">01 / ASSISTANTS</span><div class="lab-symbol symbol-chat"><span>◌</span><i></i></div><h3>Bots with<br>good manners.</h3><p>Focused assistants that explain what they can do, keep a person in control and know when to hand back.</p><span class="project-state">EXPERIMENTS / IN PROGRESS</span></article>
-        <article class="lab-card" id="automation"><span class="lab-index">02 / AUTOMATIONS</span><div class="lab-symbol symbol-flow"><i></i><i></i><i></i><b>→</b></div><h3>Quietly useful<br>automations.</h3><p>Small systems that remove repetitive work and make the important steps visible.</p><span class="project-state">WORKFLOWS / IN PROGRESS</span></article>
-        <article class="lab-card" id="saas"><span class="lab-index">03 / SAAS</span><div class="lab-symbol symbol-window"><i></i><i></i><i></i><b></b></div><h3>Products with<br>a clear purpose.</h3><p>SaaS ideas, interface prototypes and the decisions behind turning a useful idea into a product.</p><span class="project-state">PRODUCT LAB / IN PROGRESS</span></article>
-      </div>
-      <div class="lab-note"><span>NOTES FROM THE BENCH</span><p>Onyx is a guided portfolio tour, not a connected AI agent. New tools and builds will appear here as they become real.</p></div>
-    </section>
-
-    <section class="interlude" aria-label="A pause between chapters"><div class="interlude-inner"><span class="eyebrow"><i></i> A SMALL PAUSE</span><p>“The map is not the territory.<br>The map is an invitation to <em>look again.</em>”</p><span class="interlude-mark">S.N. / FIELD NOTE 001</span></div></section>
-
-    <section class="chapter studio-chapter" id="studio" aria-labelledby="studio-title">
-      <div class="chapter-heading"><p class="eyebrow"><i></i> CHAPTER 03 / THE OTHER ROOMS</p><span class="chapter-index">03 — 08</span></div>
-      <div class="chapter-title-row"><h2 id="studio-title">One life.<br>Several <em>lenses.</em></h2><p>Code is one way of making sense.<br>It is not the only one.</p></div>
-      <div class="rooms-grid">
-        <article class="room-card room-art"><span class="room-no">ROOM 01 / THE ATELIER</span><div class="paint-study" aria-hidden="true"><i></i><i></i><i></i><b></b></div><h3>Art &amp; image</h3><p>Paintings, visual experiments and the pleasure of making without a brief.</p><span class="room-status">THE GALLERY IS TAKING SHAPE</span></article>
-        <article class="room-card room-writing" id="writing"><span class="room-no">ROOM 02 / THE WRITING DESK</span><div class="paper-study" aria-hidden="true"><b>NOTES<br>FROM THE<br>MARGINS</b><i></i></div><h3>Writing in public</h3><p>Essays and notes on technology, culture, history and the questions between them.</p><a href="https://substack.com/@shivanshnayak" target="_blank" rel="noopener">Read my Substack <span>↗</span></a></article>
-        <article class="room-card room-reading"><span class="room-no">ROOM 03 / THE LIBRARY</span><div class="book-study" aria-hidden="true"><i></i><i></i><i></i></div><h3>Reading &amp; history</h3><p>Books, biographies and civilizational patterns that keep changing how I see the present.</p><span class="room-status">READING NOTES / COMING TOGETHER</span></article>
-        <article class="room-card room-questions" id="questions"><span class="room-no">ROOM 04 / THE LONG QUESTIONS</span><div class="question-glyph">?</div><h3>Problems worth staying with.</h3><p>Can clean energy become abundant? How do societies preserve knowledge through shocks? Which open questions in mathematics or science could change what we can build?</p><a href="mailto:shivansh15nayak@gmail.com?subject=An%20open%20question">Bring me a question <span>↗</span></a></article>
+        <div class="room-foot"><span>AI / AGENTS / AUTOMATION / PRODUCT ENGINEERING</span><a href="#workshop">NEXT ROOM / WEB ATELIER <b>↓</b></a></div>
       </div>
     </section>
 
-    <section class="newsletter-chapter" id="letters" aria-labelledby="letters-title">
-      <div><p class="eyebrow"><i></i> OCCASIONAL LETTERS / VIA SUBSTACK</p><h2 id="letters-title">A note when<br>there’s <em>something to say.</em></h2><p>Writing, reading notes and work in progress.<br>No noise for the sake of noise.</p></div>
-      <a class="button button-light" href="https://substack.com/@shivanshnayak" target="_blank" rel="noopener">Read &amp; follow on Substack <span>↗</span></a>
+    <section class="interior-passage" aria-label="A view into the studio">
+      <img src="/villa/studio.webp" alt="A sunlit architecture studio with models and drawings on a long worktable" loading="lazy" decoding="async">
+      <div class="passage-shade"></div><div class="passage-copy"><span class="eyebrow">A NOTE ON MAKING</span><p>Thought is a beginning.<br>Making gives it <em>a place to live.</em></p><span class="passage-credit">IMAGE: DIORAMAS / CC BY 4.0</span></div>
     </section>
 
-    <section class="contact-chapter" id="contact">
-      <p class="eyebrow"><i></i> THE TOUR ENDS HERE</p><h2>Good to have<br>you <em>through.</em></h2><p>If something here made you curious, let’s continue the conversation.</p><a href="mailto:shivansh15nayak@gmail.com" class="contact-link">shivansh15nayak@gmail.com <span>↗</span></a><a class="back-top" href="#home">Return to the entrance ↑</a>
+    <section class="room atelier-room" id="workshop" aria-labelledby="workshop-title">
+      <div class="room-inner">
+        <div class="section-index"><span><i></i> ROOM 02 / THE WEB ATELIER</span><span>02 — 06</span></div>
+        <div class="section-heading"><div><p class="eyebrow">FRONT END / FULL STACK / COMMERCE</p><h2 id="workshop-title">Things made<br><em>for the screen.</em></h2></div><p class="heading-note">A website can be a storefront, a tool, a story or a small world. These projects explore different ways an interface can invite someone in.</p></div>
+        <div class="project-grid">
+          <article class="project project-wide project-nayak">
+            <a class="project-image project-image-nayak" href="https://nayakandco.in/" target="_blank" rel="noopener" aria-label="Open the Nayak website"><div class="nayak-window"><div class="window-top"><span>NAYAK / AI SYSTEMS</span><span>01 — 07</span></div><div class="nayak-word">N<span>.</span></div><p>Intelligence,<br>with a human direction.</p><span class="window-cta">EXPLORE NAYAK ↗</span></div><span class="image-corner">LIVE WEBSITE ↗</span></a>
+            <div class="project-info"><div><span class="work-label">01 / BRAND WEBSITE</span><h3>Nayak</h3><p>A considered introduction to the Nayak brand and its AI work. This is the marketing website—separate from the Scout application.</p></div><a class="project-arrow" href="https://nayakandco.in/" target="_blank" rel="noopener" aria-label="Visit Nayak live site">↗</a></div>
+          </article>
+          <article class="project project-virality">
+            <a class="project-image project-image-virality" href="/virality/" aria-label="Open Virality OS"><span class="virality-graphic">IDEAS<br>INTO<br>ORBIT</span><div class="orbit-lines"></div><span class="image-corner">OPEN WEBSITE ↗</span></a>
+            <div class="project-info"><div><span class="work-label">02 / CREATOR PRODUCT</span><h3>Virality OS</h3><p>A creator workspace with a redesigned front end and interactive idea studio. Generation is a local demo.</p></div><a class="project-arrow" href="/virality/" aria-label="Visit Virality OS">↗</a></div>
+          </article>
+          <article class="project project-fizzi">
+            <a class="project-image project-image-fizzi" href="/fizzi/" aria-label="Open Fizzi Soda"><img src="/fizzi/labels/cherry.png" alt="Fizzi Black Cherry label artwork" loading="lazy" decoding="async"><span class="fizzi-stamp">F!ZZI<br><small>BLACK CHERRY</small></span><span class="image-corner">OPEN WEBSITE ↗</span></a>
+            <div class="project-info"><div><span class="work-label">03 / E-COMMERCE CONCEPT</span><h3>Fizzi Soda</h3><p>A bright 3D beverage storefront, flavour selector and demo shopping bag. No real checkout.</p></div><a class="project-arrow" href="/fizzi/" aria-label="Visit Fizzi Soda">↗</a></div>
+          </article>
+          <article class="project project-substance">
+            <a class="project-image project-image-substance" href="/substance/" aria-label="Open The Substance"><img src="/substance/ph1.jpg" alt="Editorial image from The Substance project" loading="lazy" decoding="async"><span class="substance-title">THE<br>SUBSTANCE</span><span class="image-corner">OPEN WEBSITE ↗</span></a>
+            <div class="project-info"><div><span class="work-label">04 / CREATIVE STUDIO</span><h3>The Substance</h3><p>A material study in glass, light and image, with interactive 3D treatments.</p></div><a class="project-arrow" href="/substance/" aria-label="Visit The Substance">↗</a></div>
+          </article>
+          <article class="project project-sleepy">
+            <a class="project-image project-image-sleepy" href="/sleepy/" aria-label="Open Sleepy"><img src="/sleepy/images/layout-thumb.webp" alt="Sleepy product story preview" loading="lazy" decoding="async"><span class="sleepy-title">sleep<br>better.</span><span class="image-corner">OPEN WEBSITE ↗</span></a>
+            <div class="project-info"><div><span class="work-label">05 / CINEMATIC COMMERCE</span><h3>Sleepy</h3><p>A product story paced by scroll, with a 360° product sequence and demo commerce flow.</p></div><a class="project-arrow" href="/sleepy/" aria-label="Visit Sleepy">↗</a></div>
+          </article>
+          <article class="project project-nocturne">
+            <a class="project-image project-image-nocturne" href="/nocturne/" aria-label="Open Nocturne"><img src="/nocturne-preview.jpg" alt="Nocturne fragrance experience with a glowing glass bottle" loading="lazy" decoding="async"><span class="image-corner">OPEN WEBSITE ↗</span></a>
+            <div class="project-info"><div><span class="work-label">06 / SCENT &amp; STORY</span><h3>Nocturne</h3><p>A dark fragrance house imagined through glass, ingredients and a slow reveal.</p></div><a class="project-arrow" href="/nocturne/" aria-label="Visit Nocturne">↗</a></div>
+          </article>
+          <article class="project project-velocity">
+            <a class="project-image project-image-velocity" href="/velocity/" aria-label="Open Velocity Lab"><img src="/velocity-preview.jpg" alt="Velocity Lab shoe product experience with a technical inspection lens" loading="lazy" decoding="async"><span class="image-corner">OPEN WEBSITE ↗</span></a>
+            <div class="project-info"><div><span class="work-label">07 / PRODUCT ENGINEERING</span><h3>Velocity Lab</h3><p>An interactive footwear launch with X-ray, thermal and CAD inspection modes.</p></div><a class="project-arrow" href="/velocity/" aria-label="Visit Velocity Lab">↗</a></div>
+          </article>
+        </div>
+        <p class="credits-line">Some experiences adapt open-source foundations. Their original authors, code licenses and asset credits are listed in the <a href="/credits/">project credits ↗</a>.</p>
+      </div>
     </section>
+
+    <section class="room life-room" id="life" aria-labelledby="life-title">
+      <div class="room-inner">
+        <div class="section-index"><span><i></i> ROOM 03 / THE LIBRARY &amp; LIFE</span><span>03 — 06</span></div>
+        <div class="section-heading"><div><p class="eyebrow">THE WORK OUTSIDE THE WORK</p><h2 id="life-title">A mind needs<br><em>other rooms.</em></h2></div><p class="heading-note">Code is one way I make sense of things. Reading, writing, painting and history keep the questions wider.</p></div>
+        <div class="life-grid">
+          <article class="life-card writing-card" id="writing"><span class="work-label">THE WRITING DESK</span><div class="writing-sheet"><span>SHIVANSH NAYAK / NOTES</span><strong>Ideas are<br>better when<br>they travel.</strong><i></i></div><div class="life-card-bottom"><div><h3>Writing</h3><p>Essays, observations and work in progress on technology, history and being human.</p></div><a href="https://substack.com/@shivanshnayak" target="_blank" rel="noopener" aria-label="Read Shivansh's Substack">↗</a></div><a class="life-text-link" href="https://substack.com/@shivanshnayak" target="_blank" rel="noopener">READ ON SUBSTACK <span>↗</span></a></article>
+          <article class="life-card reading-card" id="reading"><span class="work-label">THE READING ROOM</span><div class="book-spines" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div><div class="reading-copy"><span>HISTORY / SCIENCE / FICTION / PHILOSOPHY</span><h3>Read widely.<br>Keep the margins.</h3><p>Books are a way of borrowing other lives and extending your own. A considered reading shelf will live here.</p></div><span class="archive-note">READING NOTES / BEING ASSEMBLED</span></article>
+          <article class="life-card art-card" id="gallery"><span class="work-label">THE PAINTING GALLERY</span><div class="gallery-frame"><div class="canvas-placeholder"><span>STUDIO ARCHIVE</span><i></i><b></b><small>SELECTED PAINTINGS / COMING IN FROM THE STUDIO</small></div></div><div class="life-card-bottom"><div><h3>Painting</h3><p>Work made slowly, by hand. The collection belongs here once the images are gathered.</p></div><span class="archive-note">GALLERY / IN PROGRESS</span></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="observatory" id="questions" aria-labelledby="questions-title">
+      <div class="observatory-image" aria-hidden="true"><img src="/villa/studio.webp" alt="" loading="lazy" decoding="async"></div><div class="observatory-shade"></div>
+      <div class="observatory-inner"><div class="section-index"><span><i></i> ROOM 04 / THE OBSERVATORY</span><span>04 — 06</span></div><p class="eyebrow">QUESTIONS I KEEP OPEN</p><h2 id="questions-title">What might we<br><em>make possible?</em></h2>
+        <div class="question-list"><article><span>01</span><p>How do we make AI agents capable—and still legible, corrigible and worth trusting?</p></article><article><span>02</span><p>Can automation return attention to people instead of simply asking them to do more?</p></article><article><span>03</span><p>What unsolved questions in mathematics or science could change how we understand the world?</p></article><article><span>04</span><p>What helps a civilization preserve knowledge, cooperation and possibility through difficult centuries?</p></article></div>
+        <p class="observatory-note">These are questions I’m learning my way into, not claims of answers.</p>
+      </div>
+    </section>
+
+    <section class="current-room" id="current-work" aria-labelledby="current-title">
+      <div class="room-inner"><div class="section-index"><span><i></i> ROOM 05 / THE CURRENT DESK</span><span>05 — 06</span></div><div class="current-heading"><p class="eyebrow">WHAT I’M BUILDING TOWARD</p><h2 id="current-title">The next rooms<br>are <em>taking shape.</em></h2></div><div class="current-items"><article><span>01 / AI</span><h3>Personal assistant</h3><p>Building with Hermes. The next step is connecting Ezra’s portfolio concierge to the assistant.</p><b>IN PROGRESS</b></article><article><span>02 / AGENTS</span><h3>Useful, bounded agents</h3><p>Exploring agents and automations that act with clear scope and human oversight.</p><b>EXPLORING</b></article><article><span>03 / SOFTWARE</span><h3>Tools people return to</h3><p>Shaping product ideas into SaaS interfaces, workflows and useful e-commerce experiences.</p><b>IN DEVELOPMENT</b></article></div></div>
+    </section>
+
+    <section class="salon" id="contact" aria-labelledby="contact-title"><div class="salon-top"><span>ROOM 06 / THE SALON</span><span>THE CONVERSATION CONTINUES</span></div><div class="salon-main"><p class="eyebrow">YOU’VE SEEN A FEW ROOMS</p><h2 id="contact-title">Leave a door<br><em>open.</em></h2><p>For a thoughtful problem, a useful collaboration, or a question that wants company.</p><a class="contact-email" href="mailto:shivansh15nayak@gmail.com">shivansh15nayak@gmail.com <span>↗</span></a></div><div class="salon-bottom"><a href="https://www.linkedin.com/in/shivansh-nayak/" target="_blank" rel="noopener">LINKEDIN ↗</a><a href="https://substack.com/@shivanshnayak" target="_blank" rel="noopener">SUBSTACK ↗</a><a href="#home">BACK TO THE THRESHOLD ↑</a></div></section>
   </main>
 
-  <footer><a class="signature" href="#home">SHIVANSH<br>NAYAK<span>®</span></a><span>MADE WITH CURIOSITY / INDIA / 2026</span><a href="https://www.linkedin.com/in/shivansh-nayak/" target="_blank" rel="noopener">LinkedIn ↗</a></footer>
+  <footer class="site-footer"><a class="brand-lockup" href="#home"><span class="brand-mark">SN</span><span>SHIVANSH NAYAK<small>AI · SOFTWARE · IDEAS</small></span></a><span>MADE WITH INTENTION / INDIA / 2026</span><a class="credits-footer" href="https://github.com/blendi-remade/dioramas" target="_blank" rel="noopener">Villa image: Dioramas / CC BY 4.0 ↗</a></footer>
 
-  <aside class="onyx-guide" aria-label="Onyx guided tour">
-    <div class="onyx-greeting" id="onyx-greeting"><span class="mini-panther" aria-hidden="true">◈</span><p>Welcome. I’m Onyx.<br><span>Shall I show you around?</span></p><button type="button" class="tour-open" aria-label="Open the guided tour">↗</button></div>
-    <button class="onyx-orb tour-open" type="button" aria-label="Open Onyx, your guide"><span class="orb-eyes">··</span><span class="orb-label">ONYX</span></button>
-    <div class="tour-panel" id="tour-panel" hidden aria-labelledby="tour-title">
-      <div class="tour-head"><div><span class="eyebrow"><i></i> YOUR PERSONAL GUIDE</span><h2 id="tour-title">Onyx</h2></div><button type="button" class="tour-close" aria-label="Close tour">×</button></div>
-      <div class="tour-character" aria-hidden="true"><svg viewBox="0 0 160 130"><path d="M23 105c4-27 24-42 55-42s51 15 59 42l-7 16H29z" fill="#171920" stroke="#53545b"/><path d="m48 68 5-37 25 23m30 13 14-36 8 42" fill="#171920" stroke="#686971" stroke-width="3"/><path d="M54 66c9-15 22-22 36-22 18 0 31 9 39 24l-6 24c-5 16-19 25-34 25-18 0-32-12-34-29z" fill="#252730" stroke="#686971"/><path d="M62 77q10-7 20 0m19 0q9-7 18 0" fill="none" stroke="#d2ff66" stroke-width="4"/><path d="m82 94 10 2-5 5z" fill="#c29c9d"/></svg></div>
-      <p class="tour-copy" id="tour-copy" aria-live="polite">The doors are open. Let’s start where ideas become things: the coding workshop.</p>
-      <div class="tour-footer"><span class="tour-count" id="tour-count">WELCOME</span><div><button type="button" class="tour-prev" hidden>← Back</button><button type="button" class="tour-next">Begin the tour <span>↗</span></button></div></div>
-    </div>
+  <aside class="ezra-shell" aria-label="Ezra digital concierge">
+    <button class="ezra-dock" type="button" aria-expanded="false" aria-controls="ezra-panel"><span class="ezra-orb" aria-hidden="true"><i></i><b></b></span><span><strong>Ezra</strong><small>YOUR CONCIERGE</small></span><span class="dock-status" aria-hidden="true"></span></button>
+    <section class="ezra-panel" id="ezra-panel" aria-labelledby="ezra-title" hidden>
+      <div class="ezra-panel-head"><div class="ezra-orb" aria-hidden="true"><i></i><b></b></div><div><span class="work-label">SHIVANSH’S DIGITAL CONCIERGE</span><h2 id="ezra-title">Ezra</h2><span class="ezra-status" id="ezra-status">GUIDED TOUR / HERMES PENDING</span></div><button class="ezra-close" type="button" aria-label="Close Ezra">×</button></div>
+      <div class="ezra-messages" id="ezra-messages" aria-live="polite"><p class="ezra-message ezra-reply">Welcome in. I can show you around, room by room. My guided route works now; conversation will connect when Shivansh wires in Hermes.</p></div>
+      <div class="ezra-routes"><span>CHOOSE A ROOM</span><div><button type="button" data-go="ai-studio">AI studio</button><button type="button" data-go="workshop">Web atelier</button><button type="button" data-go="life">Library &amp; life</button></div></div>
+      <div class="ezra-tour-control"><span id="tour-progress">A PERSONAL TOUR / 6 ROOMS</span><div><button class="tour-back" type="button" hidden>←</button><button class="tour-next" type="button">Begin the tour <span>↗</span></button></div></div>
+      <form class="ezra-form" id="ezra-form"><label class="visually-hidden" for="ezra-input">Ask Ezra a question</label><input id="ezra-input" name="message" type="text" placeholder="Connect Hermes to start a conversation" autocomplete="off" disabled><button type="submit" aria-label="Send message" disabled>↑</button></form>
+      <p class="ezra-connection" id="ezra-connection"><span class="status-dot"></span> FRONT END READY / AWAITING HERMES CONNECTION</p>
+    </section>
   </aside>
   <script type="module" src="app.js"></script>
 </body>
