@@ -1,157 +1,41 @@
-const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-const panel = document.querySelector('#ezra-panel');
-const dock = document.querySelector('.ezra-dock');
-const status = document.querySelector('#ezra-status');
-const connection = document.querySelector('#ezra-connection');
-const input = document.querySelector('#ezra-input');
-const sendButton = document.querySelector('.ezra-form button');
-const messages = document.querySelector('#ezra-messages');
-const tourLabel = document.querySelector('#tour-progress');
-const nextTourButton = document.querySelector('.tour-next');
-const previousTourButton = document.querySelector('.tour-back');
-const EZRA_ENDPOINT = (import.meta.env.VITE_EZRA_API_URL || '').trim();
-
-const tourStops = [
-  { id: 'ai-studio', label: '01 / THE ENGINE ROOM', text: 'We begin with what I’m building now: my personal assistant in Hermes, and the portfolio side of that relationship—Ezra.' },
-  { id: 'workshop', label: '02 / THE WEB ATELIER', text: 'This is the web atelier: a brand website, a creator product and five cinematic concept sites. The cards open the actual experiences.' },
-  { id: 'life', label: '03 / THE LIBRARY & LIFE', text: 'Here the work moves away from the screen: writing, books and history, and the painting gallery I’m gathering.' },
-  { id: 'questions', label: '04 / THE OBSERVATORY', text: 'These are open questions I’m learning my way into—from dependable AI to science and the long life of civilizations.' },
-  { id: 'current-work', label: '05 / THE CURRENT DESK', text: 'A short account of what is in progress: Hermes and Ezra, agent experiments, and product ideas.' },
-  { id: 'contact', label: '06 / THE SALON', text: 'That is the visit. If a project or question caught your attention, Shivansh would be glad to hear from you.' }
-];
-
-let tourIndex = -1;
-let conversationId = '';
-
-function addMessage(text, kind = 'reply') {
-  const message = document.createElement('p');
-  message.className = `ezra-message ezra-${kind}`;
-  message.textContent = text;
-  messages.append(message);
-  messages.scrollTop = messages.scrollHeight;
-  return message;
-}
-
-function setPanel(open) {
-  panel.hidden = !open;
-  dock.setAttribute('aria-expanded', String(open));
-  if (open && EZRA_ENDPOINT) input.focus();
-}
-
-function openEzra() {
-  setPanel(true);
-}
-
-function goToRoom(id) {
-  const room = document.getElementById(id);
-  room?.scrollIntoView({ behavior: reducedMotion.matches ? 'auto' : 'smooth', block: 'start' });
-}
-
-function setTourStop(index, shouldScroll = true) {
-  tourIndex = Math.max(-1, Math.min(index, tourStops.length - 1));
-  previousTourButton.hidden = tourIndex < 0;
-  if (tourIndex < 0) {
-    tourLabel.textContent = 'A PERSONAL TOUR / 6 ROOMS';
-    nextTourButton.innerHTML = 'Begin the tour <span>↗</span>';
-    return;
-  }
-  const stop = tourStops[tourIndex];
-  tourLabel.textContent = stop.label;
-  nextTourButton.innerHTML = tourIndex === tourStops.length - 1 ? 'Finish the tour <span>✓</span>' : 'Next room <span>→</span>';
-  if (shouldScroll) goToRoom(stop.id);
-  addMessage(stop.text);
-}
-
-function startTour() {
-  openEzra();
-  setTourStop(0);
-}
-
-document.querySelectorAll('.ask-ezra').forEach(button => button.addEventListener('click', openEzra));
-document.querySelector('.start-tour').addEventListener('click', startTour);
-dock.addEventListener('click', () => setPanel(panel.hidden));
-document.querySelector('.ezra-close').addEventListener('click', () => setPanel(false));
-nextTourButton.addEventListener('click', () => {
-  if (tourIndex >= tourStops.length - 1) {
-    tourIndex = -1;
-    tourLabel.textContent = 'A PERSONAL TOUR / 6 ROOMS';
-    nextTourButton.innerHTML = 'Begin the tour <span>↗</span>';
-    previousTourButton.hidden = true;
-    addMessage('Thank you for visiting. You can choose a room or begin the route again at any time.');
-    return;
-  }
-  setTourStop(tourIndex + 1);
-});
-previousTourButton.addEventListener('click', () => setTourStop(tourIndex - 1));
-document.querySelectorAll('[data-go]').forEach(button => button.addEventListener('click', () => goToRoom(button.dataset.go)));
-document.querySelectorAll('.salon-bottom a[href="#home"],.door-link').forEach(link => link.addEventListener('click', () => setPanel(false)));
-document.addEventListener('keydown', event => { if (event.key === 'Escape' && !panel.hidden) setPanel(false); });
-
-if (EZRA_ENDPOINT) {
-  status.textContent = 'HERMES CONNECTION CONFIGURED';
-  connection.innerHTML = '<span class="status-dot"></span> CONCIERGE ENDPOINT CONFIGURED';
-  input.disabled = false;
-  sendButton.disabled = false;
-  input.placeholder = 'Ask about a room, project, or idea…';
-  try {
-    conversationId = sessionStorage.getItem('ezra-conversation-id') || crypto.randomUUID();
-    sessionStorage.setItem('ezra-conversation-id', conversationId);
-  } catch {
-    conversationId = crypto.randomUUID();
-  }
-} else {
-  status.textContent = 'GUIDED TOUR / HERMES PENDING';
-}
-
-document.querySelector('#ezra-form').addEventListener('submit', async event => {
-  event.preventDefault();
-  const text = input.value.trim();
-  if (!text || !EZRA_ENDPOINT) return;
-  addMessage(text, 'user');
-  input.value = '';
-  input.disabled = true;
-  sendButton.disabled = true;
-  const pending = addMessage('Let me find that…', 'reply');
-  try {
-    const response = await fetch(EZRA_ENDPOINT, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        message: text,
-        conversation_id: conversationId,
-        context: { path: window.location.pathname, room: window.location.hash || '#home' }
-      })
-    });
-    if (!response.ok) throw new Error(`Ezra returned ${response.status}`);
-    const payload = await response.json();
-    const reply = payload.reply || payload.message || payload.content;
-    if (typeof reply !== 'string' || !reply.trim()) throw new Error('Ezra returned no reply.');
-    pending.textContent = reply;
-    if (payload.conversation_id) {
-      conversationId = payload.conversation_id;
-      try { sessionStorage.setItem('ezra-conversation-id', conversationId); } catch { /* session storage is optional */ }
-    }
-  } catch (error) {
-    pending.textContent = 'I couldn’t reach Hermes just now. The room links and guided route are still available.';
-    console.error('Ezra request failed:', error);
-  } finally {
-    input.disabled = false;
-    sendButton.disabled = false;
-    input.focus();
-  }
-});
-
-// Reveal sections once as they enter view; nothing runs continuously during scroll.
-if ('IntersectionObserver' in window && !reducedMotion.matches) {
-  const revealObserver = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (!entry.isIntersecting) return;
-      entry.target.classList.add('entered');
-      revealObserver.unobserve(entry.target);
-    });
-  }, { threshold: 0.1, rootMargin: '0px 0px -3% 0px' });
-  document.querySelectorAll('.section-heading,.ai-feature,.systems-grid,.project,.life-card,.observatory-inner,.current-heading,.current-items,.salon-main').forEach(element => {
-    element.classList.add('room-enter');
-    revealObserver.observe(element);
-  });
-}
+import books from './books.json';
+const projects=[
+{name:'Nocturne',url:'/nocturne/',image:'/nocturne-preview.jpg',type:'Cinematic fragrance',description:'Glass, ingredients and a complete fragrance story. Adapted from Dioramas.'},
+{name:'Nayak',url:'https://nayakandco.in/',image:'/villa/lajes.webp',type:'Brand website',description:'The Nayak company website, separate from the Scout app.',cover:'Nayak',class:'nayak'},
+{name:'Sleepy',url:'/sleepy/',image:'/sleepy/images/layout.webp',type:'Product storytelling',description:'Scroll sequences, product rotation and a demo shopping flow.'},
+{name:'Velocity Lab',url:'/velocity/',image:'/velocity-preview.jpg',type:'Interactive footwear',description:'Inspect the product through X-ray, thermal and CAD modes.'},
+{name:'Virality OS',url:'/virality/',image:'/villa/studio.webp',type:'Creator interface',description:'A redesigned creator frontend with a local outline studio.',cover:'Virality OS',class:'virality'},
+{name:'Fizzi Soda',url:'/fizzi/',image:'/fizzi/labels/cherry.png',type:'Commerce concept',description:'3D cans, selectable flavours and a demo shopping bag.',class:'fizzi'},
+{name:'The Substance',url:'/substance/',image:'/substance/ph1.jpg',type:'Creative studio',description:'A study in material, light and editorial imagery.'}];
+const tools=[
+{name:'Langflow',repo:'langflow-ai/langflow',license:'MIT',description:'Visual agent and workflow builder. A candidate for assembling research and document workflows.',use:'Prototype a research assistant with retrieval and tool calls.'},
+{name:'CrewAI',repo:'crewAIInc/crewAI',license:'MIT',description:'Python framework for role-based agent teams and workflows. A source foundation to evaluate before adapting.',use:'Build a scoped research, drafting and review workflow.'},
+{name:'LangGraph',repo:'langchain-ai/langgraph',license:'MIT',description:'A framework for stateful agent workflows. A foundation for explicit steps, persistent state and human review.',use:'Prototype an agent workflow with checkpoints and clear transitions.'}];
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const heroImage=document.querySelector('#hero-image');
+let selected=0;
+function selectProject(index){selected=index;const p=projects[index];heroImage.src=p.image;heroImage.alt=p.name+' website preview';document.querySelector('#hero-visit').href=p.url;document.querySelector('#hero-open').href=p.url;document.querySelector('#hero-name').textContent=p.name.toUpperCase();document.querySelector('#hero-count').textContent=String(index+1).padStart(2,'0')+' — 07';document.querySelectorAll('.gallery-strip button').forEach((b,i)=>b.setAttribute('aria-pressed',String(i===index)));}
+document.querySelector('#gallery-strip').innerHTML=projects.map((p,i)=>`<button aria-label="Preview ${esc(p.name)}" aria-pressed="${i===0}" data-project="${i}"><img src="${p.image}" alt="${esc(p.name)}" width="66" height="66"></button>`).join('');
+document.querySelectorAll('[data-project]').forEach(b=>{b.addEventListener('click',()=>selectProject(Number(b.dataset.project)));b.addEventListener('mouseenter',()=>{if(matchMedia('(hover:hover)').matches)selectProject(Number(b.dataset.project));});});
+document.querySelector('#work-grid').innerHTML=projects.map(p=>`<article class="work-card"><a class="work-media ${p.class||''}" href="${p.url}"><img src="${p.image}" alt="${esc(p.name)} project preview" loading="lazy">${p.cover?`<span class="cover-word">${p.cover}</span>`:''}</a><div class="work-info"><div><h3>${p.name}</h3><p>${p.description}</p><span class="work-tag">${p.type}</span></div><a href="${p.url}" aria-label="Open ${esc(p.name)}">↗</a></div></article>`).join('');
+const toolMarkup=tools.map((t,i)=>`<article class="tool-card"><span class="tool-number">0${i+1} / OPEN-SOURCE FOUNDATION</span><h3>${t.name}</h3><p>${t.description}</p><p>${t.use}</p><span class="license">${t.license} · NOT YET ADAPTED</span><br><a href="https://github.com/${t.repo}" target="_blank" rel="noopener">EXPLORE SOURCE ↗</a></article>`).join('');
+document.querySelector('#tools-grid').innerHTML=toolMarkup;document.querySelector('#tool-detail-grid').innerHTML=toolMarkup;
+const colors=['#676e61','#9a675b','#6a7180','#9a8c6a','#6e5e70','#496266','#a4775e','#73795c','#796354','#5a697b'];
+function cover(b){return `<div class="book-cover" style="--cover:${colors[Math.floor((b.id-1)/10)]}"><small>${esc(b.category)} / ${String(b.id).padStart(3,'0')}</small><strong>${esc(b.title)}</strong><small>${esc(b.author)}</small></div>`;}
+function teaser(b){return `<button class="book-teaser" data-book="${b.id}" aria-label="Open ${esc(b.title)} reading journal">${cover(b)}<h3>${esc(b.title)}</h3><p>${esc(b.author)}</p></button>`;}
+document.querySelector('#book-preview').innerHTML=[books[0],books[10],books[22],books[34],books[40],books[53],books[66],books[78],books[85],books[96]].map(teaser).join('');
+const category=document.querySelector('#book-category');[...new Set(books.map(b=>b.category))].forEach(c=>{const o=document.createElement('option');o.value=c;o.textContent=c;category.append(o);});
+function filterBooks(){const q=document.querySelector('#book-search').value.toLowerCase();const results=books.filter(b=>(category.value==='all'||b.category===category.value)&&(b.title+' '+b.author).toLowerCase().includes(q));document.querySelector('#library-grid').innerHTML=results.map(teaser).join('');document.querySelector('#book-results').textContent=results.length+' books / sample catalogue';}
+document.querySelector('#book-search').addEventListener('input',filterBooks);category.addEventListener('change',filterBooks);filterBooks();
+function openDialog(id){const d=document.querySelector('#'+id+'-dialog');if(d&&!d.open)d.showModal();}
+document.addEventListener('click',e=>{const opener=e.target.closest('[data-open]');if(opener){openDialog(opener.dataset.open);return;}const close=e.target.closest('[data-close]');if(close){close.closest('dialog').close();return;}const book=e.target.closest('[data-book]');if(book)openBook(Number(book.dataset.book));});
+document.querySelectorAll('dialog').forEach(d=>{d.addEventListener('click',e=>{if(e.target===d){const r=d.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)d.close();}});});
+function openBook(id){const b=books.find(x=>x.id===id);let saved={};try{saved=JSON.parse(localStorage.getItem('reading-note-'+id)||'{}');}catch{}document.querySelector('#book-detail').innerHTML=`<span class="book-meta">${esc(b.category)} / SAMPLE ENTRY ${id}</span><h2>${esc(b.title)}</h2><p class="book-meta">${esc(b.author)}</p><div class="book-blog"><h3>My reading journal</h3><p>This is a blank personal-blog draft. No review or reading history has been attributed to Shivansh.</p><p>Prompts: What stayed with me? Where did I disagree? Which idea connects with my work or another book?</p><label for="personal-note">Personal notes and blog draft</label><textarea id="personal-note" placeholder="Write your own response to this book…">${esc(saved.note||'')}</textarea><div class="note-actions"><label>Reading status <select id="reading-status"><option>Unconfirmed</option><option>Want to read</option><option>Reading</option><option>Read</option></select></label><button id="save-note">Save notes</button></div><p class="save-state" id="save-state">Stored only in this browser. No backend publication.</p></div>`;document.querySelector('#reading-status').value=saved.status||'Unconfirmed';document.querySelector('#save-note').onclick=()=>{try{localStorage.setItem('reading-note-'+id,JSON.stringify({note:document.querySelector('#personal-note').value,status:document.querySelector('#reading-status').value}));document.querySelector('#save-state').textContent='Saved on this browser.';}catch{document.querySelector('#save-state').textContent='This browser could not save notes.';}};openDialog('book');}
+const toggle=document.querySelector('.menu-toggle'),menu=document.querySelector('#menu-panel');toggle.onclick=()=>{menu.hidden=!menu.hidden;toggle.setAttribute('aria-expanded',String(!menu.hidden));};menu.querySelectorAll('a').forEach(a=>a.onclick=()=>{menu.hidden=true;toggle.setAttribute('aria-expanded','false');});
+document.querySelectorAll('.ezra-shortcuts a').forEach(a=>a.onclick=()=>document.querySelector('#ezra-dialog').close());
+const endpoint=(import.meta.env.VITE_EZRA_API_URL||'').trim(),form=document.querySelector('#ezra-form'),input=document.querySelector('#ezra-input'),send=form.querySelector('button');let conversation='';
+if(endpoint){input.disabled=false;send.disabled=false;input.placeholder='Ask Ezra about the portfolio…';document.querySelector('#ezra-status').textContent='Hermes endpoint configured. How can I help you explore?';}
+form.onsubmit=async e=>{e.preventDefault();const message=input.value.trim();if(!message||!endpoint)return;const p=document.createElement('p');p.textContent='You: '+message;document.querySelector('#messages').append(p);input.value='';send.disabled=true;const reply=document.createElement('p');reply.textContent='Connecting…';document.querySelector('#messages').append(reply);try{const r=await fetch(endpoint,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message,conversation_id:conversation,context:{path:location.pathname,room:location.hash}})});if(!r.ok)throw Error('Connection failed');const data=await r.json();if(typeof(data.reply||data.message||data.content)!=='string')throw Error('Invalid reply');reply.textContent=data.reply||data.message||data.content;conversation=data.conversation_id||conversation;}catch{reply.textContent='Ezra could not reach Hermes. The site navigation is still available.';}finally{send.disabled=false;}};
+document.querySelector('#clock').textContent='INDIA '+new Intl.DateTimeFormat('en-GB',{timeZone:'Asia/Kolkata',hour:'2-digit',minute:'2-digit'}).format(new Date());document.querySelector('#year').textContent=new Date().getFullYear();
+if(!reduced&&'IntersectionObserver'in window){const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target);}}),{threshold:.08});document.querySelectorAll('.statement,.work-card,.center-statement,.tool-card,.hobby-grid article,.contact').forEach(el=>{el.classList.add('reveal');observer.observe(el);});}

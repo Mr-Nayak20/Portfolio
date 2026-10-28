@@ -1,52 +1,24 @@
-# Shivansh Nayak — The House of Ideas
+# Shivansh Nayak — portfolio
 
-A cinematic, room-by-room portfolio for AI work, web products, art, writing, reading, and open questions. Built as a lightweight Vite site with separate live front-end showcases.
+Personal portfolio recreating Dontmatter’s broad composition: full-screen project gallery, thumbnail strip, centered editorial sections, full-bleed image sections, floating bottom navigation, and oversized wordmark footer. Implementation is original; project assets and personal content replace the reference’s work. Typography uses the system Helvetica Neue/Helvetica stack; proprietary font binaries have not been copied.
 
 ## Run
 
-`npm ci` then `npm run dev`. Build with `npm run build`.
+`npm ci`, then `npm run dev`. Production build: `npm run build` → `dist`.
 
-## Rooms and projects
+## Content
 
-- `/` — the villa entrance, Ezra concierge, AI studio, web atelier, library, gallery, observatory, and current work
-- `/virality/` — creator website and local sample-outline studio
-- `/fizzi/` — 3D soda storefront, flavour selection, demo shopping bag
-- `/substance/` — creative studio, real-time material controls, editorial studies
-- `/sleepy/` — product narrative, image sequence, demo shopping flow
-- `/nocturne/` — cinematic fragrance website with ingredient chapters and demo bag
-- `/velocity/` — footwear experience with X-ray, thermal and CAD lens controls
-- `/credits/` — original sources, adaptation scope and license notices
+- Seven website destinations: Nayak, Nocturne, Sleepy, Velocity Lab, Virality OS, Fizzi Soda, The Substance.
+- AI workbench: Langflow, CrewAI and LangGraph are credited third-party source candidates, not deployed products or claimed original work. Review current upstream licenses and maintenance guidance before adapting.
+- Reading library: 100 real titles across 10 categories in `web/books.json`. Every entry defaults to **Unconfirmed**. No title is represented as having been read by Shivansh. Personal-blog fields are blank draft spaces with reflection prompts. Reading status and journal notes save in browser local storage only, not to a server.
+- Hobbies: sample imagery is labelled; personal paintings and photographs are still to be supplied.
 
-## Ezra and Hermes connection
+## Ezra connection
 
-Ezra has a deterministic guided tour in the front end. Conversational replies are disabled until a backend endpoint is configured; the interface does not invent AI responses.
+Set `VITE_EZRA_API_URL` to your own Hermes proxy endpoint. The frontend sends JSON `POST` requests containing `message`, `conversation_id`, and `context: {path, room}`. Expected JSON response: `{reply: string, conversation_id?: string}`. `message` or `content` strings are also supported as response aliases. Keep all model/API credentials on the backend. With no endpoint configured, conversational input is disabled and navigation shortcuts remain available.
 
-Set `VITE_EZRA_API_URL` in the deployment environment to the HTTPS endpoint that will proxy requests to Hermes. The browser sends a JSON `POST` body:
+## Credits and demo scope
 
-```json
-{
-  "message": "What is Shivansh building with Hermes?",
-  "conversation_id": "session-id",
-  "context": {
-    "path": "/",
-    "room": "#ai-studio"
-  }
-}
-```
+Original adapted project foundations: Sammy212/fizzi-soda, drcmda/the-substance, lawxr/sleepy, blendi-remade/dioramas. Notices are in `web/public/credits/`; Dioramas imagery and generated assets are CC BY 4.0. Villa and sample studio imagery: Dioramas. Substance project images retain their original asset provenance; they are sample imagery on the personal portfolio.
 
-The endpoint should respond with JSON containing a string `reply` (or `message` or `content`) and may return a replacement `conversation_id`:
-
-```json
-{
-  "reply": "Shivansh is building a personal assistant with Hermes.",
-  "conversation_id": "session-id"
-}
-```
-
-The endpoint must allow browser CORS requests from the portfolio origin. Keep Hermes credentials and provider keys on the server; do not put them in `VITE_*` variables or browser code. Add server-side authentication, rate limits and any privacy controls in the Hermes proxy.
-
-## Project notes
-
-Virality's outline generator is a local front-end demonstration, not a live AI model. Store checkouts and drop registrations are demonstrations; no payments, orders or remote registrations occur. Substance's enquiry form composes a mailto draft.
-
-Original foundations: Sammy212/fizzi-soda, drcmda/the-substance (Paul Henschel), lawxr/sleepy (David Hernández), and blendi-remade/dioramas (Blendi). License notices are retained in `web/public/credits/`. Dioramas images and generated assets are CC BY 4.0; the villa imagery is attributed in the page footer.
+Virality generation is a local sample-outline demonstration. Commerce and drop-registration flows are demos; no real purchases, payments or registrations occur.

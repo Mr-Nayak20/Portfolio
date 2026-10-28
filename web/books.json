@@ -1,0 +1,802 @@
+[
+  {
+    "id": 1,
+    "title": "1984",
+    "author": "George Orwell",
+    "category": "Fiction",
+    "status": "Unconfirmed",
+    "note": ""
+  },
+  {
+    "id": 2,
+    "title": "Brave New World",
+    "author": "Aldous Huxley",
+    "category": "Fiction",
+    "status": "Unconfirmed",
+    "note": ""
+  },
+  {
+    "id": 3,
+    "title": "The Brothers Karamazov",
+    "author": "Fyodor Dostoevsky",
+    "category": "Fiction",
+    "status": "Unconfirmed",
+    "note": ""
+  },
+  {
+    "id": 4,
+    "title": "Crime and Punishment",
+    "author": "Fyodor Dostoevsky",
+    "category": "Fiction",
+    "status": "Unconfirmed",
+    "note": ""
+  },
+  {
+    "id": 5,
+    "title": "One Hundred Years of Solitude",
+    "author": "Gabriel García Márquez",
+    "category": "Fiction",
+    "status": "Unconfirmed",
+    "note": ""
+  },
+  {
+    "id": 6,
+    "title": "The Stranger",
+    "author": "Albert Camus",
+    "category": "Fiction",
+    "status": "Unconfirmed",
+    "note": ""
+  },
+  {
+    "id": 7,
+    "title": "The Trial",
+    "author": "Franz Kafka",
+    "category": "Fiction",
+    "status": "Unconfirmed",
+    "note": ""
+  },
+  {
+    "id": 8,
+    "title": "The God of Small Things",
+    "author": "Arundhati Roy",
+    "category": "Fiction",
+    "status": "Unconfirmed",
+    "note": ""
+  },
+  {
+    "id": 9,
+    "title": "Beloved",
+    "author": "Toni Morrison",
+    "category": "Fiction",
+    "status": "Unconfirmed",
+    "note": ""
+  },
+  {
+    "id": 10,
+    "title": "The Great Gatsby",
+    "author": "F. Scott Fitzgerald",
+    "category": "Fiction",
+    "status": "Unconfirmed",
+    "note": ""
+  },
+  {
+    "id": 11,
+    "title": "Meditations",
+    "author": "Marcus Aurelius",
+    "category": "Philosophy",
+    "status": "Unconfirmed",
+    "note": ""
+  },
+  {
+    "id": 12,
+    "title": "The Republic",
+    "author": "Plato",
+    "category": "Philosophy",
+    "status": "Unconfirmed",
+    "note": ""
+  },
+  {
+    "id": 13,
+    "title": "Nicomachean Ethics",
+    "author": "Aristotle",
+    "category": "Philosophy",
+    "status": "Unconfirmed",
+    "note": ""
+  },
+  {
+    "id": 14,
+    "title": "Beyond Good and Evil",
+    "author": "Friedrich Nietzsche",
+    "category": "Philosophy",
+    "status": "Unconfirmed",
+    "note": ""
+  },
+  {
+    "id": 15,
+    "title": "The Myth of Sisyphus",
+    "author": "Albert Camus",
+    "category": "Philosophy",
+    "status": "Unconfirmed",
+    "note": ""
+  },
+  {
+    "id": 16,
+    "title": "The Problems of Philosophy",
+    "author": "Bertrand Russell",
+    "category": "Philosophy",
+    "status": "Unconfirmed",
+    "note": ""
+  },
+  {
+    "id": 17,
+    "title": "Tao Te Ching",
+    "author": "Laozi",
+    "category": "Philosophy",
+    "status": "Unconfirmed",
+    "note": ""
+  },
+  {
+    "id": 18,
+    "title": "The Analects",
+    "author": "Confucius",
+    "category": "Philosophy",
+    "status": "Unconfirmed",
+    "note": ""
+  },
+  {
+    "id": 19,
+    "title": "The Bhagavad Gita",
+    "author": "Traditional",
+    "category": "Philosophy",
+    "status": "Unconfirmed",
+    "note": ""
+  },
+  {
+    "id": 20,
+    "title": "Man’s Search for Meaning",
+    "author": "Viktor E. Frankl",
+    "category": "Philosophy",
+    "status": "Unconfirmed",
+    "note": ""
+  },
+  {
+    "id": 21,
+    "title": "The Histories",
+    "author": "Herodotus",
+    "category": "History",
+    "status": "Unconfirmed",
+    "note": ""
+  },
+  {
+    "id": 22,
+    "title": "The History of the Peloponnesian War",
+    "author": "Thucydides",
+    "category": "History",
+    "status": "Unconfirmed",
+    "note": ""
+  },
+  {
+    "id": 23,
+    "title": "The Rise and Fall of the Third Reich",
+    "author": "William L. Shirer",
+    "category": "History",
+    "status": "Unconfirmed",
+    "note": ""
+  },
+  {
+    "id": 24,
+    "title": "The Guns of August",
+    "author": "Barbara W. Tuchman",
+    "category": "History",
+    "status": "Unconfirmed",
+    "note": ""
+  },
+  {
+    "id": 25,
+    "title": "The Silk Roads",
+    "author": "Peter Frankopan",
+    "category": "History",
+    "status": "Unconfirmed",
+    "note": ""
+  },
+  {
+    "id": 26,
+    "title": "India After Gandhi",
+    "author": "Ramachandra Guha",
+    "category": "History",
+    "status": "Unconfirmed",
+    "note": ""
+  },
+  {
+    "id": 27,
+    "title": "The Discovery of India",
+    "author": "Jawaharlal Nehru",
+    "category": "History",
+    "status": "Unconfirmed",
+    "note": ""
+  },
+  {
+    "id": 28,
+    "title": "The Anarchy",
+    "author": "William Dalrymple",
+    "category": "History",
+    "status": "Unconfirmed",
+    "note": ""
+  },
+  {
+    "id": 29,
+    "title": "SPQR",
+    "author": "Mary Beard",
+    "category": "History",
+    "status": "Unconfirmed",
+    "note": ""
+  },
+  {
+    "id": 30,
+    "title": "The Dawn of Everything",
+    "author": "David Graeber and David Wengrow",
+    "category": "History",
+    "status": "Unconfirmed",
+    "note": ""
+  },
+  {
+    "id": 31,
+    "title": "A Brief History of Time",
+    "author": "Stephen Hawking",
+    "category": "Science",
+    "status": "Unconfirmed",
+    "note": ""
+  },
+  {
+    "id": 32,
+    "title": "Cosmos",
+    "author": "Carl Sagan",
+    "category": "Science",
+    "status": "Unconfirmed",
+    "note": ""
+  },
+  {
+    "id": 33,
+    "title": "The Selfish Gene",
+    "author": "Richard Dawkins",
+    "category": "Science",
+    "status": "Unconfirmed",
+    "note": ""
+  },
+  {
+    "id": 34,
+    "title": "The Origin of Species",
+    "author": "Charles Darwin",
+    "category": "Science",
+    "status": "Unconfirmed",
+    "note": ""
+  },
+  {
+    "id": 35,
+    "title": "The Double Helix",
+    "author": "James D. Watson",
+    "category": "Science",
+    "status": "Unconfirmed",
+    "note": ""
+  },
+  {
+    "id": 36,
+    "title": "The Structure of Scientific Revolutions",
+    "author": "Thomas S. Kuhn",
+    "category": "Science",
+    "status": "Unconfirmed",
+    "note": ""
+  },
+  {
+    "id": 37,
+    "title": "The Emperor of All Maladies",
+    "author": "Siddhartha Mukherjee",
+    "category": "Science",
+    "status": "Unconfirmed",
+    "note": ""
+  },
+  {
+    "id": 38,
+    "title": "The Gene",
+    "author": "Siddhartha Mukherjee",
+    "category": "Science",
+    "status": "Unconfirmed",
+    "note": ""
+  },
+  {
+    "id": 39,
+    "title": "Silent Spring",
+    "author": "Rachel Carson",
+    "category": "Science",
+    "status": "Unconfirmed",
+    "note": ""
+  },
+  {
+    "id": 40,
+    "title": "Surely You’re Joking, Mr. Feynman!",
+    "author": "Richard P. Feynman",
+    "category": "Science",
+    "status": "Unconfirmed",
+    "note": ""
+  },
+  {
+    "id": 41,
+    "title": "Gödel, Escher, Bach",
+    "author": "Douglas R. Hofstadter",
+    "category": "Mathematics",
+    "status": "Unconfirmed",
+    "note": ""
+  },
+  {
+    "id": 42,
+    "title": "The Princeton Companion to Mathematics",
+    "author": "Timothy Gowers, editor",
+    "category": "Mathematics",
+    "status": "Unconfirmed",
+    "note": ""
+  },
+  {
+    "id": 43,
+    "title": "A Mathematician’s Apology",
+    "author": "G. H. Hardy",
+    "category": "Mathematics",
+    "status": "Unconfirmed",
+    "note": ""
+  },
+  {
+    "id": 44,
+    "title": "How Not to Be Wrong",
+    "author": "Jordan Ellenberg",
+    "category": "Mathematics",
+    "status": "Unconfirmed",
+    "note": ""
+  },
+  {
+    "id": 45,
+    "title": "The Joy of x",
+    "author": "Steven Strogatz",
+    "category": "Mathematics",
+    "status": "Unconfirmed",
+    "note": ""
+  },
+  {
+    "id": 46,
+    "title": "Fermat’s Enigma",
+    "author": "Simon Singh",
+    "category": "Mathematics",
+    "status": "Unconfirmed",
+    "note": ""
+  },
+  {
+    "id": 47,
+    "title": "The Man Who Knew Infinity",
+    "author": "Robert Kanigel",
+    "category": "Mathematics",
+    "status": "Unconfirmed",
+    "note": ""
+  },
+  {
+    "id": 48,
+    "title": "Flatland",
+    "author": "Edwin A. Abbott",
+    "category": "Mathematics",
+    "status": "Unconfirmed",
+    "note": ""
+  },
+  {
+    "id": 49,
+    "title": "What Is Mathematics?",
+    "author": "Richard Courant and Herbert Robbins",
+    "category": "Mathematics",
+    "status": "Unconfirmed",
+    "note": ""
+  },
+  {
+    "id": 50,
+    "title": "The Code Book",
+    "author": "Simon Singh",
+    "category": "Mathematics",
+    "status": "Unconfirmed",
+    "note": ""
+  },
+  {
+    "id": 51,
+    "title": "Artificial Intelligence: A Modern Approach",
+    "author": "Stuart Russell and Peter Norvig",
+    "category": "Technology & AI",
+    "status": "Unconfirmed",
+    "note": ""
+  },
+  {
+    "id": 52,
+    "title": "Human Compatible",
+    "author": "Stuart Russell",
+    "category": "Technology & AI",
+    "status": "Unconfirmed",
+    "note": ""
+  },
+  {
+    "id": 53,
+    "title": "Superintelligence",
+    "author": "Nick Bostrom",
+    "category": "Technology & AI",
+    "status": "Unconfirmed",
+    "note": ""
+  },
+  {
+    "id": 54,
+    "title": "The Alignment Problem",
+    "author": "Brian Christian",
+    "category": "Technology & AI",
+    "status": "Unconfirmed",
+    "note": ""
+  },
+  {
+    "id": 55,
+    "title": "The Coming Wave",
+    "author": "Mustafa Suleyman and Michael Bhaskar",
+    "category": "Technology & AI",
+    "status": "Unconfirmed",
+    "note": ""
+  },
+  {
+    "id": 56,
+    "title": "Life 3.0",
+    "author": "Max Tegmark",
+    "category": "Technology & AI",
+    "status": "Unconfirmed",
+    "note": ""
+  },
+  {
+    "id": 57,
+    "title": "Designing Data-Intensive Applications",
+    "author": "Martin Kleppmann",
+    "category": "Technology & AI",
+    "status": "Unconfirmed",
+    "note": ""
+  },
+  {
+    "id": 58,
+    "title": "The Pragmatic Programmer",
+    "author": "David Thomas and Andrew Hunt",
+    "category": "Technology & AI",
+    "status": "Unconfirmed",
+    "note": ""
+  },
+  {
+    "id": 59,
+    "title": "The Mythical Man-Month",
+    "author": "Frederick P. Brooks Jr.",
+    "category": "Technology & AI",
+    "status": "Unconfirmed",
+    "note": ""
+  },
+  {
+    "id": 60,
+    "title": "Code",
+    "author": "Charles Petzold",
+    "category": "Technology & AI",
+    "status": "Unconfirmed",
+    "note": ""
+  },
+  {
+    "id": 61,
+    "title": "Thinking, Fast and Slow",
+    "author": "Daniel Kahneman",
+    "category": "Psychology",
+    "status": "Unconfirmed",
+    "note": ""
+  },
+  {
+    "id": 62,
+    "title": "Influence",
+    "author": "Robert B. Cialdini",
+    "category": "Psychology",
+    "status": "Unconfirmed",
+    "note": ""
+  },
+  {
+    "id": 63,
+    "title": "Flow",
+    "author": "Mihaly Csikszentmihalyi",
+    "category": "Psychology",
+    "status": "Unconfirmed",
+    "note": ""
+  },
+  {
+    "id": 64,
+    "title": "The Righteous Mind",
+    "author": "Jonathan Haidt",
+    "category": "Psychology",
+    "status": "Unconfirmed",
+    "note": ""
+  },
+  {
+    "id": 65,
+    "title": "The Man Who Mistook His Wife for a Hat",
+    "author": "Oliver Sacks",
+    "category": "Psychology",
+    "status": "Unconfirmed",
+    "note": ""
+  },
+  {
+    "id": 66,
+    "title": "Behave",
+    "author": "Robert M. Sapolsky",
+    "category": "Psychology",
+    "status": "Unconfirmed",
+    "note": ""
+  },
+  {
+    "id": 67,
+    "title": "The Interpretation of Dreams",
+    "author": "Sigmund Freud",
+    "category": "Psychology",
+    "status": "Unconfirmed",
+    "note": ""
+  },
+  {
+    "id": 68,
+    "title": "The Social Animal",
+    "author": "Elliot Aronson",
+    "category": "Psychology",
+    "status": "Unconfirmed",
+    "note": ""
+  },
+  {
+    "id": 69,
+    "title": "Grit",
+    "author": "Angela Duckworth",
+    "category": "Psychology",
+    "status": "Unconfirmed",
+    "note": ""
+  },
+  {
+    "id": 70,
+    "title": "The Psychology of Money",
+    "author": "Morgan Housel",
+    "category": "Psychology",
+    "status": "Unconfirmed",
+    "note": ""
+  },
+  {
+    "id": 71,
+    "title": "The Wealth of Nations",
+    "author": "Adam Smith",
+    "category": "Business & Economics",
+    "status": "Unconfirmed",
+    "note": ""
+  },
+  {
+    "id": 72,
+    "title": "The General Theory of Employment, Interest and Money",
+    "author": "John Maynard Keynes",
+    "category": "Business & Economics",
+    "status": "Unconfirmed",
+    "note": ""
+  },
+  {
+    "id": 73,
+    "title": "Capital in the Twenty-First Century",
+    "author": "Thomas Piketty",
+    "category": "Business & Economics",
+    "status": "Unconfirmed",
+    "note": ""
+  },
+  {
+    "id": 74,
+    "title": "The Lean Startup",
+    "author": "Eric Ries",
+    "category": "Business & Economics",
+    "status": "Unconfirmed",
+    "note": ""
+  },
+  {
+    "id": 75,
+    "title": "Zero to One",
+    "author": "Peter Thiel and Blake Masters",
+    "category": "Business & Economics",
+    "status": "Unconfirmed",
+    "note": ""
+  },
+  {
+    "id": 76,
+    "title": "The Innovator’s Dilemma",
+    "author": "Clayton M. Christensen",
+    "category": "Business & Economics",
+    "status": "Unconfirmed",
+    "note": ""
+  },
+  {
+    "id": 77,
+    "title": "Good Strategy Bad Strategy",
+    "author": "Richard Rumelt",
+    "category": "Business & Economics",
+    "status": "Unconfirmed",
+    "note": ""
+  },
+  {
+    "id": 78,
+    "title": "The Personal MBA",
+    "author": "Josh Kaufman",
+    "category": "Business & Economics",
+    "status": "Unconfirmed",
+    "note": ""
+  },
+  {
+    "id": 79,
+    "title": "Poor Charlie’s Almanack",
+    "author": "Peter D. Kaufman, editor",
+    "category": "Business & Economics",
+    "status": "Unconfirmed",
+    "note": ""
+  },
+  {
+    "id": 80,
+    "title": "The Intelligent Investor",
+    "author": "Benjamin Graham",
+    "category": "Business & Economics",
+    "status": "Unconfirmed",
+    "note": ""
+  },
+  {
+    "id": 81,
+    "title": "Ways of Seeing",
+    "author": "John Berger",
+    "category": "Art & Design",
+    "status": "Unconfirmed",
+    "note": ""
+  },
+  {
+    "id": 82,
+    "title": "The Story of Art",
+    "author": "E. H. Gombrich",
+    "category": "Art & Design",
+    "status": "Unconfirmed",
+    "note": ""
+  },
+  {
+    "id": 83,
+    "title": "The Design of Everyday Things",
+    "author": "Don Norman",
+    "category": "Art & Design",
+    "status": "Unconfirmed",
+    "note": ""
+  },
+  {
+    "id": 84,
+    "title": "Thinking with Type",
+    "author": "Ellen Lupton",
+    "category": "Art & Design",
+    "status": "Unconfirmed",
+    "note": ""
+  },
+  {
+    "id": 85,
+    "title": "The Elements of Typographic Style",
+    "author": "Robert Bringhurst",
+    "category": "Art & Design",
+    "status": "Unconfirmed",
+    "note": ""
+  },
+  {
+    "id": 86,
+    "title": "Interaction of Color",
+    "author": "Josef Albers",
+    "category": "Art & Design",
+    "status": "Unconfirmed",
+    "note": ""
+  },
+  {
+    "id": 87,
+    "title": "The Art Spirit",
+    "author": "Robert Henri",
+    "category": "Art & Design",
+    "status": "Unconfirmed",
+    "note": ""
+  },
+  {
+    "id": 88,
+    "title": "On Photography",
+    "author": "Susan Sontag",
+    "category": "Art & Design",
+    "status": "Unconfirmed",
+    "note": ""
+  },
+  {
+    "id": 89,
+    "title": "Camera Lucida",
+    "author": "Roland Barthes",
+    "category": "Art & Design",
+    "status": "Unconfirmed",
+    "note": ""
+  },
+  {
+    "id": 90,
+    "title": "Steal Like an Artist",
+    "author": "Austin Kleon",
+    "category": "Art & Design",
+    "status": "Unconfirmed",
+    "note": ""
+  },
+  {
+    "id": 91,
+    "title": "Leaves of Grass",
+    "author": "Walt Whitman",
+    "category": "Poetry & Essays",
+    "status": "Unconfirmed",
+    "note": ""
+  },
+  {
+    "id": 92,
+    "title": "Gitanjali",
+    "author": "Rabindranath Tagore",
+    "category": "Poetry & Essays",
+    "status": "Unconfirmed",
+    "note": ""
+  },
+  {
+    "id": 93,
+    "title": "The Waste Land and Other Poems",
+    "author": "T. S. Eliot",
+    "category": "Poetry & Essays",
+    "status": "Unconfirmed",
+    "note": ""
+  },
+  {
+    "id": 94,
+    "title": "The Prophet",
+    "author": "Kahlil Gibran",
+    "category": "Poetry & Essays",
+    "status": "Unconfirmed",
+    "note": ""
+  },
+  {
+    "id": 95,
+    "title": "A Room of One’s Own",
+    "author": "Virginia Woolf",
+    "category": "Poetry & Essays",
+    "status": "Unconfirmed",
+    "note": ""
+  },
+  {
+    "id": 96,
+    "title": "The Fire Next Time",
+    "author": "James Baldwin",
+    "category": "Poetry & Essays",
+    "status": "Unconfirmed",
+    "note": ""
+  },
+  {
+    "id": 97,
+    "title": "Self-Reliance and Other Essays",
+    "author": "Ralph Waldo Emerson",
+    "category": "Poetry & Essays",
+    "status": "Unconfirmed",
+    "note": ""
+  },
+  {
+    "id": 98,
+    "title": "The Book of Disquiet",
+    "author": "Fernando Pessoa",
+    "category": "Poetry & Essays",
+    "status": "Unconfirmed",
+    "note": ""
+  },
+  {
+    "id": 99,
+    "title": "The Collected Poems",
+    "author": "Sylvia Plath",
+    "category": "Poetry & Essays",
+    "status": "Unconfirmed",
+    "note": ""
+  },
+  {
+    "id": 100,
+    "title": "The Essential Rumi",
+    "author": "Jalal al-Din Rumi, translated by Coleman Barks",
+    "category": "Poetry & Essays",
+    "status": "Unconfirmed",
+    "note": ""
+  }
+]
