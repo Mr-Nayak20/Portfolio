@@ -1,15 +1,85 @@
-import Lenis from 'lenis';
-const reduce=matchMedia('(prefers-reduced-motion: reduce)');let lenis;
-function setupScroll(){if(lenis){lenis.destroy();lenis=undefined}if(!reduce.matches&&Lenis){lenis=new Lenis({duration:1.65,smoothWheel:true,wheelMultiplier:.72,touchMultiplier:1,anchors:{offset:-35},easing:t=>Math.min(1,1.001-Math.pow(2,-10*t))})}}setupScroll();reduce.addEventListener('change',setupScroll);
-const words=document.querySelector('.word-reveal');words.innerHTML=words.textContent.split(' ').map(w=>`<span>${w}</span>`).join(' ');const wordSpans=[...words.children];
-const revealTargets=document.querySelectorAll('.section-intro,.case-details,.about-layout,.process article,.contact h2,.story-body');revealTargets.forEach(el=>el.classList.add('reveal-item'));const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in-view');observer.unobserve(e.target)}}),{threshold:.12});revealTargets.forEach(el=>observer.observe(el));
-const scenes={fizzi:{title:'Fizzi Soda',description:'A playful soda storefront with real-time 3D cans, flavour switching and a complete demo shopping-bag flow.',interaction:'Rotating 3D cans and five selectable label textures, connected to the product selector.',function:'Brand story, flavour explorer, demo bag with quantity controls, FAQ and checkout preview.',credit:'Frontend adaptation using the open-source Fizzi Soda foundation. Original assets and licences credited.'},substance:{title:'The Substance',description:'An experimental studio website connecting expressive typography, a real-time glass sculpture and editorial image studies.',interaction:'A rotating diamond model with glass, chrome and wireframe material controls.',function:'Three photographic studies with detail dialogs, a studio narrative and an email-composition enquiry form.',credit:'A new frontend adaptation inspired by Paul Henschel’s The Substance. Original diamond model and photographic assets credited.'},sleepy:{title:'Sleepy',description:'A complete product story for a portable humidifier, from scroll-driven frame sequences to a usable demo shopping bag.',interaction:'Scroll-controlled product emergence and a 360-degree rotation sequence.',function:'Product story, technical sections, colour variants, persistent demo bag, quantity controls and checkout preview.',credit:'Adapted from Sleepy by David Hernández. The original frontend, sequence assets and MIT notice are preserved and credited.'},nocturne:{title:'Nocturne',description:'A complete cinematic fragrance website. Glass, liquid and individual notes become the structure of the product story.',interaction:'A draggable perfume bottle with animated liquid and scroll-led transitions through bergamot, iris, vanilla and oud.',function:'Full fragrance narrative, ingredient chapters, the fictional house story, two product offers and a demo add-to-bag interaction.',credit:'Adapted from Blendi’s Dioramas Nocturne. Code MIT; generated assets CC BY 4.0. Fictional product and brand.'},velocity:{title:'Velocity Lab',description:'A complete interactive footwear launch where the product can be investigated through a technical lens.',interaction:'Working X-ray, thermal and CAD modes, a magnifying lens and colourway switching.',function:'Hero, lens explanation, plate, foam and upper chapters, colour selection and a local demo drop-registration form.',credit:'Adapted from Blendi’s Dioramas Velocity Lab. Code MIT; generated assets CC BY 4.0. Product specifications are illustrative.'}};
-const tabs=[...document.querySelectorAll('[role=tab]')];function selectScene(button){tabs.forEach(t=>{t.setAttribute('aria-selected',String(t===button));t.tabIndex=t===button?0:-1});const key=button.dataset.scene,p=scenes[key];document.querySelector('#experiment-art').dataset.scene=key;document.querySelector('#scene-count').textContent=String(tabs.indexOf(button)+1).padStart(2,'0')+' / 05';document.querySelector('#experiment-title').textContent=p.title;document.querySelector('#experiment-description').textContent=p.description;document.querySelector('#experiment-interaction').textContent=p.interaction;document.querySelector('#experiment-function').textContent=p.function;document.querySelector('#experiment-panel').setAttribute('aria-labelledby',button.id);document.querySelector('#experiment-live').href='/'+key+'/';document.querySelector('#experiment-credit').textContent=p.credit}tabs.forEach((b,i)=>{b.onclick=()=>selectScene(b);b.onkeydown=e=>{let next;if(e.key==='ArrowRight'||e.key==='ArrowDown')next=(i+1)%tabs.length;if(e.key==='ArrowLeft'||e.key==='ArrowUp')next=(i-1+tabs.length)%tabs.length;if(e.key==='Home')next=0;if(e.key==='End')next=tabs.length-1;if(next!==undefined){e.preventDefault();selectScene(tabs[next]);tabs[next].focus()}}});
-document.querySelector('#copy-email').onclick=async()=>{const status=document.querySelector('#copy-status');try{await navigator.clipboard.writeText('shivansh15nayak@gmail.com');status.textContent='Email copied.'}catch{status.textContent='shivansh15nayak@gmail.com'}setTimeout(()=>status.textContent='',5000)};document.querySelector('#year').textContent=new Date().getFullYear();
-// Original procedural Möbius sculpture. No external models or images.
-const canvas=document.querySelector('#sculpture'),ctx=canvas.getContext('2d');let width=0,height=0,phase=.8,paused=reduce.matches,visible=true,mouseX=0,mouseY=0,prev=0;const motion=document.querySelector('#motion');function syncMotion(){motion.textContent=paused?'PLAY ▷':'PAUSE Ⅱ';motion.setAttribute('aria-label',paused?'Play sculpture animation':'Pause sculpture animation')}syncMotion();motion.onclick=()=>{paused=!paused;syncMotion()};reduce.addEventListener('change',e=>{paused=e.matches;syncMotion()});function resize(){width=canvas.clientWidth;height=canvas.clientHeight;const dpr=Math.min(devicePixelRatio||1,1.75);canvas.width=width*dpr;canvas.height=height*dpr;ctx.setTransform(dpr,0,0,dpr,0,0)}new ResizeObserver(resize).observe(canvas);new IntersectionObserver(e=>visible=e[0].isIntersecting).observe(canvas);canvas.onpointermove=e=>{const r=canvas.getBoundingClientRect();mouseX=((e.clientX-r.left)/r.width-.5)*.45;mouseY=((e.clientY-r.top)/r.height-.5)*.3};canvas.onpointerleave=()=>{mouseX=mouseY=0};
-function rotate(p,a,b,c){let[x,y,z]=p;[y,z]=[y*Math.cos(a)-z*Math.sin(a),y*Math.sin(a)+z*Math.cos(a)];[x,z]=[x*Math.cos(b)+z*Math.sin(b),-x*Math.sin(b)+z*Math.cos(b)];return[x*Math.cos(c)-y*Math.sin(c),x*Math.sin(c)+y*Math.cos(c),z]}
-function surface(u,v){const r=1+.47*v*Math.cos(u/2);return[r*Math.cos(u),r*Math.sin(u),.47*v*Math.sin(u/2)]}function unit(v){const l=Math.hypot(...v)||1;return v.map(x=>x/l)}function normal(u,v){const p=surface(u,v),pu=surface(u+.005,v),pv=surface(u,v+.005),a=pu.map((x,i)=>x-p[i]),b=pv.map((x,i)=>x-p[i]);return unit([a[1]*b[2]-a[2]*b[1],a[2]*b[0]-a[0]*b[2],a[0]*b[1]-a[1]*b[0]])}
-const mesh=[];for(let i=0;i<150;i++){for(let j=0;j<12;j++){const u=i/150*Math.PI*2,u2=(i+1)/150*Math.PI*2,v=j/12*2-1,v2=(j+1)/12*2-1;mesh.push({p:[surface(u,v),surface(u2,v),surface(u2,v2),surface(u,v2)],n:normal((u+u2)/2,(v+v2)/2),u,v})}}
-function drawSculpture(time){if(!width||!visible||document.hidden)return;if(time-prev<30)return;const dt=Math.min((time-prev)/1000,.05);prev=time;if(!paused)phase+=dt*.14;ctx.clearRect(0,0,width,height);const size=Math.min(width*.31,height*.39),a=.85+mouseY,b=phase+mouseX,c=-.38;const glow=ctx.createRadialGradient(width*.57,height*.5,0,width*.57,height*.5,size*1.8);glow.addColorStop(0,'#ffffff09');glow.addColorStop(1,'#ffffff00');ctx.fillStyle=glow;ctx.fillRect(0,0,width,height);const polygons=mesh.map(m=>{const p=m.p.map(p=>rotate(p,a,b,c)),n=rotate(m.n,a,b,c);return{p,n,z:p.reduce((s,p)=>s+p[2],0)/4,u:m.u,v:m.v}}).sort((a,b)=>a.z-b.z);for(const f of polygons){const light=Math.abs(f.n[0]*-.45+f.n[1]*-.5+f.n[2]*.74),reflect=Math.pow(Math.max(0,Math.abs(f.n[2])*.8+f.n[0]*.35),12),stripe=Math.pow(Math.abs(Math.sin(f.n[1]*3+f.n[0]*2)),7);let shade=Math.min(255,25+light*105+reflect*155+stripe*75);ctx.beginPath();f.p.forEach((p,i)=>{const perspective=4.5/(4.5-p[2]);const x=width*.57+p[0]*size*perspective,y=height*.5+p[1]*size*perspective;i?ctx.lineTo(x,y):ctx.moveTo(x,y)});ctx.closePath();ctx.fillStyle=`rgb(${shade},${shade},${shade})`;ctx.fill();ctx.strokeStyle=`rgba(${shade},${shade},${shade},.8)`;ctx.lineWidth=.65;ctx.stroke()}ctx.save();ctx.translate(width*.57,height*.9);ctx.scale(1,.14);const shadow=ctx.createRadialGradient(0,0,0,0,0,size*1.2);shadow.addColorStop(0,'#ffffff12');shadow.addColorStop(1,'#ffffff00');ctx.fillStyle=shadow;ctx.beginPath();ctx.arc(0,0,size*1.2,0,Math.PI*2);ctx.fill();ctx.restore()}
-const progress=document.querySelector('.progress'),interlude=document.querySelector('.interlude'),orbit=document.querySelector('.orbit-mark');let lastY=-1;function frame(time){lenis?.raf(time);drawSculpture(time);const y=window.scrollY;if(y!==lastY){lastY=y;const total=document.documentElement.scrollHeight-innerHeight;progress.style.transform=`scaleX(${total?y/total:0})`;const rect=words.getBoundingClientRect(),amount=Math.max(0,Math.min(1,(innerHeight*.9-rect.top)/(innerHeight*.7)));wordSpans.forEach((w,i)=>w.classList.toggle('lit',reduce.matches||i/wordSpans.length<amount));const r=interlude.getBoundingClientRect();orbit.style.setProperty('--orbit',`${r.top*.08}deg`);if(!reduce.matches)document.querySelectorAll('[data-parallax]').forEach(el=>{const r=el.parentElement.getBoundingClientRect();const move=(innerHeight/2-r.top-r.height/2)*Number(el.dataset.parallax);el.style.translate=`0 ${Math.max(-30,Math.min(30,move))}px`})}requestAnimationFrame(frame)}resize();requestAnimationFrame(frame);
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+const panel = document.querySelector('#tour-panel');
+const greeting = document.querySelector('#onyx-greeting');
+const tourCopy = document.querySelector('#tour-copy');
+const tourCount = document.querySelector('#tour-count');
+const nextButton = document.querySelector('.tour-next');
+const previousButton = document.querySelector('.tour-prev');
+let currentStop = -1;
+
+const tour = [
+  { label: '01 / THE WORKSHOP', anchor: '#code', copy: 'Here is the coding workshop: seven websites, each with its own visual language and interaction. Open one and take your time.' },
+  { label: '02 / THE INTELLIGENCE ROOM', anchor: '#ai', copy: 'This is where the AI work belongs: human-centred tools, assistants and product ideas. I will mark what is real and what is still being built.' },
+  { label: '03 / AUTOMATIONS', anchor: '#automation', copy: 'Small automations can give people back their attention. These workflow experiments are in progress; new ones will appear here as they become tangible.' },
+  { label: '04 / SAAS', anchor: '#saas', copy: 'The product lab is for software ideas with a clear purpose: prototype the experience, test the need, then decide what deserves to grow.' },
+  { label: '05 / THE ATELIER', anchor: '#studio', copy: 'A change of medium. Paintings and visual experiments are being gathered for this room.' },
+  { label: '06 / THE WRITING DESK', anchor: '#writing', copy: 'For essays, notes and questions still taking shape, the writing desk opens out to Shivansh’s Substack.' },
+  { label: '07 / THE LONG QUESTIONS', anchor: '#questions', copy: 'And here are the questions too large for a quick answer: energy, mathematics, science and the future of civilization.' },
+  { label: '08 / THE CONVERSATION', anchor: '#contact', copy: 'That is the tour. If a project, painting or question caught your attention, the door is open.' }
+];
+
+function showTour() {
+  panel.hidden = false;
+  greeting.hidden = true;
+  document.querySelector('.onyx-orb').setAttribute('aria-expanded', 'true');
+  nextButton.focus();
+}
+function closeTour() {
+  panel.hidden = true;
+  greeting.hidden = false;
+  document.querySelector('.onyx-orb').setAttribute('aria-expanded', 'false');
+}
+function moveToStop(index) {
+  currentStop = Math.max(-1, Math.min(index, tour.length - 1));
+  if (currentStop < 0) {
+    tourCount.textContent = 'WELCOME';
+    tourCopy.textContent = 'The doors are open. Let’s start where ideas become things: the coding workshop.';
+    previousButton.hidden = true;
+    nextButton.innerHTML = 'Begin the tour <span>↗</span>';
+    return;
+  }
+  const stop = tour[currentStop];
+  tourCount.textContent = stop.label;
+  tourCopy.textContent = stop.copy;
+  previousButton.hidden = currentStop === 0;
+  nextButton.innerHTML = currentStop === tour.length - 1 ? 'Finish the tour <span>✓</span>' : 'Next room <span>→</span>';
+  document.querySelector(stop.anchor)?.scrollIntoView({ behavior: reduceMotion.matches ? 'auto' : 'smooth', block: 'start' });
+}
+
+document.querySelectorAll('.tour-open').forEach(button => button.addEventListener('click', showTour));
+document.querySelector('.tour-close').addEventListener('click', closeTour);
+nextButton.addEventListener('click', () => {
+  if (currentStop >= tour.length - 1) { closeTour(); return; }
+  moveToStop(currentStop + 1);
+});
+previousButton.addEventListener('click', () => moveToStop(currentStop - 1));
+document.addEventListener('keydown', event => { if (event.key === 'Escape' && !panel.hidden) closeTour(); });
+
+// Reveal each chapter once; no animation or layout work runs continuously while scrolling.
+const revealTargets = document.querySelectorAll('.chapter-heading,.chapter-title-row,.work-card,.lab-card,.room-card,.lab-note,.newsletter-chapter>div,.contact-chapter>*');
+if ('IntersectionObserver' in window && !reduceMotion.matches) {
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add('is-visible');
+      observer.unobserve(entry.target);
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -4% 0px' });
+  revealTargets.forEach(element => { element.classList.add('reveal'); observer.observe(element); });
+}
+
+// Update the slim reading-progress line only in response to a real scroll event.
+const progress = document.querySelector('.scroll-progress');
+let progressQueued = false;
+function updateProgress() {
+  if (progressQueued) return;
+  progressQueued = true;
+  requestAnimationFrame(() => {
+    const range = document.documentElement.scrollHeight - window.innerHeight;
+    progress.style.transform = `scaleX(${range > 0 ? window.scrollY / range : 0})`;
+    progressQueued = false;
+  });
+}
+window.addEventListener('scroll', updateProgress, { passive: true });
+window.addEventListener('resize', updateProgress, { passive: true });
+updateProgress();
