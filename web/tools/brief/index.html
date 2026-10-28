@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Brief — summarise long text in your browser. No upload, no account.">
+  <title>Brief — cut to what matters</title>
+  <link rel="stylesheet" href="../shared.css">
+  <style>:root{--tool:#676e61}</style>
+</head>
+<body>
+<div class="shell">
+  <div class="top">
+    <div class="brand"><b>Brief</b> / local summary</div>
+    <div class="links"><a href="/#tools">All tools</a><a href="/">Portfolio ↗</a></div>
+  </div>
+  <header class="hero">
+    <p class="eyebrow">01 / WORKING AI TOOL</p>
+    <h1>Long page.<br>Short brief.</h1>
+    <p>Paste anything dense. Brief compresses it on-device with a local summarisation model. Nothing is sent to a server.</p>
+    <div class="art" aria-hidden="true">Brief</div>
+  </header>
+  <section class="stage">
+    <div class="panel">
+      <h2>Source</h2>
+      <textarea id="input" placeholder="Paste an article, notes, or a messy draft…"></textarea>
+      <div class="row">
+        <button class="btn" id="run">Make a brief ↗</button>
+        <button class="btn ghost" id="sample">Load sample</button>
+      </div>
+      <p class="status" id="status">Model loads on first use (~30–50MB).</p>
+    </div>
+    <div class="panel">
+      <h2>Brief</h2>
+      <div class="out" id="output" data-empty="Your short version appears here."></div>
+    </div>
+  </section>
+  <p class="privacy">Privacy: text stays in this tab. Uses Transformers.js in WebAssembly. First run downloads model weights into the browser cache.</p>
+  <footer class="tool-foot"><span>Brief · Shivansh Nayak</span><a href="/credits/">Credits ↗</a></footer>
+</div>
+<script type="module" src="main.js"></script>
+</body>
+</html>

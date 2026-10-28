@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Tone — rewrite a short line into calm, bold, warm, or precise voice. Runs in your browser.">
+  <title>Tone — try another voice</title>
+  <link rel="stylesheet" href="../shared.css">
+  <style>:root{--tool:#9a675b}</style>
+</head>
+<body>
+<div class="shell">
+  <div class="top">
+    <div class="brand"><b>Tone</b> / local rewrite</div>
+    <div class="links"><a href="/#tools">All tools</a><a href="/">Portfolio ↗</a></div>
+  </div>
+  <header class="hero">
+    <p class="eyebrow">02 / WORKING AI TOOL</p>
+    <h1>Same idea.<br>Different weather.</h1>
+    <p>Drop a headline or sentence. Tone reshapes it into calm, bold, warm, or precise — with an optional on-device model when available.</p>
+    <div class="art" aria-hidden="true">Tone</div>
+  </header>
+  <section class="stage">
+    <div class="panel">
+      <h2>Original</h2>
+      <textarea id="input" placeholder="We help teams ship better websites faster."></textarea>
+      <div class="chips" id="tones" role="group" aria-label="Tone">
+        <button data-tone="calm" class="on">Calm</button>
+        <button data-tone="bold">Bold</button>
+        <button data-tone="warm">Warm</button>
+        <button data-tone="precise">Precise</button>
+      </div>
+      <div class="row">
+        <button class="btn" id="run">Rewrite ↗</button>
+      </div>
+      <p class="status" id="status">Heuristic rewrite is instant; model loads only if you want a second pass.</p>
+    </div>
+    <div class="panel">
+      <h2>Rewrite</h2>
+      <div class="out" id="output" data-empty="A new voice appears here."></div>
+      <button class="btn ghost" id="model-pass" type="button">Try model pass</button>
+    </div>
+  </section>
+  <p class="privacy">Privacy: your line never leaves the tab. Heuristic transforms always work offline; the optional model uses Transformers.js locally.</p>
+  <footer class="tool-foot"><span>Tone · Shivansh Nayak</span><a href="/credits/">Credits ↗</a></footer>
+</div>
+<script type="module" src="main.js"></script>
+</body>
+</html>
