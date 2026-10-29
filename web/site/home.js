@@ -26,7 +26,7 @@ export function home() {
   const stackCards = stack.querySelector('.home-stack__cards');
   const stackStudies = [...studies];
   for (let i = stackStudies.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [stackStudies[i], stackStudies[j]] = [stackStudies[j], stackStudies[i]]; }
-  stackCards.innerHTML = stackStudies.map((study, index) => `<a class="home-stack__card" href="/examples/${study.slug}/" aria-label="Explore ${esc(study.name)}" data-index="${index}"><img src="${shot(study.slug)}" srcset="${shotSrcset(study.slug)}" sizes="(max-width: 700px) 90vw, 72vw" alt="${esc(study.name)} website homepage" width="1920" height="1200" loading="lazy" decoding="async"></a>`).join('');
+  stackCards.innerHTML = stackStudies.map((study, index) => `<a class="home-stack__card" href="/examples/${study.slug}/" aria-label="Explore ${esc(study.name)}" data-index="${index}"><img data-src="${shot(study.slug)}" data-srcset="${shotSrcset(study.slug)}" sizes="(max-width: 700px) 90vw, 72vw" alt="${esc(study.name)} website homepage" width="1920" height="1200" decoding="async"></a>`).join('');
   const stackItems = [...stackCards.children];
   let stackFrame = 0, stackActive = -1, stackStarted = false;
   function updateStack() {
@@ -42,6 +42,7 @@ export function home() {
       const heroImage = imageLink.querySelector('img');
       const firstImage = stackItems[0].querySelector('img');
       firstImage.srcset = heroImage.srcset; firstImage.src = heroImage.currentSrc || heroImage.src;
+      delete firstImage.dataset.src; delete firstImage.dataset.srcset;
       stackItems[0].href = imageLink.href; stackItems[0].setAttribute('aria-label', imageLink.getAttribute('aria-label'));
       stackStarted = true;
     }
@@ -54,6 +55,8 @@ export function home() {
       const visible = distance >= 0 && distance <= 3;
       item.style.visibility = visible ? 'visible' : 'hidden';
       if (!visible) return;
+      const image = item.querySelector('img');
+      if (image.dataset.src) { image.srcset = image.dataset.srcset; image.src = image.dataset.src; delete image.dataset.src; delete image.dataset.srcset; }
       item.style.zIndex = String(10 - distance);
       const leave = distance === 0 ? fraction : 0;
       const depth = Math.max(0, distance - fraction);
@@ -65,6 +68,25 @@ export function home() {
   }
   const scheduleStack = () => { if (!stackFrame) stackFrame = requestAnimationFrame(updateStack); };
   addEventListener('scroll', scheduleStack, {passive:true}); addEventListener('resize', scheduleStack);
+  // Settle on a whole card after scrolling so its image and link remain usable.
+  if (!reduce) {
+    let settleTimer, settling = false;
+    addEventListener('scroll', () => {
+      if (settling) return;
+      clearTimeout(settleTimer);
+      settleTimer = setTimeout(() => {
+        const distance = Math.max(1, opening.offsetHeight - innerHeight);
+        const progress = (scrollY - opening.offsetTop) / distance;
+        if (progress < .18 || progress > .99) return;
+        const index = Math.round((progress - .18) / .82 * (stackStudies.length - 1));
+        const target = opening.offsetTop + distance * (.18 + .82 * index / (stackStudies.length - 1));
+        if (Math.abs(target - scrollY) < 2) return;
+        settling = true;
+        window.scrollTo({top: target, behavior: 'smooth'});
+        setTimeout(() => { settling = false; }, 450);
+      }, 180);
+    }, {passive:true});
+  }
   if (fine && !reduce) stackCards.addEventListener('pointermove', event => {
     const bounds = stackCards.getBoundingClientRect();
     stackCards.style.setProperty('--pointer-x', `${(event.clientX - bounds.left) / bounds.width - .5}`);

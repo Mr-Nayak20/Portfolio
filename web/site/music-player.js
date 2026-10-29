@@ -21,7 +21,8 @@ export function musicPlayer(widget) {
     if (restore) { try { audio.currentTime = Number(sessionStorage.getItem('music-time')) || 0; } catch {} }
   }
   function sync() { play.textContent = audio.paused ? '▶' : 'Ⅱ'; play.setAttribute('aria-label', audio.paused ? 'Play' : 'Pause'); disc.classList.toggle('is-playing', !audio.paused); widget.querySelector('.widget-trigger').classList.toggle('is-playing', !audio.paused); }
-  function toggle() { if (audio.paused) audio.play().catch(sync); else audio.pause(); }
+  let manuallyPaused = false;
+  function toggle() { if (audio.paused) { manuallyPaused = false; audio.play().catch(sync); } else { manuallyPaused = true; audio.pause(); } }
   function step(delta) { index = (index + delta + playlist.length) % playlist.length; load(); audio.play().catch(sync); }
   disc.removeAttribute('aria-disabled'); [previous, play, next].forEach(button => button.disabled = false);
   disc.addEventListener('click', toggle); play.addEventListener('click', toggle); previous.addEventListener('click', () => step(-1)); next.addEventListener('click', () => step(1));
@@ -29,9 +30,13 @@ export function musicPlayer(widget) {
   addEventListener('pagehide', () => { try { sessionStorage.setItem('music-track', index); sessionStorage.setItem('music-time', audio.currentTime); sessionStorage.setItem('music-playing', audio.paused ? '0' : '1'); } catch {} });
   load(true); sync();
   // Browsers may block autoplay until a visitor interacts with the page.
+  const interactionEvents = ['pointerdown', 'keydown', 'touchstart', 'wheel'];
+  const retryPlayback = () => {
+    if (manuallyPaused || !audio.paused) return;
+    audio.play().then(() => interactionEvents.forEach(type => document.removeEventListener(type, retryPlayback))).catch(sync);
+  };
   audio.play().catch(() => {
     sync();
-    const startOnInteraction = () => { audio.play().catch(sync); };
-    document.addEventListener('pointerdown', startOnInteraction, {once:true});
+    interactionEvents.forEach(type => document.addEventListener(type, retryPlayback, {passive:true}));
   });
 }
