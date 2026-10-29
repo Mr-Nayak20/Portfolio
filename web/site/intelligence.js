@@ -139,5 +139,33 @@ export function intelligence() {
   const schedule = () => { if (!queued) { queued = true; requestAnimationFrame(update); } };
   addEventListener('scroll', schedule, {passive:true});
   addEventListener('resize', schedule, {passive:true});
+  // A wheel gesture advances exactly one settled scene while the stage is pinned.
+  // Native scrolling remains available before and after the journey.
+  if (!reduce.matches && matchMedia('(pointer:fine)').matches) {
+    let animating = false, lastGesture = 0;
+    addEventListener('wheel', event => {
+      if (event.ctrlKey || Math.abs(event.deltaY) < Math.abs(event.deltaX)) return;
+      const top = journey.getBoundingClientRect().top + scrollY;
+      const distance = Math.max(1, journey.offsetHeight - innerHeight);
+      const position = (scrollY - top) / distance;
+      if (position < -.01 || position > 1.01) return;
+      const direction = Math.sign(event.deltaY);
+      if (!direction || (direction < 0 && position <= .001) || (direction > 0 && position >= .999)) return;
+      event.preventDefault();
+      if (animating || performance.now() - lastGesture < 1000) return;
+      lastGesture = performance.now();
+      const current = Math.max(0, Math.min(2, Math.round(position * 2)));
+      const next = Math.max(0, Math.min(2, current + direction));
+      const start = scrollY, end = top + distance * next / 2, started = performance.now();
+      animating = true;
+      const move = now => {
+        const t = Math.min(1, (now - started) / 850);
+        const eased = t * t * (3 - 2 * t);
+        window.scrollTo(0, start + (end - start) * eased);
+        if (t < 1) requestAnimationFrame(move); else animating = false;
+      };
+      requestAnimationFrame(move);
+    }, {passive:false});
+  }
   update();
 }

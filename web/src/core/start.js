@@ -1,5 +1,6 @@
 // Loaded before the scene so import/WebGL failures have a usable recovery path.
 import './study-status.css';
+import './study-music.js';
 
 export async function startStudy(load) {
   const slug = location.pathname.split('/').filter(Boolean).at(-1);
