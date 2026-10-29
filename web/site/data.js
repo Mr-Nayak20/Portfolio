@@ -1,6 +1,7 @@
 export const profile = {
   name: 'Shivansh Nayak',
   mark: 'SHIV NAYAK',
+  identity: 'Vigilant. Smart. Stubborn.',
   email: 'shivansh15nayak@gmail.com',
   place: 'India',
   zone: 'Asia/Kolkata',
@@ -13,7 +14,7 @@ export const profile = {
   status: [
     'A considered approach to websites, software, AI, and writing.',
     'Explore the studies, or get in touch about your next project.',
-    'Independent work. Four disciplines. One point of view.'
+    'Vigilant. Smart. Stubborn.'
   ]
 };
 
@@ -23,13 +24,13 @@ export const services = [
     name: 'Website development',
     image: 'velocity',
     poster: '/media/websites.png',
-    line: 'A strong first impression. A website that earns the second.',
+    line: 'Websites with purpose, presence and a clear way forward.',
     body: 'I build websites from the first layout to the finished experience: front end, back end, and e-commerce. Structure, typography and motion serve the same purpose — helping people understand the business and take the next step.',
     items: [
-      ['Interactive pages', 'A homepage that is the project, not a menu in front of it.'],
-      ['Editorial layout', 'Long reading, large type, and images that wait for the sentence.'],
-      ['Motion', 'Filmstrips, wipes, and hover states with a measured duration. Nothing loops for decoration.'],
-      ['Front-end build', 'Vite, and a page that still works when the idea is strange.'],
+      ['Interactive pages', 'Interfaces that respond clearly to the person using them.'],
+      ['Editorial layout', 'Typography, images and structure arranged around the message.'],
+      ['Motion', 'Measured transitions and interaction, with attention to loading and reduced motion.'],
+      ['Front-end build', 'Responsive layouts, accessible controls and careful implementation.'],
       ['Study sites', 'Twenty interactive studies, with their open-source foundations credited.']
     ]
   },
@@ -42,10 +43,10 @@ export const services = [
     body: 'I turn a product idea into a clear, usable interface. The work begins with the task at hand, then follows it through: the right information, sensible controls, and careful attention to what happens when something goes wrong.',
     items: [
       ['Product screens', 'A considered path from opening an application to completing the task.'],
-      ['States', 'Empty, busy, failed, and saved. Each one is designed, not left to the browser.'],
+      ['States', 'Clear responses when a task is loading, complete, empty or unsuccessful.'],
       ['Prototypes', 'Clickable or running, so a decision can be made on the real behaviour.'],
       ['Design systems', 'Type, space, and components that stay put when a second screen arrives.'],
-      ['Handoff', 'Specs a developer can follow without a meeting to translate them.']
+      ['Handoff', 'Clear specifications and working prototypes for the next stage of development.']
     ]
   },
   {
@@ -60,7 +61,7 @@ export const services = [
       ['Brief', 'A long page goes in. A short brief comes out.'],
       ['Tone', 'The same line, said in another voice, without sending it away.'],
       ['Sight', 'An image, described on the device that is looking at it.'],
-      ['Voice', 'Speech turned into a note this browser remembers.']
+      ['Voice', 'Speech recognition provided by the browser; audio may be processed remotely. Saved notes stay on this device.']
     ]
   },
   {
@@ -71,36 +72,36 @@ export const services = [
     line: 'Clear words. A distinct visual point of view.',
     body: 'I write and design with the same question in mind: what deserves the reader’s attention? From a headline to a visual identity, I give an idea a clear voice and a form that carries it well.',
     items: [
-      ['Headlines', 'A line that can carry a whole page, then the page that deserves it.'],
+      ['Headlines', 'A clear opening line, supported by the detail the reader needs.'],
       ['Voice', 'A consistent voice across the product, its website and the details people remember.'],
-      ['Visual identity', 'A palette, a type ramp, and rules that survive a second page.'],
+      ['Visual identity', 'Colour, typography and visual rules that remain consistent across the work.'],
       ['Art direction', 'A clear purpose for each image, with colour, composition and context considered together.'],
-      ['Page structure', 'The order of a story: hero, proof, offer, and the way out.']
+      ['Page structure', 'A considered sequence from introduction and evidence to the next step.']
     ]
   }
 ];
 
 export const studies = [
-  ['reliquary', 'Reliquary', 'A room you only see by the light you carry.', 'The dark is the interface. What you hold is the only lamp.', 'Websites', '2025', 'Interactive'],
-  ['abyssal', 'Abyssal', 'The page is a dive. You steer the lamps.', 'Depth is a scroll. The lights answer the pointer.', 'AI', '2025', 'Installation'],
-  ['ember', 'Hammer & Ember', 'Steel takes colour from heat. Then you strike.', 'A study in sequence: heat, then the blow, then the colour left behind.', 'Writing', '2024', 'Sequence'],
-  ['terrarium', 'Bell & Moss', 'A climate under glass. Wipe the window.', 'The glass is the screen. The weather is the content.', 'Websites', '2025', 'Scroll'],
-  ['koi', 'Still Water', 'A pond that answers a fingertip.', 'Touch is the navigation. The water keeps the state.', 'Websites', '2026', 'Touch'],
-  ['florae', 'Florae', 'A field that moves when you do.', 'Motion follows the body, not a timer.', 'Writing', '2025', 'Motion'],
-  ['velocity', 'Velocity Lab', 'Look through the shoe: bone, heat, drawing.', 'A product, taken apart until the drawing shows.', 'Websites', '2026', 'Product'],
-  ['hangar', 'Hangar Nine', 'Hold, and a large machine wakes.', 'Scale is the point. The interaction is patience.', 'Software', '2025', 'Hold'],
-  ['sucre', 'Maison Sucre', 'Sugar, weight, and a table. Nothing is for sale.', 'A still life with physics. There is no checkout.', 'Websites', '2024', 'Still life'],
-  ['monolith', 'Monolith', 'Drag the sun. The house changes its mind.', 'One control. The whole room renegotiates the light.', 'Software', '2026', 'Light'],
-  ['lowfreq', 'Low Frequency', 'Put a hand on the record. It plays here.', 'Sound as a control, not a background track.', 'AI', '2025', 'Sound'],
-  ['gambit', 'Gambit', 'A game replayed, then left in your hands.', 'Rules you can read, then break, on purpose.', 'Software', '2024', 'Play'],
-  ['atlas', 'Atlas', 'Islands with air between them.', 'A map that refuses to be a grid of equal cards.', 'Software', '2025', 'Map'],
-  ['lithos', 'Lithos', 'Hold the stone until it opens.', 'Time is the gesture. Letting go closes it.', 'Software', '2026', 'Hold'],
-  ['artemis', 'Artemis', 'Scroll, and a figure walks where there is no weather.', 'The scroll is a path. The figure keeps your place.', 'AI', '2025', 'Figure'],
-  ['keeper', 'The Keeper', 'Aim a beam through bad weather.', 'Attention is a flashlight. The rest of the scene waits.', 'AI', '2026', 'Light'],
-  ['koen', 'Kōen', 'One tree. A year, in four breaths.', 'Seasons as chapters. No carousel.', 'Websites', '2024', 'Time'],
-  ['nocturne', 'Nocturne', 'Glass, liquid, and notes — a study, not a house.', 'A bottle, lit, and copy that does not pretend to sell it.', 'Websites', '2026', 'Object'],
-  ['racer', 'Nightshift', 'Rain, a bike, a throttle you have to hold.', 'If you let go, it slows. The page requires you.', 'Websites', '2025', 'Hold'],
-  ['horologie', 'Horologie', 'A movement, taken apart in the browser.', 'Parts, named, and the order they depend on.', 'Writing', '2026', 'Exploded']
+  ['reliquary', 'Reliquary', 'A room you only see by the light you carry.', 'The dark is the interface. What you hold is the only lamp.', 'Websites', 'Study', 'Interactive'],
+  ['abyssal', 'Abyssal', 'The page is a dive. You steer the lamps.', 'Depth is a scroll. The lights answer the pointer.', 'Websites', 'Study', 'Installation'],
+  ['ember', 'Hammer & Ember', 'Steel takes colour from heat. Then you strike.', 'A study in sequence: heat, then the blow, then the colour left behind.', 'Websites', 'Study', 'Sequence'],
+  ['terrarium', 'Bell & Moss', 'A climate under glass. Wipe the window.', 'The glass is the screen. The weather is the content.', 'Websites', 'Study', 'Scroll'],
+  ['koi', 'Still Water', 'A pond that answers a fingertip.', 'Touch is the navigation. The water keeps the state.', 'Websites', 'Study', 'Touch'],
+  ['florae', 'Florae', 'A field that moves when you do.', 'Motion follows the body, not a timer.', 'Websites', 'Study', 'Motion'],
+  ['velocity', 'Velocity Lab', 'Look through the shoe: bone, heat, drawing.', 'A product, taken apart until the drawing shows.', 'Websites', 'Study', 'Product'],
+  ['hangar', 'Hangar Nine', 'Hold, and a large machine wakes.', 'Scale is the point. The interaction is patience.', 'Websites', 'Study', 'Hold'],
+  ['sucre', 'Maison Sucre', 'Sugar, weight, and a table. Nothing is for sale.', 'A still life with physics. There is no checkout.', 'Websites', 'Study', 'Still life'],
+  ['monolith', 'Monolith', 'Drag the sun. The house changes its mind.', 'One control. The whole room renegotiates the light.', 'Websites', 'Study', 'Light'],
+  ['lowfreq', 'Low Frequency', 'Put a hand on the record. It plays here.', 'Sound as a control, not a background track.', 'Websites', 'Study', 'Sound'],
+  ['gambit', 'Gambit', 'A game replayed, then left in your hands.', 'Rules you can read, then break, on purpose.', 'Websites', 'Study', 'Play'],
+  ['atlas', 'Atlas', 'Islands with air between them.', 'A map that refuses to be a grid of equal cards.', 'Websites', 'Study', 'Map'],
+  ['lithos', 'Lithos', 'Hold the stone until it opens.', 'Time is the gesture. Letting go closes it.', 'Websites', 'Study', 'Hold'],
+  ['artemis', 'Artemis', 'Scroll, and a figure walks where there is no weather.', 'The scroll is a path. The figure keeps your place.', 'Websites', 'Study', 'Figure'],
+  ['keeper', 'The Keeper', 'Aim a beam through bad weather.', 'Attention is a flashlight. The rest of the scene waits.', 'Websites', 'Study', 'Light'],
+  ['koen', 'Kōen', 'One tree. A year, in four breaths.', 'Seasons as chapters. No carousel.', 'Websites', 'Study', 'Time'],
+  ['nocturne', 'Nocturne', 'Glass, liquid, and notes — a study, not a house.', 'A bottle, lit, and copy that does not pretend to sell it.', 'Websites', 'Study', 'Object'],
+  ['racer', 'Nightshift', 'Rain, a bike, a throttle you have to hold.', 'If you let go, it slows. The page requires you.', 'Websites', 'Study', 'Hold'],
+  ['horologie', 'Horologie', 'A movement, taken apart in the browser.', 'Parts, named, and the order they depend on.', 'Websites', 'Study', 'Exploded']
 ].map(([slug, name, line, note, discipline, year, tag]) => ({slug, name, line, note, discipline, year, tag}));
 
 export const notes = [
@@ -164,8 +165,8 @@ export const notes = [
 ];
 
 export const jobs = [
-  ['Frontend collaborator', 'Remote', 'Pages with motion, WebGL, and a calm front-end. Write to me with something you have shipped.'],
-  ['Writing partner', 'Remote', 'Headlines, case notes, and a voice that can sit beside a picture without explaining it to death.'],
+  ['Frontend collaborator', 'Remote', 'Interested in responsive interfaces, motion and WebGL? Share a project and the work you would like to explore together.'],
+  ['Writing partner', 'Remote', 'Clear headlines, considered case notes and an interest in working closely with design.'],
   ['Design collaborator', 'Remote', 'Layout, identity, and the still frames the studies need when they leave the viewport.']
 ];
 
@@ -173,9 +174,9 @@ export const nav = [
   ['About', '/about/'],
   ['Services', '/services/'],
   ['Work', '/works/'],
-  ['Clients', '/clients/'],
+  ['Studies', '/clients/'],
   ['Blog', '/blog/'],
-  ['Jobs', '/jobs/'],
+  ['Collaborate', '/jobs/'],
   ['Archive', '/archives/'],
   ['Contact', '/contact/']
 ];
@@ -184,7 +185,7 @@ export const tools = [
   ['Brief', '/tools/brief/', 'Paste a long page. Get a short brief.'],
   ['Tone', '/tools/tone/', 'The same line, in another voice.'],
   ['Sight', '/tools/sight/', 'An image, described on your machine.'],
-  ['Voice', '/tools/voice/', 'Speak. Keep the note in this browser.']
+  ['Voice', '/tools/voice/', 'Browser speech recognition; notes saved on this device.']
 ];
 
 export const shot = slug => `/img/index/${slug}.webp`;

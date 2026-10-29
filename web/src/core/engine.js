@@ -64,14 +64,14 @@ export class Engine {
     if (p.ao !== false) {
       ao = new N8AOPostPass(this.scene, this.camera, 1, 1);
       Object.assign(ao.configuration, {
-        aoRadius: 1.2, distanceFalloff: 1.0, intensity: 2.2, denoiseSamples: 8, denoiseRadius: 12,
-        aoSamples: 16, halfRes: true, gammaCorrection: false, ...(p.ao ?? {}),
+        aoRadius: 1.2, distanceFalloff: 1.0, intensity: 2.2, denoiseSamples: 4, denoiseRadius: 12,
+        aoSamples: 8, halfRes: true, gammaCorrection: false, ...(p.ao ?? {}),
       });
       composer.addPass(ao);
     }
     const effects = [];
     const bloom = p.bloom === false ? null : new BloomEffect({
-      intensity: 0.9, luminanceThreshold: 0.85, luminanceSmoothing: 0.3, mipmapBlur: true, radius: 0.72, levels: 8,
+      intensity: 0.9, luminanceThreshold: 0.85, luminanceSmoothing: 0.3, mipmapBlur: true, radius: 0.72, levels: 5,
       ...(p.bloom ?? {}),
     });
     if (bloom) effects.push(bloom);
@@ -117,6 +117,15 @@ export class Engine {
 
   start() {
     if (this.running) return;
+    const shadowLimit = matchMedia('(pointer: coarse)').matches ? 1024 : 2048;
+    this.scene.traverse(object => {
+      if (object.shadow?.mapSize) {
+        object.shadow.mapSize.x = Math.min(object.shadow.mapSize.x, shadowLimit);
+        object.shadow.mapSize.y = Math.min(object.shadow.mapSize.y, shadowLimit);
+        if (object.shadow.map) {object.shadow.map.dispose(); object.shadow.map = null;}
+        object.shadow.needsUpdate = true;
+      }
+    });
     this.running = true;
     const loop = () => {
       if (!this.running) return;
