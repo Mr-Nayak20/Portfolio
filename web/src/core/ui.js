@@ -70,8 +70,31 @@ export function worldNav(slug, { theme = 'dark', corner = 'bl' } = {}) {
       <svg viewBox="0 0 20 20" aria-hidden="true"><g fill="currentColor">${[0, 1, 2, 3].map(r => [0, 1, 2, 3, 4].map(c => `<rect x="${1 + c * 3.8}" y="${2 + r * 4.4}" width="2.2" height="2.2" rx=".6" opacity="${(r * 5 + c) === i ? 1 : 0.38}"/>`).join('')).join('')}</g></svg>
     </a>
     <a href="${base}examples/${prev.slug}/" class="tw-nav-step" title="${prev.name}" aria-label="Previous world: ${prev.name}">‹</a>
+    <button type="button" class="tw-nav-play" aria-label="Auto-scroll page" aria-pressed="false">▶</button>
+    <a href="${base}examples/${next.slug}/" class="tw-nav-step" title="${next.name}" aria-label="Next world: ${next.name}">›</a>
     <span class="tw-nav-count">${String(i + 1).padStart(2, '0')}<em>/20</em></span>
-    <a href="${base}examples/${next.slug}/" class="tw-nav-step" title="${next.name}" aria-label="Next world: ${next.name}">›</a>`;
+    <button type="button" class="tw-nav-mute" aria-label="Mute music">♫</button>`;
   document.body.appendChild(nav);
+  const play = nav.querySelector('.tw-nav-play');
+  const mute = nav.querySelector('.tw-nav-mute');
+  let playing = false, raf = 0, last = 0;
+  const stop = () => { playing = false; cancelAnimationFrame(raf); play.textContent = '▶'; play.setAttribute('aria-label', 'Auto-scroll page'); play.setAttribute('aria-pressed', 'false'); };
+  const tick = time => {
+    if (!playing) return;
+    if (last) window.scrollBy(0, Math.min(50, time - last) * .045);
+    last = time;
+    if (scrollY >= document.documentElement.scrollHeight - innerHeight - 1) { stop(); return; }
+    raf = requestAnimationFrame(tick);
+  };
+  play.addEventListener('click', () => {
+    if (playing) { stop(); return; }
+    playing = true; last = 0; play.textContent = '❚❚'; play.setAttribute('aria-label', 'Pause auto-scroll'); play.setAttribute('aria-pressed', 'true'); raf = requestAnimationFrame(tick);
+  });
+  ['wheel', 'touchstart'].forEach(type => addEventListener(type, stop, {passive:true}));
+  let muted = false;
+  try { muted = sessionStorage.getItem('music-muted') === '1'; } catch {}
+  const syncMute = () => { mute.textContent = muted ? '🔇' : '♫'; mute.setAttribute('aria-label', muted ? 'Unmute music' : 'Mute music'); mute.setAttribute('aria-pressed', String(muted)); };
+  mute.addEventListener('click', () => { muted = !muted; try { sessionStorage.setItem('music-muted', muted ? '1' : '0'); } catch {} window.dispatchEvent(new CustomEvent('portfolio-mute', {detail: muted})); syncMute(); });
+  syncMute();
   return nav;
 }

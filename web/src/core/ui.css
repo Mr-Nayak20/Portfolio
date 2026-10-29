@@ -27,3 +27,14 @@
 .tw-nav-count { padding: 0 6px; font-variant-numeric: tabular-nums; }
 .tw-nav-count em { font-style: normal; opacity: .45; }
 @media (max-width: 640px) { .tw-nav { transform: scale(.92); transform-origin: left bottom; } }
+
+/* High-contrast playback controls shared by every study. */
+.tw-nav { gap:4px; padding:8px; border:1px solid rgba(255,255,255,.35); background:#111; color:#fff; box-shadow:0 4px 20px #0005; font-size:12px; backdrop-filter:none; }
+.tw-nav a, .tw-nav button { appearance:none; border:0; color:inherit; background:transparent; display:grid; place-items:center; width:42px; height:42px; min-width:42px; border-radius:50%; cursor:pointer; font:inherit; text-decoration:none; }
+.tw-nav a:hover, .tw-nav button:hover { background:#ffffff24; }
+.tw-nav a:focus-visible, .tw-nav button:focus-visible { outline:2px solid white; outline-offset:2px; }
+.tw-nav .tw-nav-step { font-size:25px; }
+.tw-nav .tw-nav-play { background:#fff; color:#111; font-size:15px; }
+.tw-nav .tw-nav-play:hover { background:#dedede; }
+.tw-nav-count { white-space:nowrap; }
+@media(max-width:640px) { .tw-nav { transform:none; left:10px; bottom:10px; gap:1px; padding:5px; } .tw-nav a, .tw-nav button { width:38px; height:38px; min-width:38px; } }
