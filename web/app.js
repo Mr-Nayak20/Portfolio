@@ -1,41 +1,115 @@
-import books from './books.json';
-const projects=[
-{name:'Nocturne',url:'/nocturne/',image:'/nocturne-preview.jpg',type:'Cinematic fragrance',description:'Glass, ingredients and a complete fragrance story. Adapted from Dioramas.'},
-{name:'Nayak',url:'https://nayakandco.in/',image:'/villa/lajes.webp',type:'Brand website',description:'The Nayak company website, separate from the Scout app.',cover:'Nayak',class:'nayak'},
-{name:'Sleepy',url:'/sleepy/',image:'/sleepy/images/layout.webp',type:'Product storytelling',description:'Scroll sequences, product rotation and a demo shopping flow.'},
-{name:'Velocity Lab',url:'/velocity/',image:'/velocity-preview.jpg',type:'Interactive footwear',description:'Inspect the product through X-ray, thermal and CAD modes.'},
-{name:'Virality OS',url:'/virality/',image:'/villa/studio.webp',type:'Creator interface',description:'A redesigned creator frontend with a local outline studio.',cover:'Virality OS',class:'virality'},
-{name:'Fizzi Soda',url:'/fizzi/',image:'/fizzi/labels/cherry.png',type:'Commerce concept',description:'3D cans, selectable flavours and a demo shopping bag.',class:'fizzi'},
-{name:'The Substance',url:'/substance/',image:'/substance/ph1.jpg',type:'Creative studio',description:'A study in material, light and editorial imagery.'}];
-const tools=[
-{name:'Langflow',repo:'langflow-ai/langflow',license:'MIT',description:'Visual agent and workflow builder. A candidate for assembling research and document workflows.',use:'Prototype a research assistant with retrieval and tool calls.'},
-{name:'CrewAI',repo:'crewAIInc/crewAI',license:'MIT',description:'Python framework for role-based agent teams and workflows. A source foundation to evaluate before adapting.',use:'Build a scoped research, drafting and review workflow.'},
-{name:'LangGraph',repo:'langchain-ai/langgraph',license:'MIT',description:'A framework for stateful agent workflows. A foundation for explicit steps, persistent state and human review.',use:'Prototype an agent workflow with checkpoints and clear transitions.'}];
-const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
-const heroImage=document.querySelector('#hero-image');
-let selected=0;
-function selectProject(index){selected=index;const p=projects[index];heroImage.src=p.image;heroImage.alt=p.name+' website preview';document.querySelector('#hero-visit').href=p.url;document.querySelector('#hero-open').href=p.url;document.querySelector('#hero-name').textContent=p.name.toUpperCase();document.querySelector('#hero-count').textContent=String(index+1).padStart(2,'0')+' — 07';document.querySelectorAll('.gallery-strip button').forEach((b,i)=>b.setAttribute('aria-pressed',String(i===index)));}
-document.querySelector('#gallery-strip').innerHTML=projects.map((p,i)=>`<button aria-label="Preview ${esc(p.name)}" aria-pressed="${i===0}" data-project="${i}"><img src="${p.image}" alt="${esc(p.name)}" width="66" height="66"></button>`).join('');
-document.querySelectorAll('[data-project]').forEach(b=>{b.addEventListener('click',()=>selectProject(Number(b.dataset.project)));b.addEventListener('mouseenter',()=>{if(matchMedia('(hover:hover)').matches)selectProject(Number(b.dataset.project));});});
-document.querySelector('#work-grid').innerHTML=projects.map(p=>`<article class="work-card"><a class="work-media ${p.class||''}" href="${p.url}"><img src="${p.image}" alt="${esc(p.name)} project preview" loading="lazy">${p.cover?`<span class="cover-word">${p.cover}</span>`:''}</a><div class="work-info"><div><h3>${p.name}</h3><p>${p.description}</p><span class="work-tag">${p.type}</span></div><a href="${p.url}" aria-label="Open ${esc(p.name)}">↗</a></div></article>`).join('');
-const toolMarkup=tools.map((t,i)=>`<article class="tool-card"><span class="tool-number">0${i+1} / OPEN-SOURCE FOUNDATION</span><h3>${t.name}</h3><p>${t.description}</p><p>${t.use}</p><span class="license">${t.license} · NOT YET ADAPTED</span><br><a href="https://github.com/${t.repo}" target="_blank" rel="noopener">EXPLORE SOURCE ↗</a></article>`).join('');
-document.querySelector('#tools-grid').innerHTML=toolMarkup;document.querySelector('#tool-detail-grid').innerHTML=toolMarkup;
-const colors=['#676e61','#9a675b','#6a7180','#9a8c6a','#6e5e70','#496266','#a4775e','#73795c','#796354','#5a697b'];
-function cover(b){return `<div class="book-cover" style="--cover:${colors[Math.floor((b.id-1)/10)]}"><small>${esc(b.category)} / ${String(b.id).padStart(3,'0')}</small><strong>${esc(b.title)}</strong><small>${esc(b.author)}</small></div>`;}
-function teaser(b){return `<button class="book-teaser" data-book="${b.id}" aria-label="Open ${esc(b.title)} reading journal">${cover(b)}<h3>${esc(b.title)}</h3><p>${esc(b.author)}</p></button>`;}
-document.querySelector('#book-preview').innerHTML=[books[0],books[10],books[22],books[34],books[40],books[53],books[66],books[78],books[85],books[96]].map(teaser).join('');
-const category=document.querySelector('#book-category');[...new Set(books.map(b=>b.category))].forEach(c=>{const o=document.createElement('option');o.value=c;o.textContent=c;category.append(o);});
-function filterBooks(){const q=document.querySelector('#book-search').value.toLowerCase();const results=books.filter(b=>(category.value==='all'||b.category===category.value)&&(b.title+' '+b.author).toLowerCase().includes(q));document.querySelector('#library-grid').innerHTML=results.map(teaser).join('');document.querySelector('#book-results').textContent=results.length+' books / sample catalogue';}
-document.querySelector('#book-search').addEventListener('input',filterBooks);category.addEventListener('change',filterBooks);filterBooks();
-function openDialog(id){const d=document.querySelector('#'+id+'-dialog');if(d&&!d.open)d.showModal();}
-document.addEventListener('click',e=>{const opener=e.target.closest('[data-open]');if(opener){openDialog(opener.dataset.open);return;}const close=e.target.closest('[data-close]');if(close){close.closest('dialog').close();return;}const book=e.target.closest('[data-book]');if(book)openBook(Number(book.dataset.book));});
-document.querySelectorAll('dialog').forEach(d=>{d.addEventListener('click',e=>{if(e.target===d){const r=d.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)d.close();}});});
-function openBook(id){const b=books.find(x=>x.id===id);let saved={};try{saved=JSON.parse(localStorage.getItem('reading-note-'+id)||'{}');}catch{}document.querySelector('#book-detail').innerHTML=`<span class="book-meta">${esc(b.category)} / SAMPLE ENTRY ${id}</span><h2>${esc(b.title)}</h2><p class="book-meta">${esc(b.author)}</p><div class="book-blog"><h3>My reading journal</h3><p>This is a blank personal-blog draft. No review or reading history has been attributed to Shivansh.</p><p>Prompts: What stayed with me? Where did I disagree? Which idea connects with my work or another book?</p><label for="personal-note">Personal notes and blog draft</label><textarea id="personal-note" placeholder="Write your own response to this book…">${esc(saved.note||'')}</textarea><div class="note-actions"><label>Reading status <select id="reading-status"><option>Unconfirmed</option><option>Want to read</option><option>Reading</option><option>Read</option></select></label><button id="save-note">Save notes</button></div><p class="save-state" id="save-state">Stored only in this browser. No backend publication.</p></div>`;document.querySelector('#reading-status').value=saved.status||'Unconfirmed';document.querySelector('#save-note').onclick=()=>{try{localStorage.setItem('reading-note-'+id,JSON.stringify({note:document.querySelector('#personal-note').value,status:document.querySelector('#reading-status').value}));document.querySelector('#save-state').textContent='Saved on this browser.';}catch{document.querySelector('#save-state').textContent='This browser could not save notes.';}};openDialog('book');}
-const toggle=document.querySelector('.menu-toggle'),menu=document.querySelector('#menu-panel');toggle.onclick=()=>{menu.hidden=!menu.hidden;toggle.setAttribute('aria-expanded',String(!menu.hidden));};menu.querySelectorAll('a').forEach(a=>a.onclick=()=>{menu.hidden=true;toggle.setAttribute('aria-expanded','false');});
-document.querySelectorAll('.ezra-shortcuts a').forEach(a=>a.onclick=()=>document.querySelector('#ezra-dialog').close());
-const endpoint=(import.meta.env.VITE_EZRA_API_URL||'').trim(),form=document.querySelector('#ezra-form'),input=document.querySelector('#ezra-input'),send=form.querySelector('button');let conversation='';
-if(endpoint){input.disabled=false;send.disabled=false;input.placeholder='Ask Ezra about the portfolio…';document.querySelector('#ezra-status').textContent='Hermes endpoint configured. How can I help you explore?';}
-form.onsubmit=async e=>{e.preventDefault();const message=input.value.trim();if(!message||!endpoint)return;const p=document.createElement('p');p.textContent='You: '+message;document.querySelector('#messages').append(p);input.value='';send.disabled=true;const reply=document.createElement('p');reply.textContent='Connecting…';document.querySelector('#messages').append(reply);try{const r=await fetch(endpoint,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message,conversation_id:conversation,context:{path:location.pathname,room:location.hash}})});if(!r.ok)throw Error('Connection failed');const data=await r.json();if(typeof(data.reply||data.message||data.content)!=='string')throw Error('Invalid reply');reply.textContent=data.reply||data.message||data.content;conversation=data.conversation_id||conversation;}catch{reply.textContent='Ezra could not reach Hermes. The site navigation is still available.';}finally{send.disabled=false;}};
-document.querySelector('#clock').textContent='INDIA '+new Intl.DateTimeFormat('en-GB',{timeZone:'Asia/Kolkata',hour:'2-digit',minute:'2-digit'}).format(new Date());document.querySelector('#year').textContent=new Date().getFullYear();
-if(!reduced&&'IntersectionObserver'in window){const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target);}}),{threshold:.08});document.querySelectorAll('.statement,.work-card,.center-statement,.tool-card,.hobby-grid article,.contact').forEach(el=>{el.classList.add('reveal');observer.observe(el);});}
+const worlds = [
+  ['reliquary','Reliquary','A room you only see by the light you carry.'],
+  ['abyssal','Abyssal','The page is a dive. You steer the lamps.'],
+  ['ember','Hammer & Ember','Steel takes colour from heat. Then you strike.'],
+  ['terrarium','Bell & Moss','A climate under glass. Wipe the window.'],
+  ['koi','Still Water','A pond that answers a fingertip.'],
+  ['florae','Florae','A field that moves when you do.'],
+  ['velocity','Velocity Lab','Look through the shoe: bone, heat, drawing.'],
+  ['hangar','Hangar Nine','Hold, and a large machine wakes.'],
+  ['sucre','Maison Sucre','Sugar, weight, and a table. Nothing is for sale.'],
+  ['monolith','Monolith','Drag the sun. The house changes its mind.'],
+  ['lowfreq','Low Frequency','Put a hand on the record. It plays here.'],
+  ['gambit','Gambit','A game replayed, then left in your hands.'],
+  ['atlas','Atlas','Islands with air between them.'],
+  ['lithos','Lithos','Hold the stone until it opens.'],
+  ['artemis','Artemis','Scroll, and a figure walks where there is no weather.'],
+  ['keeper','The Keeper','Aim a beam through bad weather.'],
+  ['koen','Kōen','One tree. A year, in four breaths.'],
+  ['nocturne','Nocturne','Glass, liquid, and notes — a study, not a house.'],
+  ['racer','Nightshift','Rain, a bike, a throttle you have to hold.'],
+  ['horologie','Horologie','A movement, taken apart in the browser.']
+];
+
+const services = [
+  {id:'web', n:'01', name:'Website development', line:'Interactive sites with a point of view.', body:'Scroll, 3D and editorial pages built as experiences. The twenty studies on this site are the proof.'},
+  {id:'soft', n:'02', name:'Software', line:'Interfaces for a real job.', body:'Product screens, states, and tools that help someone finish a task instead of admire a mock.'},
+  {id:'ai', n:'03', name:'AI development', line:'Tools a visitor can try.', body:'Summaries, rewrites, vision and voice that run in the browser. No key, no account.'},
+  {id:'write', n:'04', name:'Writing & design', line:'Words and a visual system that agree.', body:'Headlines, identity and layout. If the sentence is vague, the design cannot rescue it.'}
+];
+
+const tools = [
+  ['Brief','/tools/brief/','Paste a long page. Get a short brief.'],
+  ['Tone','/tools/tone/','The same line, in another voice.'],
+  ['Sight','/tools/sight/','An image, described on your machine.'],
+  ['Voice','/tools/voice/','Speak. Keep the note in this browser.']
+];
+
+const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const shot = slug => `/img/index/${slug}.webp`;
+
+let selected = 0;
+const rail = document.querySelector('#rail');
+const view = document.querySelector('#view');
+
+function select(i) {
+  selected = i;
+  const [slug, name] = worlds[i];
+  view.href = `/examples/${slug}/`;
+  view.textContent = `VIEW ${name.toUpperCase()} ↗`;
+  [...rail.children].forEach((b, n) => b.setAttribute('aria-pressed', String(n === i)));
+}
+
+rail.innerHTML = worlds.map(([slug, name], i) =>
+  `<button aria-label="${esc(name)}" aria-pressed="${i===0}"><img src="${shot(slug)}" alt=""></button>`
+).join('');
+[...rail.children].forEach((b, i) => {
+  b.onclick = () => select(i);
+  b.ondblclick = () => location.assign(`/examples/${worlds[i][0]}/`);
+});
+select(0);
+
+document.querySelector('#work-grid').innerHTML = worlds.map(([slug, name, line]) =>
+  `<a class="card" href="/examples/${slug}/"><img src="${shot(slug)}" alt="${esc(name)}"><h3>${esc(name)}</h3><p>${esc(line)}</p></a>`
+).join('');
+
+document.querySelector('#service-list').innerHTML = services.map(s =>
+  `<button class="service" data-service="${s.id}"><small>${s.n}</small><h3>${esc(s.name)}</h3><span>More information ↗</span></button>`
+).join('');
+
+document.querySelector('#tool-row').innerHTML = tools.map(([name, href, line]) =>
+  `<a class="tool" href="${href}"><h3>${esc(name)}</h3><p>${esc(line)}</p></a>`
+).join('');
+
+function openService(id) {
+  const s = services.find(x => x.id === id);
+  const links = id === 'web'
+    ? worlds.slice(0, 4).map(([slug, name]) => `<a href="/examples/${slug}/">${esc(name)} ↗</a>`).join('<br>')
+    : id === 'ai'
+      ? tools.map(([name, href]) => `<a href="${href}">${esc(name)} ↗</a>`).join('<br>')
+      : `<a href="mailto:shivansh15nayak@gmail.com">Start with an email ↗</a>`;
+  document.querySelector('#service-detail').innerHTML = `<p>${s.n}</p><h2>${esc(s.name)}</h2><p>${esc(s.line)}</p><p>${esc(s.body)}</p><p>${links}</p><p><a href="mailto:shivansh15nayak@gmail.com?subject=${encodeURIComponent(s.name)}">Start a project ↗</a></p>`;
+  document.querySelector('#service-dialog').showModal();
+}
+
+document.addEventListener('click', e => {
+  const opener = e.target.closest('[data-open]');
+  if (opener) document.querySelector('#project-dialog').showModal();
+  const service = e.target.closest('[data-service]');
+  if (service) openService(service.dataset.service);
+  const close = e.target.closest('[data-close]');
+  if (close) close.closest('dialog').close();
+});
+
+document.querySelector('#start-form').onsubmit = e => {
+  e.preventDefault();
+  const data = new FormData(e.target);
+  const needs = data.getAll('need').join(', ') || 'Not specified';
+  const body = `Name: ${data.get('name')}\nEmail: ${data.get('email')}\nNeeds: ${needs}\n\n${data.get('message')}`;
+  location.href = `mailto:shivansh15nayak@gmail.com?subject=${encodeURIComponent('Project')}&body=${encodeURIComponent(body)}`;
+};
+
+const menuBtn = document.querySelector('.menu-btn');
+const menu = document.querySelector('#menu');
+menuBtn.onclick = () => {
+  menu.hidden = !menu.hidden;
+  menuBtn.setAttribute('aria-expanded', String(!menu.hidden));
+};
+menu.querySelectorAll('a').forEach(a => a.onclick = () => { menu.hidden = true; });
+
+function tick() {
+  document.querySelector('#clock').textContent = new Intl.DateTimeFormat('en-GB', {timeZone:'Asia/Kolkata', hour:'2-digit', minute:'2-digit'}).format(new Date());
+}
+tick();
+setInterval(tick, 30000);
+document.querySelector('#year').textContent = new Date().getFullYear();

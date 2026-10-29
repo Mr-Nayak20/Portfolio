@@ -1,0 +1,978 @@
+{
+  "generatedAt": "2026-10-29T05:44:03.876Z",
+  "method": "filesystem stat and native sips dimensions; no browser rendering or network timing measurements",
+  "studyCount": 20,
+  "previewBytes": 1791330,
+  "allVariantBytes": 2564712,
+  "modelBytes": 302336596,
+  "studies": [
+    {
+      "slug": "reliquary",
+      "name": "Reliquary",
+      "route": "/examples/reliquary/",
+      "preview": "/img/index/reliquary.webp",
+      "captureStatus": "existing-upstream-preview; fresh browser capture not performed",
+      "video": null,
+      "variants": [
+        {
+          "url": "/img/index/reliquary.webp",
+          "bytes": 50048,
+          "width": 1280,
+          "height": 800
+        },
+        {
+          "url": "/img/index/reliquary-320.webp",
+          "bytes": 5082,
+          "width": 320,
+          "height": 200
+        },
+        {
+          "url": "/img/index/reliquary-640.webp",
+          "bytes": 15562,
+          "width": 640,
+          "height": 400
+        }
+      ],
+      "models": [
+        {
+          "url": "/models/reliquary/amphora.glb",
+          "bytes": 3616952
+        },
+        {
+          "url": "/models/reliquary/astrolabe.glb",
+          "bytes": 6048764
+        },
+        {
+          "url": "/models/reliquary/bust.glb",
+          "bytes": 4526932
+        },
+        {
+          "url": "/models/reliquary/guardian.glb",
+          "bytes": 5217428
+        },
+        {
+          "url": "/models/reliquary/helmet.glb",
+          "bytes": 4539676
+        },
+        {
+          "url": "/models/reliquary/mask.glb",
+          "bytes": 4856104
+        }
+      ],
+      "modelBytes": 28805856,
+      "browserInteractionStatus": "not verified in this revision"
+    },
+    {
+      "slug": "abyssal",
+      "name": "Abyssal",
+      "route": "/examples/abyssal/",
+      "preview": "/img/index/abyssal.webp",
+      "captureStatus": "existing-upstream-preview; fresh browser capture not performed",
+      "video": null,
+      "variants": [
+        {
+          "url": "/img/index/abyssal.webp",
+          "bytes": 129754,
+          "width": 1280,
+          "height": 800
+        },
+        {
+          "url": "/img/index/abyssal-320.webp",
+          "bytes": 13610,
+          "width": 320,
+          "height": 200
+        },
+        {
+          "url": "/img/index/abyssal-640.webp",
+          "bytes": 38910,
+          "width": 640,
+          "height": 400
+        }
+      ],
+      "models": [
+        {
+          "url": "/models/abyssal/angler.glb",
+          "bytes": 4496044
+        },
+        {
+          "url": "/models/abyssal/nautilus.glb",
+          "bytes": 3819008
+        },
+        {
+          "url": "/models/abyssal/sub.glb",
+          "bytes": 5845976
+        },
+        {
+          "url": "/models/abyssal/vent.glb",
+          "bytes": 6418476
+        }
+      ],
+      "modelBytes": 20579504,
+      "browserInteractionStatus": "not verified in this revision"
+    },
+    {
+      "slug": "ember",
+      "name": "Hammer & Ember",
+      "route": "/examples/ember/",
+      "preview": "/img/index/ember.webp",
+      "captureStatus": "existing-upstream-preview; fresh browser capture not performed",
+      "video": null,
+      "variants": [
+        {
+          "url": "/img/index/ember.webp",
+          "bytes": 121474,
+          "width": 1280,
+          "height": 800
+        },
+        {
+          "url": "/img/index/ember-320.webp",
+          "bytes": 10540,
+          "width": 320,
+          "height": 200
+        },
+        {
+          "url": "/img/index/ember-640.webp",
+          "bytes": 32696,
+          "width": 640,
+          "height": 400
+        }
+      ],
+      "models": [
+        {
+          "url": "/models/ember/anvil.glb",
+          "bytes": 4040380
+        },
+        {
+          "url": "/models/ember/hammer.glb",
+          "bytes": 3000880
+        },
+        {
+          "url": "/models/ember/sword.glb",
+          "bytes": 2566096
+        }
+      ],
+      "modelBytes": 9607356,
+      "browserInteractionStatus": "not verified in this revision"
+    },
+    {
+      "slug": "terrarium",
+      "name": "Bell & Moss",
+      "route": "/examples/terrarium/",
+      "preview": "/img/index/terrarium.webp",
+      "captureStatus": "existing-upstream-preview; fresh browser capture not performed",
+      "video": null,
+      "variants": [
+        {
+          "url": "/img/index/terrarium.webp",
+          "bytes": 56594,
+          "width": 1280,
+          "height": 800
+        },
+        {
+          "url": "/img/index/terrarium-320.webp",
+          "bytes": 6400,
+          "width": 320,
+          "height": 200
+        },
+        {
+          "url": "/img/index/terrarium-640.webp",
+          "bytes": 18710,
+          "width": 640,
+          "height": 400
+        }
+      ],
+      "models": [
+        {
+          "url": "/models/terrarium/desert.glb",
+          "bytes": 6973180
+        },
+        {
+          "url": "/models/terrarium/moss.glb",
+          "bytes": 8392680
+        },
+        {
+          "url": "/models/terrarium/tropic.glb",
+          "bytes": 7314592
+        }
+      ],
+      "modelBytes": 22680452,
+      "browserInteractionStatus": "not verified in this revision"
+    },
+    {
+      "slug": "koi",
+      "name": "Still Water",
+      "route": "/examples/koi/",
+      "preview": "/img/index/koi.webp",
+      "captureStatus": "existing-upstream-preview; fresh browser capture not performed",
+      "video": null,
+      "variants": [
+        {
+          "url": "/img/index/koi.webp",
+          "bytes": 181244,
+          "width": 1280,
+          "height": 800
+        },
+        {
+          "url": "/img/index/koi-320.webp",
+          "bytes": 15286,
+          "width": 320,
+          "height": 200
+        },
+        {
+          "url": "/img/index/koi-640.webp",
+          "bytes": 52138,
+          "width": 640,
+          "height": 400
+        }
+      ],
+      "models": [
+        {
+          "url": "/models/koi/kohaku.glb",
+          "bytes": 2839844
+        },
+        {
+          "url": "/models/koi/lantern.glb",
+          "bytes": 3811384
+        },
+        {
+          "url": "/models/koi/lotus.glb",
+          "bytes": 2611556
+        },
+        {
+          "url": "/models/koi/showa.glb",
+          "bytes": 3107120
+        }
+      ],
+      "modelBytes": 12369904,
+      "browserInteractionStatus": "not verified in this revision"
+    },
+    {
+      "slug": "florae",
+      "name": "Florae",
+      "route": "/examples/florae/",
+      "preview": "/img/index/florae.webp",
+      "captureStatus": "existing-upstream-preview; fresh browser capture not performed",
+      "video": null,
+      "variants": [
+        {
+          "url": "/img/index/florae.webp",
+          "bytes": 91790,
+          "width": 1280,
+          "height": 800
+        },
+        {
+          "url": "/img/index/florae-320.webp",
+          "bytes": 8230,
+          "width": 320,
+          "height": 200
+        },
+        {
+          "url": "/img/index/florae-640.webp",
+          "bytes": 26486,
+          "width": 640,
+          "height": 400
+        }
+      ],
+      "models": [
+        {
+          "url": "/models/florae/morpho.glb",
+          "bytes": 3611756
+        },
+        {
+          "url": "/models/florae/orchid.glb",
+          "bytes": 3267732
+        },
+        {
+          "url": "/models/florae/protea.glb",
+          "bytes": 5092524
+        },
+        {
+          "url": "/models/florae/rose.glb",
+          "bytes": 3050224
+        }
+      ],
+      "modelBytes": 15022236,
+      "browserInteractionStatus": "not verified in this revision"
+    },
+    {
+      "slug": "velocity",
+      "name": "Velocity Lab",
+      "route": "/examples/velocity/",
+      "preview": "/img/index/velocity.webp",
+      "captureStatus": "existing-upstream-preview; fresh browser capture not performed",
+      "video": null,
+      "variants": [
+        {
+          "url": "/img/index/velocity.webp",
+          "bytes": 66658,
+          "width": 1280,
+          "height": 800
+        },
+        {
+          "url": "/img/index/velocity-320.webp",
+          "bytes": 7604,
+          "width": 320,
+          "height": 200
+        },
+        {
+          "url": "/img/index/velocity-640.webp",
+          "bytes": 22002,
+          "width": 640,
+          "height": 400
+        }
+      ],
+      "models": [
+        {
+          "url": "/models/velocity/black.glb",
+          "bytes": 4085808
+        },
+        {
+          "url": "/models/velocity/white.glb",
+          "bytes": 4054944
+        }
+      ],
+      "modelBytes": 8140752,
+      "browserInteractionStatus": "not verified in this revision"
+    },
+    {
+      "slug": "hangar",
+      "name": "Hangar Nine",
+      "route": "/examples/hangar/",
+      "preview": "/img/index/hangar.webp",
+      "captureStatus": "existing-upstream-preview; fresh browser capture not performed",
+      "video": null,
+      "variants": [
+        {
+          "url": "/img/index/hangar.webp",
+          "bytes": 97258,
+          "width": 1280,
+          "height": 800
+        },
+        {
+          "url": "/img/index/hangar-320.webp",
+          "bytes": 11196,
+          "width": 320,
+          "height": 200
+        },
+        {
+          "url": "/img/index/hangar-640.webp",
+          "bytes": 31788,
+          "width": 640,
+          "height": 400
+        }
+      ],
+      "models": [
+        {
+          "url": "/models/hangar/drone.glb",
+          "bytes": 4589336
+        },
+        {
+          "url": "/models/hangar/mech.glb",
+          "bytes": 7142256
+        }
+      ],
+      "modelBytes": 11731592,
+      "browserInteractionStatus": "not verified in this revision"
+    },
+    {
+      "slug": "sucre",
+      "name": "Maison Sucre",
+      "route": "/examples/sucre/",
+      "preview": "/img/index/sucre.webp",
+      "captureStatus": "existing-upstream-preview; fresh browser capture not performed",
+      "video": null,
+      "variants": [
+        {
+          "url": "/img/index/sucre.webp",
+          "bytes": 99446,
+          "width": 1280,
+          "height": 800
+        },
+        {
+          "url": "/img/index/sucre-320.webp",
+          "bytes": 12658,
+          "width": 320,
+          "height": 200
+        },
+        {
+          "url": "/img/index/sucre-640.webp",
+          "bytes": 34756,
+          "width": 640,
+          "height": 400
+        }
+      ],
+      "models": [
+        {
+          "url": "/models/sucre/cake.glb",
+          "bytes": 5886064
+        },
+        {
+          "url": "/models/sucre/croissant-lo.glb",
+          "bytes": 801656
+        },
+        {
+          "url": "/models/sucre/croissant-shadow.glb",
+          "bytes": 9772
+        },
+        {
+          "url": "/models/sucre/croissant.glb",
+          "bytes": 2502096
+        },
+        {
+          "url": "/models/sucre/macaron-lo.glb",
+          "bytes": 2015152
+        },
+        {
+          "url": "/models/sucre/macaron-shadow.glb",
+          "bytes": 7408
+        },
+        {
+          "url": "/models/sucre/macaron.glb",
+          "bytes": 2360812
+        },
+        {
+          "url": "/models/sucre/macaron2-lo.glb",
+          "bytes": 2169696
+        },
+        {
+          "url": "/models/sucre/macaron2-shadow.glb",
+          "bytes": 7380
+        },
+        {
+          "url": "/models/sucre/macaron2.glb",
+          "bytes": 2466692
+        },
+        {
+          "url": "/models/sucre/strawberry-lo.glb",
+          "bytes": 2494328
+        },
+        {
+          "url": "/models/sucre/strawberry-shadow.glb",
+          "bytes": 7552
+        },
+        {
+          "url": "/models/sucre/strawberry.glb",
+          "bytes": 2825576
+        },
+        {
+          "url": "/models/sucre/tart-lo.glb",
+          "bytes": 1204860
+        },
+        {
+          "url": "/models/sucre/tart-shadow.glb",
+          "bytes": 12952
+        },
+        {
+          "url": "/models/sucre/tart.glb",
+          "bytes": 3061152
+        }
+      ],
+      "modelBytes": 27833148,
+      "browserInteractionStatus": "not verified in this revision"
+    },
+    {
+      "slug": "monolith",
+      "name": "Monolith",
+      "route": "/examples/monolith/",
+      "preview": "/img/index/monolith.webp",
+      "captureStatus": "existing-upstream-preview; fresh browser capture not performed",
+      "video": null,
+      "variants": [
+        {
+          "url": "/img/index/monolith.webp",
+          "bytes": 83722,
+          "width": 1280,
+          "height": 800
+        },
+        {
+          "url": "/img/index/monolith-320.webp",
+          "bytes": 9108,
+          "width": 320,
+          "height": 200
+        },
+        {
+          "url": "/img/index/monolith-640.webp",
+          "bytes": 27204,
+          "width": 640,
+          "height": 400
+        }
+      ],
+      "models": [
+        {
+          "url": "/models/monolith/house.glb",
+          "bytes": 8869520
+        }
+      ],
+      "modelBytes": 8869520,
+      "browserInteractionStatus": "not verified in this revision"
+    },
+    {
+      "slug": "lowfreq",
+      "name": "Low Frequency",
+      "route": "/examples/lowfreq/",
+      "preview": "/img/index/lowfreq.webp",
+      "captureStatus": "existing-upstream-preview; fresh browser capture not performed",
+      "video": null,
+      "variants": [
+        {
+          "url": "/img/index/lowfreq.webp",
+          "bytes": 71656,
+          "width": 1280,
+          "height": 800
+        },
+        {
+          "url": "/img/index/lowfreq-320.webp",
+          "bytes": 11436,
+          "width": 320,
+          "height": 200
+        },
+        {
+          "url": "/img/index/lowfreq-640.webp",
+          "bytes": 27794,
+          "width": 640,
+          "height": 400
+        }
+      ],
+      "models": [
+        {
+          "url": "/models/lowfreq/speaker.glb",
+          "bytes": 3481496
+        },
+        {
+          "url": "/models/lowfreq/turntable.glb",
+          "bytes": 4141644
+        }
+      ],
+      "modelBytes": 7623140,
+      "browserInteractionStatus": "not verified in this revision"
+    },
+    {
+      "slug": "gambit",
+      "name": "Gambit",
+      "route": "/examples/gambit/",
+      "preview": "/img/index/gambit.webp",
+      "captureStatus": "existing-upstream-preview; fresh browser capture not performed",
+      "video": null,
+      "variants": [
+        {
+          "url": "/img/index/gambit.webp",
+          "bytes": 62718,
+          "width": 1280,
+          "height": 800
+        },
+        {
+          "url": "/img/index/gambit-320.webp",
+          "bytes": 9564,
+          "width": 320,
+          "height": 200
+        },
+        {
+          "url": "/img/index/gambit-640.webp",
+          "bytes": 23622,
+          "width": 640,
+          "height": 400
+        }
+      ],
+      "models": [
+        {
+          "url": "/models/gambit/bishop.glb",
+          "bytes": 1611768
+        },
+        {
+          "url": "/models/gambit/far-bishop.glb",
+          "bytes": 5704
+        },
+        {
+          "url": "/models/gambit/far-king.glb",
+          "bytes": 7184
+        },
+        {
+          "url": "/models/gambit/far-knight.glb",
+          "bytes": 7432
+        },
+        {
+          "url": "/models/gambit/far-pawn.glb",
+          "bytes": 5808
+        },
+        {
+          "url": "/models/gambit/far-queen.glb",
+          "bytes": 5712
+        },
+        {
+          "url": "/models/gambit/far-rook.glb",
+          "bytes": 5772
+        },
+        {
+          "url": "/models/gambit/king.glb",
+          "bytes": 2929396
+        },
+        {
+          "url": "/models/gambit/knight.glb",
+          "bytes": 2371688
+        },
+        {
+          "url": "/models/gambit/pawn-lo.glb",
+          "bytes": 473524
+        },
+        {
+          "url": "/models/gambit/pawn.glb",
+          "bytes": 1575008
+        },
+        {
+          "url": "/models/gambit/queen.glb",
+          "bytes": 2375808
+        },
+        {
+          "url": "/models/gambit/rook.glb",
+          "bytes": 1364012
+        }
+      ],
+      "modelBytes": 12738816,
+      "browserInteractionStatus": "not verified in this revision"
+    },
+    {
+      "slug": "atlas",
+      "name": "Atlas",
+      "route": "/examples/atlas/",
+      "preview": "/img/index/atlas.webp",
+      "captureStatus": "existing-upstream-preview; fresh browser capture not performed",
+      "video": null,
+      "variants": [
+        {
+          "url": "/img/index/atlas.webp",
+          "bytes": 77806,
+          "width": 1280,
+          "height": 800
+        },
+        {
+          "url": "/img/index/atlas-320.webp",
+          "bytes": 9198,
+          "width": 320,
+          "height": 200
+        },
+        {
+          "url": "/img/index/atlas-640.webp",
+          "bytes": 25984,
+          "width": 640,
+          "height": 400
+        }
+      ],
+      "models": [
+        {
+          "url": "/models/atlas/falls.glb",
+          "bytes": 7624576
+        },
+        {
+          "url": "/models/atlas/lighthouse.glb",
+          "bytes": 7760100
+        },
+        {
+          "url": "/models/atlas/pagoda.glb",
+          "bytes": 7369288
+        },
+        {
+          "url": "/models/atlas/windmill.glb",
+          "bytes": 6138880
+        }
+      ],
+      "modelBytes": 28892844,
+      "browserInteractionStatus": "not verified in this revision"
+    },
+    {
+      "slug": "lithos",
+      "name": "Lithos",
+      "route": "/examples/lithos/",
+      "preview": "/img/index/lithos.webp",
+      "captureStatus": "existing-upstream-preview; fresh browser capture not performed",
+      "video": null,
+      "variants": [
+        {
+          "url": "/img/index/lithos.webp",
+          "bytes": 63406,
+          "width": 1280,
+          "height": 800
+        },
+        {
+          "url": "/img/index/lithos-320.webp",
+          "bytes": 6274,
+          "width": 320,
+          "height": 200
+        },
+        {
+          "url": "/img/index/lithos-640.webp",
+          "bytes": 19828,
+          "width": 640,
+          "height": 400
+        }
+      ],
+      "models": [
+        {
+          "url": "/models/lithos/ammonite.glb",
+          "bytes": 4626676
+        },
+        {
+          "url": "/models/lithos/geode.glb",
+          "bytes": 6244724
+        },
+        {
+          "url": "/models/lithos/pyrite.glb",
+          "bytes": 4302720
+        },
+        {
+          "url": "/models/lithos/quartz.glb",
+          "bytes": 4143216
+        }
+      ],
+      "modelBytes": 19317336,
+      "browserInteractionStatus": "not verified in this revision"
+    },
+    {
+      "slug": "artemis",
+      "name": "Artemis",
+      "route": "/examples/artemis/",
+      "preview": "/img/index/artemis.webp",
+      "captureStatus": "existing-upstream-preview; fresh browser capture not performed",
+      "video": null,
+      "variants": [
+        {
+          "url": "/img/index/artemis.webp",
+          "bytes": 124572,
+          "width": 1280,
+          "height": 800
+        },
+        {
+          "url": "/img/index/artemis-320.webp",
+          "bytes": 13962,
+          "width": 320,
+          "height": 200
+        },
+        {
+          "url": "/img/index/artemis-640.webp",
+          "bytes": 41040,
+          "width": 640,
+          "height": 400
+        }
+      ],
+      "models": [
+        {
+          "url": "/models/artemis/astro-rig.glb",
+          "bytes": 3818460
+        },
+        {
+          "url": "/models/artemis/lander.glb",
+          "bytes": 5561464
+        }
+      ],
+      "modelBytes": 9379924,
+      "browserInteractionStatus": "not verified in this revision"
+    },
+    {
+      "slug": "keeper",
+      "name": "The Keeper",
+      "route": "/examples/keeper/",
+      "preview": "/img/index/keeper.webp",
+      "captureStatus": "existing-upstream-preview; fresh browser capture not performed",
+      "video": null,
+      "variants": [
+        {
+          "url": "/img/index/keeper.webp",
+          "bytes": 91048,
+          "width": 1280,
+          "height": 800
+        },
+        {
+          "url": "/img/index/keeper-320.webp",
+          "bytes": 9998,
+          "width": 320,
+          "height": 200
+        },
+        {
+          "url": "/img/index/keeper-640.webp",
+          "bytes": 28838,
+          "width": 640,
+          "height": 400
+        }
+      ],
+      "models": [
+        {
+          "url": "/models/keeper/boat.glb",
+          "bytes": 4646288
+        },
+        {
+          "url": "/models/keeper/lighthouse.glb",
+          "bytes": 7130816
+        }
+      ],
+      "modelBytes": 11777104,
+      "browserInteractionStatus": "not verified in this revision"
+    },
+    {
+      "slug": "koen",
+      "name": "Kōen",
+      "route": "/examples/koen/",
+      "preview": "/img/index/koen.webp",
+      "captureStatus": "existing-upstream-preview; fresh browser capture not performed",
+      "video": null,
+      "variants": [
+        {
+          "url": "/img/index/koen.webp",
+          "bytes": 89914,
+          "width": 1280,
+          "height": 800
+        },
+        {
+          "url": "/img/index/koen-320.webp",
+          "bytes": 9486,
+          "width": 320,
+          "height": 200
+        },
+        {
+          "url": "/img/index/koen-640.webp",
+          "bytes": 28280,
+          "width": 640,
+          "height": 400
+        }
+      ],
+      "models": [
+        {
+          "url": "/models/koen/maple.glb",
+          "bytes": 3563504
+        },
+        {
+          "url": "/models/koen/maple2.glb",
+          "bytes": 7946664
+        }
+      ],
+      "modelBytes": 11510168,
+      "browserInteractionStatus": "not verified in this revision"
+    },
+    {
+      "slug": "nocturne",
+      "name": "Nocturne",
+      "route": "/examples/nocturne/",
+      "preview": "/img/index/nocturne.webp",
+      "captureStatus": "existing-upstream-preview; fresh browser capture not performed",
+      "video": null,
+      "variants": [
+        {
+          "url": "/img/index/nocturne.webp",
+          "bytes": 53914,
+          "width": 1280,
+          "height": 800
+        },
+        {
+          "url": "/img/index/nocturne-320.webp",
+          "bytes": 7166,
+          "width": 320,
+          "height": 200
+        },
+        {
+          "url": "/img/index/nocturne-640.webp",
+          "bytes": 19260,
+          "width": 640,
+          "height": 400
+        }
+      ],
+      "models": [
+        {
+          "url": "/models/nocturne/bergamot.glb",
+          "bytes": 2841112
+        },
+        {
+          "url": "/models/nocturne/cap.glb",
+          "bytes": 2722188
+        },
+        {
+          "url": "/models/nocturne/iris.glb",
+          "bytes": 4286892
+        },
+        {
+          "url": "/models/nocturne/oud.glb",
+          "bytes": 4695748
+        },
+        {
+          "url": "/models/nocturne/vanilla.glb",
+          "bytes": 4144132
+        }
+      ],
+      "modelBytes": 18690072,
+      "browserInteractionStatus": "not verified in this revision"
+    },
+    {
+      "slug": "racer",
+      "name": "Nightshift",
+      "route": "/examples/racer/",
+      "preview": "/img/index/racer.webp",
+      "captureStatus": "existing-upstream-preview; fresh browser capture not performed",
+      "video": null,
+      "variants": [
+        {
+          "url": "/img/index/racer.webp",
+          "bytes": 104026,
+          "width": 1280,
+          "height": 800
+        },
+        {
+          "url": "/img/index/racer-320.webp",
+          "bytes": 13430,
+          "width": 320,
+          "height": 200
+        },
+        {
+          "url": "/img/index/racer-640.webp",
+          "bytes": 36798,
+          "width": 640,
+          "height": 400
+        }
+      ],
+      "models": [
+        {
+          "url": "/models/racer/bike.glb",
+          "bytes": 7923900
+        },
+        {
+          "url": "/models/racer/helmet.glb",
+          "bytes": 3276660
+        }
+      ],
+      "modelBytes": 11200560,
+      "browserInteractionStatus": "not verified in this revision"
+    },
+    {
+      "slug": "horologie",
+      "name": "Horologie",
+      "route": "/examples/horologie/",
+      "preview": "/img/index/horologie.webp",
+      "captureStatus": "existing-upstream-preview; fresh browser capture not performed",
+      "video": null,
+      "variants": [
+        {
+          "url": "/img/index/horologie.webp",
+          "bytes": 74282,
+          "width": 1280,
+          "height": 800
+        },
+        {
+          "url": "/img/index/horologie-320.webp",
+          "bytes": 7660,
+          "width": 320,
+          "height": 200
+        },
+        {
+          "url": "/img/index/horologie-640.webp",
+          "bytes": 23798,
+          "width": 640,
+          "height": 400
+        }
+      ],
+      "models": [
+        {
+          "url": "/models/horologie/watch.glb",
+          "bytes": 5566312
+        }
+      ],
+      "modelBytes": 5566312,
+      "browserInteractionStatus": "not verified in this revision"
+    }
+  ]
+}
