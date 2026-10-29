@@ -1,4 +1,4 @@
-.tw-has-cursor, .tw-has-cursor * { cursor: none !important; }
+
 .tw-cursor { position: fixed; inset: 0; pointer-events: none; z-index: 9999; }
 .tw-cursor-dot, .tw-cursor-ring { position: absolute; left: 0; top: 0; will-change: transform; }
 .tw-cursor-dot { width: 6px; height: 6px; margin: -3px 0 0 -3px; border-radius: 50%; background: var(--c); transition: opacity .3s; }

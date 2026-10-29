@@ -123,16 +123,6 @@ export function boot(start) {
 
   const fine = matchMedia('(hover: hover) and (pointer: fine)').matches;
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (fine) {
-    document.documentElement.classList.add('has-custom-cursor');
-    const cursor = document.getElementById('cursor');
-    window.addEventListener('mousemove', e => {
-      cursor.style.setProperty('--x', e.clientX + 'px');
-      cursor.style.setProperty('--y', e.clientY + 'px');
-      cursor.style.setProperty('--s', e.target.closest('a, button') ? '1.7' : '1');
-      cursor.style.opacity = '1';
-    });
-  }
 
   const progress = document.getElementById('scroll-progress');
   const onScroll = () => {

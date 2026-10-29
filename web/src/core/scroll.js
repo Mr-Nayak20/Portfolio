@@ -8,7 +8,7 @@ gsap.registerPlugin(ScrollTrigger, SplitText);
 export { gsap, ScrollTrigger, SplitText };
 
 export function smoothScroll({ lerp = 0.085, wheelMultiplier = 1, ...rest } = {}) {
-  const lenis = new Lenis({ lerp, wheelMultiplier, smoothWheel: true, syncTouch: false, ...rest });
+  const lenis = new Lenis({ lerp: 0.35, wheelMultiplier, smoothWheel: false, syncTouch: false, ...rest });
   lenis.on('scroll', ScrollTrigger.update);
   gsap.ticker.add(t => lenis.raf(t * 1000));
   gsap.ticker.lagSmoothing(0);

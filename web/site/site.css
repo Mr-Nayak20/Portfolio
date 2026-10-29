@@ -34,7 +34,7 @@ button { color: inherit; }
   --x: 0px; --y: 0px; --s: 0;
   transform: translate3d(var(--x), var(--y), 0) translate(-50%, -50%) scale(var(--s));
 }
-html.has-custom-cursor, html.has-custom-cursor * { cursor: none !important; }
+
 html.has-custom-cursor input, html.has-custom-cursor textarea { cursor: text !important; }
 
 .page-transition-overlay {

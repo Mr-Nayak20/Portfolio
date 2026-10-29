@@ -33,40 +33,7 @@ export function preloader({ assets, el, onValue, minTime = 900, exit = null }) {
 }
 
 /** Custom cursor: a dot plus a lagging ring that swells over interactive elements. */
-export function cursor({ color = '#fff', blend = 'difference', size = 34, label = true } = {}) {
-  if (matchMedia('(pointer: coarse)').matches) return null;
-  const root = document.createElement('div');
-  root.className = 'tw-cursor';
-  root.style.setProperty('--c', color);
-  root.style.setProperty('--s', size + 'px');
-  root.style.mixBlendMode = blend;
-  root.innerHTML = '<div class="tw-cursor-ring"><span class="tw-cursor-label"></span></div><div class="tw-cursor-dot"></div>';
-  document.body.appendChild(root);
-  document.documentElement.classList.add('tw-has-cursor');
-  const ring = root.firstElementChild, dot = root.lastElementChild, lab = ring.firstElementChild;
-  let x = innerWidth / 2, y = innerHeight / 2, rx = x, ry = y;
-  addEventListener('pointermove', e => { x = e.clientX; y = e.clientY; }, { passive: true });
-  const loop = () => {
-    rx += (x - rx) * 0.18; ry += (y - ry) * 0.18;
-    dot.style.transform = `translate3d(${x}px,${y}px,0)`;
-    ring.style.transform = `translate3d(${rx}px,${ry}px,0)`;
-    requestAnimationFrame(loop);
-  };
-  loop();
-  const api = {
-    root,
-    set(state, text = '') { root.dataset.state = state || ''; lab.textContent = label ? text : ''; },
-  };
-  document.addEventListener('pointerover', e => {
-    const t = e.target.closest?.('a,button,[data-cursor]');
-    if (t) api.set(t.dataset.cursor ?? 'link', t.dataset.cursorLabel ?? '');
-  });
-  document.addEventListener('pointerout', e => {
-    const t = e.target.closest?.('a,button,[data-cursor]');
-    if (t && !t.contains(e.relatedTarget)) api.set('');
-  });
-  return api;
-}
+export function cursor() { return { set() {}, root: null }; }
 
 /** Buttons that lean toward the pointer. */
 export function magnetic(selector = '[data-magnetic]', strength = 0.35) {
