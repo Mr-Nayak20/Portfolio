@@ -350,7 +350,7 @@ footer.site-footer { padding: clamp(50px, 8vw, 120px) var(--pad) 48px; backgroun
 }
 .award-item .year { color: var(--gray); }
 .award-float {
-  position: fixed; width: 183px; height: 259px; object-fit: cover; pointer-events: none; z-index: 40;
+  position: fixed; left:0; top:0; width: 183px; height: 259px; object-fit: cover; pointer-events: none; z-index: 40;
   opacity: 0; border-radius: 4px; transform: translate(-30%, -80%);
 }
 .award-float.is-on { opacity: 1; }

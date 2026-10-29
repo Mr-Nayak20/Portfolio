@@ -33,7 +33,12 @@ export function preloader({ assets, el, onValue, minTime = 900, exit = null }) {
 }
 
 /** Custom cursor: a dot plus a lagging ring that swells over interactive elements. */
-export function cursor() { return { set() {}, root: null }; }
+export function cursor() {
+  // Detached compatibility node: legacy scene code may inspect state/style without
+  // creating a visible pointer proxy or installing a pointer animation loop.
+  const root = document.createElement('span');
+  return {root, set(state = '') {root.dataset.state = state;}};
+}
 
 /** Buttons that lean toward the pointer. */
 export function magnetic(selector = '[data-magnetic]', strength = 0.35) {

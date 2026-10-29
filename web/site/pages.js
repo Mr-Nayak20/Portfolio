@@ -41,8 +41,8 @@ export function about() {
       <strong>${esc(s.name)}</strong>
       <span>${esc(s.discipline)}</span>
     </a>`).join('');
-  const floatX = gsap.quickTo(float, 'left', {duration: 0.35, ease: 'power3.out'});
-  const floatY = gsap.quickTo(float, 'top', {duration: 0.35, ease: 'power3.out'});
+  const floatX = gsap.quickTo(float, 'x', {duration: 0.35, ease: 'power3.out'});
+  const floatY = gsap.quickTo(float, 'y', {duration: 0.35, ease: 'power3.out'});
   awards.querySelectorAll('.award-item').forEach(a => {
     a.addEventListener('mouseenter', () => {
       float.src = shot(a.dataset.img);
