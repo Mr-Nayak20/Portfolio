@@ -2,7 +2,7 @@
 let wasPlaying = false;
 try { wasPlaying = sessionStorage.getItem('music-playing') === '1'; } catch {}
 if (wasPlaying) {
-  const audio = new Audio('/audio/devils-trill.mp3');
+  const audio = new Audio('/audio/portfolio-soundtrack.mp3');
   audio.volume = .25;
   let position = 0;
   try { position = Number(sessionStorage.getItem('music-time')) || 0; audio.muted = sessionStorage.getItem('music-muted') === '1'; } catch {}

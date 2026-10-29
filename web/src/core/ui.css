@@ -38,3 +38,9 @@
 .tw-nav .tw-nav-play:hover { background:#dedede; }
 .tw-nav-count { white-space:nowrap; }
 @media(max-width:640px) { .tw-nav { transform:none; left:10px; bottom:10px; gap:1px; padding:5px; } .tw-nav a, .tw-nav button { width:38px; height:38px; min-width:38px; } }
+
+/* Center the study controls, keeping the site visible beneath them. */
+.tw-nav.tw-nav { top:auto; right:auto; left:50%; bottom:24px; transform:translateX(-50%); gap:6px; padding:10px 14px; border:1px solid #ffffff80; background:rgba(15,15,18,.48); color:white; box-shadow:0 8px 32px #0003; backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px); }
+.tw-nav.tw-nav a, .tw-nav.tw-nav button { width:50px; height:50px; min-width:50px; }
+.tw-nav.tw-nav .tw-nav-home svg { width:20px; height:20px; }
+@media(max-width:640px) { .tw-nav.tw-nav { bottom:14px; gap:1px; padding:7px 9px; } .tw-nav.tw-nav a, .tw-nav.tw-nav button { width:42px; height:42px; min-width:42px; } }

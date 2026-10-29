@@ -1,5 +1,5 @@
 // Add tracks here as { title, artist, src } when audio is supplied.
-export const playlist = [{title: "Devil’s Trill Sonata", artist: 'Giuseppe Tartini', src: '/audio/devils-trill.mp3'}];
+export const playlist = [{title: "Background music", artist: '', src: '/audio/portfolio-soundtrack.mp3'}];
 
 export function musicPlayer(widget) {
   const disc = widget.querySelector('.music-disc');

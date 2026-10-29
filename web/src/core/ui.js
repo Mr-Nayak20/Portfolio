@@ -77,18 +77,21 @@ export function worldNav(slug, { theme = 'dark', corner = 'bl' } = {}) {
   document.body.appendChild(nav);
   const play = nav.querySelector('.tw-nav-play');
   const mute = nav.querySelector('.tw-nav-mute');
-  let playing = false, raf = 0, last = 0;
+  let playing = false, raf = 0, started = 0, startY = 0, endY = 0;
   const stop = () => { playing = false; cancelAnimationFrame(raf); play.textContent = '▶'; play.setAttribute('aria-label', 'Auto-scroll page'); play.setAttribute('aria-pressed', 'false'); };
   const tick = time => {
     if (!playing) return;
-    if (last) window.scrollBy(0, Math.min(50, time - last) * .045);
-    last = time;
-    if (scrollY >= document.documentElement.scrollHeight - innerHeight - 1) { stop(); return; }
+    if (!started) started = time;
+    const progress = Math.min(1, (time - started) / 9000);
+    window.scrollTo({top: startY + (endY - startY) * progress, behavior: 'instant'});
+    if (progress >= 1) { stop(); return; }
     raf = requestAnimationFrame(tick);
   };
   play.addEventListener('click', () => {
     if (playing) { stop(); return; }
-    playing = true; last = 0; play.textContent = '❚❚'; play.setAttribute('aria-label', 'Pause auto-scroll'); play.setAttribute('aria-pressed', 'true'); raf = requestAnimationFrame(tick);
+    startY = scrollY; endY = Math.max(startY, document.documentElement.scrollHeight - innerHeight);
+    if (endY <= startY) return;
+    playing = true; started = 0; play.textContent = '❚❚'; play.setAttribute('aria-label', 'Pause auto-scroll'); play.setAttribute('aria-pressed', 'true'); raf = requestAnimationFrame(tick);
   });
   ['wheel', 'touchstart'].forEach(type => addEventListener(type, stop, {passive:true}));
   let muted = false;
