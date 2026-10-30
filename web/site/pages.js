@@ -294,7 +294,7 @@ export function article() {
   document.getElementById('by').textContent = n.author;
   document.getElementById('article-img').src = shot(n.image);
   document.getElementById('article-body').innerHTML = n.body.map(p => `<p>${esc(p)}</p>`).join('')
-    + `<p>The scenes are adapted from Dioramas. Credit is on the <a href="/credits/">credits</a> page.</p>`;
+    + `<p>The scenes are adapted from Dioramas.</p>`;
   document.getElementById('related').innerHTML = notes.filter(x => x.slug !== n.slug).map(x => `
     <a class="blog-card" href="/blog/${x.slug}/">
       <div class="img-box"><img src="${shot(x.image)}" alt=""></div>

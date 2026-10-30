@@ -45,7 +45,7 @@ function shellParts() {
         <input name="email" type="email" placeholder="Your Email" required autocomplete="email">
         <input name="phone" placeholder="Your Telephone" autocomplete="tel">
         <textarea name="message" rows="5" placeholder="Write your message here" required></textarea>
-        <label class="check"><input type="checkbox" name="privacy" required> I agree with the <a href="/privacy-policy/">Privacy Policy</a></label>
+        <label class="check"><input type="checkbox" name="privacy" required> I agree to be contacted regarding this inquiry</label>
         <p class="form-error" data-error></p>
         <button class="send-btn" type="submit">Send</button>
         <p class="fine">This opens your email app. Nothing is stored on a server.</p>
@@ -64,7 +64,7 @@ function shellParts() {
           ${['₹40–80k','₹80k–1.5L','₹1.5–3L','₹3L+'].map((b,i) => `<label><input type="radio" name="budget" value="${b}" ${i===0?'required':''}> ${b}</label>`).join('')}
         </div>
         <textarea name="message" rows="4" placeholder="Write your message here" required></textarea>
-        <label class="check"><input type="checkbox" name="privacy" required> I agree with the <a href="/privacy-policy/">Privacy Policy</a></label>
+        <label class="check"><input type="checkbox" name="privacy" required> I agree to be contacted regarding this inquiry</label>
         <p class="form-error" data-error></p>
         <button class="send-btn" type="submit">Send</button>
         <p class="fine">This opens your email app. Nothing is stored on a server.</p>
@@ -88,13 +88,6 @@ function shellParts() {
           <a href="mailto:${profile.email}">${profile.email}</a>
           <div class="social-links">${profile.socials.map(([n,h]) => `<a href="${h}">${n}</a>`).join('<span>, </span>')}</div>
         </div>
-        <div class="footer-col center">
-          <a href="/terms-of-use/">Terms of Use</a>
-          <a href="/cookie-policy/">Cookie Policy</a>
-          <a href="/privacy-policy/">Privacy Policy</a>
-          <a href="/credits/">Credits</a>
-        </div>
-        <div class="footer-col end">© <span id="year"></span> All Rights Reserved.</div>
       </div>
     </footer>`;
 }
