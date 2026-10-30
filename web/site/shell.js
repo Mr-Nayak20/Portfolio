@@ -81,12 +81,35 @@ function shellParts() {
       <button class="music-mute" type="button" aria-label="Mute music" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4zm12-1a6 6 0 010 8m2-11a10 10 0 010 14" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button class="widget-trigger" type="button" aria-expanded="false" aria-label="Open music and links"></button>
     </div>
     </div><footer class="site-footer">
-      <div class="footer-logo"><a href="/">${profile.mark}</a></div>
-      <p class="footer-status" id="status"></p>
+      <div class="footer-top">
+        <div class="footer-logo"><a href="/">${profile.mark}</a></div>
+        <p class="footer-status" id="status"></p>
+      </div>
       <div class="footer-bottom">
-        <div class="footer-col">
-          <a href="mailto:${profile.email}">${profile.email}</a>
-          <div class="social-links">${profile.socials.map(([n,h]) => `<a href="${h}">${n}</a>`).join('<span>, </span>')}</div>
+        <div class="footer-col contact-col">
+          <span class="footer-label">Direct Contact</span>
+          <a href="mailto:${profile.email}" class="footer-email">${profile.email}</a>
+        </div>
+        <div class="footer-col nav-col">
+          <span class="footer-label">Navigation</span>
+          <div class="footer-nav-links">
+            <a href="/works/">Selected Works</a>
+            <a href="/services/">Services</a>
+            <a href="/about/">About</a>
+            <a href="/blog/">Journal</a>
+          </div>
+        </div>
+        <div class="footer-col social-col">
+          <span class="footer-label">Connect</span>
+          <div class="social-links">
+            ${profile.socials.map(([n,h]) => `<a href="${h}" target="_blank" rel="noopener noreferrer">${n} ↗</a>`).join('')}
+          </div>
+        </div>
+        <div class="footer-col action-col">
+          <a href="#top" class="back-to-top" aria-label="Back to top">
+            <span>Back to top</span>
+            <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
         </div>
       </div>
     </footer>`;
@@ -220,6 +243,16 @@ export function boot(start) {
   window.addEventListener('keydown', e => { if (e.key === 'Escape' && widget.classList.contains('is-open')) setWidget(false); });
 
   document.addEventListener('click', e => {
+    const topBtn = e.target.closest('.back-to-top');
+    if (topBtn) {
+      e.preventDefault();
+      if (window.__lenis) {
+        window.__lenis.scrollTo(0, { duration: 1.4 });
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+      return;
+    }
     const open = e.target.closest('[data-open]');
     if (open) { if (widget.classList.contains('is-open')) setWidget(false); openForm(open.dataset.open); return; }
     if (e.target.closest('[data-close]') || e.target.id === 'form-overlay') closeForm();
