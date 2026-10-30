@@ -83,7 +83,6 @@ function shellParts() {
     </div><footer class="site-footer">
       <div class="footer-top">
         <div class="footer-logo"><a href="/">${profile.mark}</a></div>
-        <p class="footer-status" id="status"></p>
       </div>
       <div class="footer-bottom">
         <div class="footer-col contact-col">
@@ -180,20 +179,6 @@ export function boot(start) {
   setInterval(() => {
     document.querySelectorAll('[data-clock]').forEach(el => { el.textContent = clock(); });
   }, 1000);
-
-  const status = document.getElementById('status');
-  let si = 0;
-  const writeStatus = (first) => {
-    const next = `Right now, it’s ${clock()} in ${profile.place}. ${profile.status[si % profile.status.length]}`;
-    si += 1;
-    if (first || reduce) { status.textContent = next; return; }
-    gsap.to(status, {opacity: 0, duration: 0.25, onComplete: () => {
-      status.textContent = next;
-      gsap.to(status, {opacity: 1, duration: 0.35});
-    }});
-  };
-  writeStatus(true);
-  if (!reduce) setInterval(() => writeStatus(false), 8000);
 
   const bottomNav = document.querySelector('.bottom-nav');
   const navToggle = bottomNav.querySelector('.bottom-nav__toggle');
