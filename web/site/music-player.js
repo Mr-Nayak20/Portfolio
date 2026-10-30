@@ -1,14 +1,30 @@
 // Add tracks here as { title, artist, src } when audio is supplied.
-export const playlist = [{title: "Background music", artist: '', src: '/audio/portfolio-soundtrack.mp3'}];
+export const playlist = [];
 
 export function musicPlayer(widget) {
+  const mute = widget.querySelector('.music-mute');
+  if (mute) mute.style.display = 'none';
+  try {
+    sessionStorage.removeItem('music-playing');
+    sessionStorage.removeItem('music-time');
+    sessionStorage.removeItem('music-track');
+  } catch {}
+  if (!playlist.length) return;
   const disc = widget.querySelector('.music-disc');
   const [previous, play, next] = widget.querySelectorAll('.music-controls button');
   const label = widget.querySelector('.music-tile small');
-  if (!playlist.length) return;
+  if (mute) mute.style.display = '';
   const audio = new Audio();
-  audio.volume = .25;
-  const mute = widget.querySelector('.music-mute');
+  window.__portfolioAudio = audio;
+  const TARGET_VOLUME = 0.20;
+  audio.volume = TARGET_VOLUME;
+  try {
+    Object.defineProperty(audio, 'volume', {
+      get() { return TARGET_VOLUME; },
+      set() { /* locked at 20% volume */ },
+      configurable: true
+    });
+  } catch {}
   try { audio.muted = sessionStorage.getItem('music-muted') === '1'; } catch {}
   function syncMute() { mute.setAttribute('aria-pressed', String(audio.muted)); mute.setAttribute('aria-label', audio.muted ? 'Unmute music' : 'Mute music'); mute.classList.toggle('is-muted', audio.muted); }
   mute.addEventListener('click', () => { audio.muted = !audio.muted; try {sessionStorage.setItem('music-muted', audio.muted ? '1' : '0');} catch {} syncMute(); });

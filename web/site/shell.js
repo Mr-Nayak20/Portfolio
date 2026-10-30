@@ -1,4 +1,5 @@
 import gsap from 'gsap';
+import Lenis from 'lenis';
 import {musicPlayer} from './music-player.js';
 import {nav, notes, profile, services, shot} from './data.js';
 
@@ -26,7 +27,6 @@ function shellParts() {
         <div class="wrap-right">
           <a class="header-link" href="/services/websites/">Websites</a>
           <a class="header-link" href="/services/ai/">Intelligence</a>
-          <button class="header-link" type="button" data-open="contact">Contact me</button>
         </div>
       </div>
     </header>
@@ -38,7 +38,7 @@ function shellParts() {
       </div>
     </nav>
     <div class="form-overlay" id="form-overlay"></div>
-    <aside class="side-panel" id="panel-contact" aria-hidden="true">
+    <aside class="side-panel" id="panel-contact" data-lenis-prevent aria-hidden="true">
       <div class="panel-header"><h2 class="panel-title">Get in touch</h2><button class="close-btn" type="button" data-close aria-label="Close"></button></div>
       <form class="fields" data-kind="note">
         <input name="name" placeholder="Full Name" required autocomplete="name">
@@ -51,7 +51,7 @@ function shellParts() {
         <p class="fine">This opens your email app. Nothing is stored on a server.</p>
       </form>
     </aside>
-    <aside class="side-panel" id="panel-project" aria-hidden="true">
+    <aside class="side-panel" id="panel-project" data-lenis-prevent aria-hidden="true">
       <div class="panel-header"><h2 class="panel-title">Want to start a project?</h2><button class="close-btn" type="button" data-close aria-label="Close"></button></div>
       <form class="fields" data-kind="project">
         <input name="name" placeholder="Your Name" required autocomplete="name">
@@ -72,7 +72,7 @@ function shellParts() {
     </aside>
     <div class="widget-backdrop" id="widget-backdrop"></div>
     <div class="widget-wrapper" id="widget">
-      <div class="widget-panel" role="dialog" aria-label="Explore Shivansh’s work" aria-hidden="true" inert>
+      <div class="widget-panel" data-lenis-prevent role="dialog" aria-label="Explore Shivansh’s work" aria-hidden="true" inert>
         <div class="widget-window-controls"><button type="button" class="widget-close" aria-label="Close panel"></button><span></span><span></span></div>
         <h2 class="widget-greeting"></h2><p class="widget-date"></p>
         <div class="widget-tiles"><div class="music-tile"><button class="music-disc" type="button" aria-label="Music player" aria-disabled="true"><span></span></button><strong>THE LISTENING ROOM</strong><small>Songs coming soon</small><div class="music-controls"><button type="button" disabled aria-label="Previous track">←</button><button type="button" disabled aria-label="Play">▶</button><button type="button" disabled aria-label="Next track">→</button></div></div><button type="button" data-open="contact" class="widget-tile widget-tile--contact"><span>Have a<br>conversation.</span><strong>LET’S TALK ↗</strong></button></div>
@@ -107,6 +107,7 @@ function openForm(which) {
     p.setAttribute('aria-hidden', String(!on));
   });
   document.documentElement.classList.add('is-form-open');
+  window.__lenis?.stop();
 }
 function closeForm() {
   document.getElementById('form-overlay').classList.remove('active');
@@ -115,6 +116,7 @@ function closeForm() {
     p.setAttribute('aria-hidden', 'true');
   });
   document.documentElement.classList.remove('is-form-open');
+  window.__lenis?.start();
 }
 
 export function boot(start) {
@@ -135,6 +137,28 @@ export function boot(start) {
   };
   onScroll();
   window.addEventListener('scroll', onScroll, {passive: true});
+
+  let lenis = null;
+  if (!reduce) {
+    lenis = new Lenis({
+      lerp: 0.045,
+      wheelMultiplier: 0.75,
+      touchMultiplier: 1.1,
+      smoothWheel: true,
+      syncTouch: true,
+      syncTouchLerp: 0.045,
+      touchInertiaExponent: 1.65,
+      autoRaf: true,
+      autoResize: true,
+      respectReducedMotion: true
+    });
+    window.__lenis = lenis;
+    lenis.on('scroll', onScroll);
+    window.addEventListener('pagehide', () => {
+      lenis?.destroy();
+      delete window.__lenis;
+    }, {once: true});
+  }
 
 
   setInterval(() => {

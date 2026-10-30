@@ -18,7 +18,7 @@
 .collection-end a{color:#161616}
 .website-opening{background:#fff}.website-opening .services-hero__title{font-size:clamp(42px,6.5vw,100px);gap:clamp(10px,1.5vw,24px)}
 .website-opening .services-hero__image img,.preview-image img,.row-thumb{object-fit:contain}
-@media(max-width:768px){.website-opening{min-height:180svh}.website-opening .services-hero__pin{position:sticky;top:0;height:100svh;padding:0 12px}.website-opening .services-hero__title{flex-wrap:nowrap;white-space:nowrap;font-size:clamp(28px,7vw,48px)}.website-opening .services-hero__image{width:54px;height:54px}}
+@media(max-width:768px){.website-opening{min-height:200svh}.website-opening .services-hero__pin{position:sticky;top:0;height:100svh;padding:0 16px;box-sizing:border-box}.website-opening .services-hero__title{flex-wrap:nowrap;white-space:nowrap;font-size:clamp(20px,5.4vw,28px);gap:clamp(8px,2vw,14px)}.website-opening .services-hero__image{width:clamp(50px,13vw,68px);height:clamp(34px,8.5vw,44px)}}
 @media(prefers-reduced-motion:reduce){.website-opening{min-height:100svh}.website-opening .services-hero__pin{position:relative}}
 /* A gallery of complete website worlds, with each project directly accessible. */
 .collection{padding-top:clamp(100px,10vw,160px);overflow:hidden}

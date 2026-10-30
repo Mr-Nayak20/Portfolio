@@ -72,32 +72,44 @@ export function worldNav(slug, { theme = 'dark', corner = 'bl' } = {}) {
     <a href="${base}examples/${prev.slug}/" class="tw-nav-step" title="${prev.name}" aria-label="Previous world: ${prev.name}">‹</a>
     <button type="button" class="tw-nav-play" aria-label="Auto-scroll page" aria-pressed="false">▶</button>
     <a href="${base}examples/${next.slug}/" class="tw-nav-step" title="${next.name}" aria-label="Next world: ${next.name}">›</a>
-    <span class="tw-nav-count">${String(i + 1).padStart(2, '0')}<em>/20</em></span>
-    <button type="button" class="tw-nav-mute" aria-label="Mute music">♫</button>`;
+    <span class="tw-nav-count">${String(i + 1).padStart(2, '0')}<em>/20</em></span>`;
   document.body.appendChild(nav);
   const play = nav.querySelector('.tw-nav-play');
-  const mute = nav.querySelector('.tw-nav-mute');
-  let playing = false, raf = 0, started = 0, startY = 0, endY = 0;
+  let playing = false, raf = 0, started = 0, startY = 0, endY = 0, duration = 28000;
   const stop = () => { playing = false; cancelAnimationFrame(raf); play.textContent = '▶'; play.setAttribute('aria-label', 'Auto-scroll page'); play.setAttribute('aria-pressed', 'false'); };
   const tick = time => {
     if (!playing) return;
     if (!started) started = time;
-    const progress = Math.min(1, (time - started) / 9000);
-    window.scrollTo({top: startY + (endY - startY) * progress, behavior: 'instant'});
+    const progress = Math.min(1, (time - started) / duration);
+    let p = progress;
+    if (p < 0.04) {
+      const t = p / 0.04;
+      p = 0.04 * (t * t * (3 - 2 * t));
+    } else if (p > 0.96) {
+      const t = (p - 0.96) / 0.04;
+      p = 0.96 + 0.04 * (t * t * (3 - 2 * t));
+    }
+    const targetY = startY + (endY - startY) * p;
+    if (window.__lenis) {
+      window.__lenis.scrollTo(targetY, { immediate: true });
+    } else {
+      window.scrollTo({ top: targetY, behavior: 'instant' });
+    }
     if (progress >= 1) { stop(); return; }
     raf = requestAnimationFrame(tick);
   };
   play.addEventListener('click', () => {
     if (playing) { stop(); return; }
-    startY = scrollY; endY = Math.max(startY, document.documentElement.scrollHeight - innerHeight);
-    if (endY <= startY) return;
+    const maxScroll = Math.max(0, document.documentElement.scrollHeight - innerHeight);
+    startY = scrollY;
+    if (startY >= maxScroll - 10) startY = 0;
+    endY = maxScroll;
+    const distance = Math.max(1, endY - startY);
+    if (distance <= 10) return;
+    // Calm, readable pace (~280px/s) instead of the previous aggressive 9-second rush
+    duration = Math.max(12000, Math.min(34000, distance / 0.28));
     playing = true; started = 0; play.textContent = '❚❚'; play.setAttribute('aria-label', 'Pause auto-scroll'); play.setAttribute('aria-pressed', 'true'); raf = requestAnimationFrame(tick);
   });
-  ['wheel', 'touchstart'].forEach(type => addEventListener(type, stop, {passive:true}));
-  let muted = false;
-  try { muted = sessionStorage.getItem('music-muted') === '1'; } catch {}
-  const syncMute = () => { mute.textContent = muted ? '🔇' : '♫'; mute.setAttribute('aria-label', muted ? 'Unmute music' : 'Mute music'); mute.setAttribute('aria-pressed', String(muted)); };
-  mute.addEventListener('click', () => { muted = !muted; try { sessionStorage.setItem('music-muted', muted ? '1' : '0'); } catch {} window.dispatchEvent(new CustomEvent('portfolio-mute', {detail: muted})); syncMute(); });
-  syncMute();
+  ['wheel', 'touchstart', 'keydown'].forEach(type => addEventListener(type, stop, {passive:true}));
   return nav;
 }

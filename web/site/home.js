@@ -11,40 +11,68 @@ export function home() {
   const fine = matchMedia('(hover: hover) and (pointer: fine)').matches;
   const opening = document.querySelector('.home-opening');
   const imageLink = document.getElementById('hero-image-link');
-  const slideshow = expandingOpening(opening, {interval: 1800, onChange(study) {
-    imageLink.href = `/examples/${study.slug}/`;
-    imageLink.setAttribute('aria-label', `View ${study.name}`);
-  }});
-  [imageLink].forEach(target => {
-    target.addEventListener('pointerenter', () => slideshow.pause());
-    target.addEventListener('pointerleave', () => {if (!target.matches(':focus')) slideshow.resume();});
-    target.addEventListener('focus', () => slideshow.pause());
-    target.addEventListener('blur', () => {if (!target.matches(':hover')) slideshow.resume();});
-  });
-
   const stack = document.querySelector('.home-stack');
   const stackCards = stack.querySelector('.home-stack__cards');
   const stackStudies = [...studies];
   for (let i = stackStudies.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [stackStudies[i], stackStudies[j]] = [stackStudies[j], stackStudies[i]]; }
   stackCards.innerHTML = stackStudies.map((study, index) => `<a class="home-stack__card" href="/examples/${study.slug}/" aria-label="Explore ${esc(study.name)}" data-index="${index}"><img data-src="${shot(study.slug)}" data-srcset="${shotSrcset(study.slug)}" sizes="(max-width: 700px) 90vw, 72vw" alt="${esc(study.name)} website homepage" width="1920" height="1200" decoding="async"></a>`).join('');
   const stackItems = [...stackCards.children];
-  let stackFrame = 0, stackActive = -1, stackStarted = false;
-  function updateStack() {
-    stackFrame = 0;
-    const rect = opening.getBoundingClientRect();
-    if (rect.bottom < 0 || rect.top > innerHeight) return;
-    const overall = Math.max(0, Math.min(1, -rect.top / Math.max(1, rect.height - innerHeight)));
-    const reveal = Math.max(0, Math.min(1, (overall - .14) / .04));
-    stack.style.opacity = String(reveal);
-    stack.style.pointerEvents = reveal > .95 ? 'auto' : 'none';
-    opening.querySelector('.services-hero__title').style.opacity = String(1 - reveal);
-    if (!stackStarted && overall >= .14) {
-      const heroImage = imageLink.querySelector('img');
-      const firstImage = stackItems[0].querySelector('img');
-      firstImage.srcset = heroImage.srcset; firstImage.src = heroImage.currentSrc || heroImage.src;
-      delete firstImage.dataset.src; delete firstImage.dataset.srcset;
-      stackItems[0].href = imageLink.href; stackItems[0].setAttribute('aria-label', imageLink.getAttribute('aria-label'));
+  let stackActive = -1, stackStarted = false;
+
+  const syncFirstCard = (study) => {
+    const heroImage = imageLink?.querySelector('img');
+    const firstImage = stackItems[0]?.querySelector('img');
+    if (firstImage && heroImage) {
+      firstImage.srcset = heroImage.srcset || (study ? shotSrcset(study.slug) : '');
+      firstImage.src = heroImage.currentSrc || heroImage.src || (study ? shot(study.slug) : '');
+      delete firstImage.dataset.src;
+      delete firstImage.dataset.srcset;
+      if (study) {
+        stackItems[0].href = `/examples/${study.slug}/`;
+        stackItems[0].setAttribute('aria-label', `Explore ${esc(study.name)}`);
+      } else if (imageLink.href) {
+        stackItems[0].href = imageLink.href;
+        stackItems[0].setAttribute('aria-label', imageLink.getAttribute('aria-label') || 'Explore study');
+      }
       stackStarted = true;
+    }
+  };
+  syncFirstCard();
+
+  const slideshow = expandingOpening(opening, {
+    interval: 1800,
+    onChange(study) {
+      imageLink.href = `/examples/${study.slug}/`;
+      imageLink.setAttribute('aria-label', `View ${study.name}`);
+      syncFirstCard(study);
+    },
+    onUpdate(overall) {
+      updateStack(overall);
+    }
+  });
+
+  [imageLink].forEach(target => {
+    target.addEventListener('pointerenter', () => slideshow.pause());
+    target.addEventListener('pointerleave', () => { if (!target.matches(':focus') && scrollY < 10) slideshow.resume(); });
+    target.addEventListener('focus', () => slideshow.pause());
+    target.addEventListener('blur', () => { if (!target.matches(':hover') && scrollY < 10) slideshow.resume(); });
+  });
+
+  function updateStack(overall) {
+    if (overall === undefined) {
+      const rect = opening.getBoundingClientRect();
+      const distance = Math.max(1, rect.height - innerHeight);
+      overall = Math.max(0, Math.min(1, -rect.top / distance));
+    }
+    const rawReveal = Math.max(0, Math.min(1, (overall - .13) / .06));
+    const reveal = rawReveal * rawReveal * (3 - 2 * rawReveal);
+    stack.style.opacity = String(reveal);
+    stack.style.pointerEvents = reveal > .9 ? 'auto' : 'none';
+    const heroTitle = opening.querySelector('.services-hero__title');
+    if (heroTitle) heroTitle.style.opacity = String(1 - reveal);
+
+    if (!stackStarted) {
+      syncFirstCard();
     }
     const progress = Math.max(0, Math.min(1, (overall - .18) / .82));
     const position = progress * (stackStudies.length - 1);
@@ -66,10 +94,9 @@ export function home() {
     });
     stackActive = active;
   }
-  const scheduleStack = () => { if (!stackFrame) stackFrame = requestAnimationFrame(updateStack); };
-  addEventListener('scroll', scheduleStack, {passive:true}); addEventListener('resize', scheduleStack);
-  // Settle on a whole card after scrolling so its image and link remain usable.
-  if (!reduce) {
+  addEventListener('resize', () => updateStack(), {passive:true});
+  // Settle on a whole card after scrolling so its image and link remain usable on desktop.
+  if (!reduce && fine) {
     let settleTimer, settling = false;
     addEventListener('scroll', () => {
       if (settling) return;
@@ -82,9 +109,16 @@ export function home() {
         const target = opening.offsetTop + distance * (.18 + .82 * index / (stackStudies.length - 1));
         if (Math.abs(target - scrollY) < 2) return;
         settling = true;
-        window.scrollTo({top: target, behavior: 'smooth'});
-        setTimeout(() => { settling = false; }, 450);
-      }, 180);
+        if (window.__lenis) {
+          window.__lenis.scrollTo(target, {
+            duration: 0.8,
+            onComplete: () => { settling = false; }
+          });
+        } else {
+          window.scrollTo({top: target, behavior: 'smooth'});
+          setTimeout(() => { settling = false; }, 450);
+        }
+      }, 320);
     }, {passive:true});
   }
   if (fine && !reduce) stackCards.addEventListener('pointermove', event => {

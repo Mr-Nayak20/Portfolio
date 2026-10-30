@@ -1,4 +1,5 @@
 // Lenis smooth scrolling bound to GSAP ScrollTrigger, plus helpers for scroll-driven 3D.
+import Lenis from 'lenis';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { SplitText } from 'gsap/SplitText';
@@ -6,45 +7,53 @@ import { SplitText } from 'gsap/SplitText';
 gsap.registerPlugin(ScrollTrigger, SplitText);
 export { gsap, ScrollTrigger, SplitText };
 
-/** Compatibility API backed by native scrolling: no wheel interception or idle ticker. */
-export function smoothScroll() {
-  if (window.__lenis?.native) return window.__lenis;
-  const listeners = new Set();
-  let previous = scrollY, last = performance.now(), velocity = 0, decay, completion, savedOverflow;
-  const update = () => {
-    const now = performance.now();
-    velocity = (scrollY - previous) * 16.67 / Math.max(1, now - last);
-    previous = scrollY; last = now;
-    ScrollTrigger.update();
-    listeners.forEach(fn => fn(api));
-    clearTimeout(decay); decay = setTimeout(() => {velocity = 0;}, 100);
-  };
-  const api = {
-    native: true,
-    get scroll() {return scrollY;},
-    get animatedScroll() {return scrollY;},
-    get velocity() {return velocity;},
-    get limit() {return Math.max(0, document.documentElement.scrollHeight - innerHeight);},
-    on(event, fn) {if (event === 'scroll') listeners.add(fn); return () => listeners.delete(fn);},
-    scrollTo(target, options = {}) {
-      if (typeof target === 'string') target = document.querySelector(target);
-      if (target == null) return;
-      const y = typeof target === 'number' ? target : target.getBoundingClientRect().top + scrollY;
-      clearTimeout(completion);
-      // Immediate moves keep scene controls precise and do not queue long camera journeys.
-      window.scrollTo({top: Math.max(0, Math.min(api.limit, y + (options.offset || 0))), behavior:'instant'});
-      update();
-      completion = setTimeout(() => options.onComplete?.(api), 0);
-    },
-    stop() {if (savedOverflow === undefined) {savedOverflow = document.documentElement.style.overflow; document.documentElement.style.overflow = 'hidden';}},
-    start() {if (savedOverflow !== undefined) {document.documentElement.style.overflow = savedOverflow; savedOverflow = undefined;}},
-    raf() {}, resize() {ScrollTrigger.refresh();},
-    destroy() {api.start(); window.removeEventListener('scroll', update); clearTimeout(decay); clearTimeout(completion); listeners.clear(); if(window.__lenis === api) delete window.__lenis;}
-  };
-  window.addEventListener('scroll', update, {passive:true});
-  window.addEventListener('pagehide', () => api.destroy(), {once:true});
-  window.__lenis = api;
-  return api;
+export function smoothScroll(options = {}) {
+  if (window.__lenis) return window.__lenis;
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce) {
+    const api = {
+      native: true,
+      get scroll() { return scrollY; },
+      get animatedScroll() { return scrollY; },
+      get velocity() { return 0; },
+      get limit() { return Math.max(0, document.documentElement.scrollHeight - innerHeight); },
+      on(event, fn) { window.addEventListener(event, fn); return () => window.removeEventListener(event, fn); },
+      scrollTo(target, opts = {}) {
+        const y = typeof target === 'number' ? target : (typeof target === 'string' ? document.querySelector(target) : target)?.getBoundingClientRect().top + scrollY;
+        window.scrollTo({ top: Math.max(0, y + (opts.offset || 0)), behavior: 'instant' });
+      },
+      stop() {}, start() {}, raf() {}, resize() { ScrollTrigger.refresh(); }, destroy() {}
+    };
+    return api;
+  }
+
+  const HEAVY_LERP = 0.045;
+  const HEAVY_WHEEL = 0.75;
+  const lenis = new Lenis({
+    lerp: HEAVY_LERP,
+    wheelMultiplier: HEAVY_WHEEL,
+    touchMultiplier: 1.1,
+    smoothWheel: true,
+    syncTouch: true,
+    syncTouchLerp: HEAVY_LERP,
+    touchInertiaExponent: 1.65,
+    autoRaf: true,
+    autoResize: true,
+    respectReducedMotion: true,
+    ...options,
+    lerp: options.lerp ? Math.min(options.lerp, HEAVY_LERP) : HEAVY_LERP,
+    wheelMultiplier: options.wheelMultiplier ? Math.min(options.wheelMultiplier, HEAVY_WHEEL) : HEAVY_WHEEL
+  });
+
+  lenis.on('scroll', ScrollTrigger.update);
+  window.__lenis = lenis;
+
+  window.addEventListener('pagehide', () => {
+    lenis.destroy();
+    delete window.__lenis;
+  }, { once: true });
+
+  return lenis;
 }
 
 /** Normalised page progress (0..1) and progress through an element's scroll span. */

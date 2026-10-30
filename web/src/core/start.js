@@ -1,8 +1,10 @@
 // Loaded before the scene so import/WebGL failures have a usable recovery path.
 import './study-status.css';
 import './study-music.js';
+import {smoothScroll} from './scroll.js';
 
 export async function startStudy(load) {
+  smoothScroll();
   const slug = location.pathname.split('/').filter(Boolean).at(-1);
   let ready = false, failed = false;
   const panel = document.createElement('aside');
