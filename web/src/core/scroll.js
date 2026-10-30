@@ -32,11 +32,11 @@ export function smoothScroll(options = {}) {
   const lenis = new Lenis({
     lerp: HEAVY_LERP,
     wheelMultiplier: HEAVY_WHEEL,
-    touchMultiplier: 1.1,
+    touchMultiplier: 0.85,
     smoothWheel: true,
     syncTouch: true,
-    syncTouchLerp: HEAVY_LERP,
-    touchInertiaExponent: 1.65,
+    syncTouchLerp: 0.04,
+    touchInertiaExponent: 1.25,
     autoRaf: true,
     autoResize: true,
     respectReducedMotion: true,
@@ -44,6 +44,13 @@ export function smoothScroll(options = {}) {
     lerp: options.lerp ? Math.min(options.lerp, HEAVY_LERP) : HEAVY_LERP,
     wheelMultiplier: options.wheelMultiplier ? Math.min(options.wheelMultiplier, HEAVY_WHEEL) : HEAVY_WHEEL
   });
+  const origScrollTo = lenis.scrollTo.bind(lenis);
+  lenis.scrollTo = (target, opts = {}) => {
+    if (opts && !opts.programmatic && opts.lerp === 1 && lenis.isTouching) {
+      opts.lerp = 0.075;
+    }
+    return origScrollTo(target, opts);
+  };
 
   lenis.on('scroll', ScrollTrigger.update);
   window.__lenis = lenis;

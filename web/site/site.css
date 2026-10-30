@@ -330,8 +330,7 @@ footer.site-footer {
 }
 
 .what-we-do {
-  position: relative; min-height: 100vh; display: flex; flex-direction: column;
-  justify-content: center; align-items: center; gap: 2vw; padding: 12vh var(--pad); overflow: hidden;
+  position: relative; height: 320vh; min-height: 320svh; padding: 0; overflow: visible;
 }
 .whero { margin: 0; font-size: 14px; letter-spacing: .08em; text-transform: uppercase; color: var(--gray); }
 .sentence {
@@ -753,7 +752,6 @@ footer.site-footer {
 .hero-project-link {inset:0;z-index:5;}
 .hero-touch-link {display:none;}
 .bg-img {object-position:center;}
-.what-we-do {height:100vh;min-height:0;gap:32px;padding:0 var(--pad);}
 .sentence {width:80%;max-width:1100px;font-size:3.6vw;line-height:1;}
 .what-we-do .whero {line-height:17px;}
 .clients-marquee h2 {font-size:14px;line-height:17px;letter-spacing:0;}
@@ -775,7 +773,6 @@ button,a,input,textarea {touch-action:manipulation;}
   .hero-title {font-size:clamp(38px,8vw,62px);padding:0 20px 40px;}
   .hero-touch-link {display:block;position:absolute;bottom:120px;left:20px;z-index:6;color:#fff;font-size:13px;text-transform:uppercase;text-decoration:none;}
   .gallery-strip {padding:14px 20px;bottom:24px;}
-  .what-we-do {height:auto;padding:100px 20px;gap:24px;}
   .sentence {width:92%;font-size:27px;line-height:33px;}
   .marquee-track {gap:16px;}
   .wordmark {width:100px;height:80px;font-size:18px;}
@@ -879,14 +876,14 @@ button,a,input,textarea {touch-action:manipulation;}
 .service-chapter:not(:first-child) .service-background {inset:-18vh 0;height:calc(100% + 36vh);}
 .service-chapter:not(:first-child) .service-background img {object-fit:cover;}
 /* The About copy assembles as the reader scrolls through this section. */
-.what-we-do {background:#fff;display:block;height:190vh;min-height:190svh;padding:0;overflow:visible;}
+.what-we-do {background:#fff;display:block;height:320vh;min-height:320svh;padding:0;overflow:visible;}
 .about-opening {position:sticky;top:0;height:100svh;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:32px;padding:0 var(--pad);overflow:hidden;}
 .about-word {display:inline-block;white-space:nowrap;}
 .about-letter {display:inline-block;transform-origin:center bottom;}
 @media(max-width:768px){
-  .what-we-do{height:200svh;min-height:200svh;padding:0;overflow:hidden}
+  .what-we-do{height:320vh;min-height:320svh;padding:0;overflow:visible}
   .about-opening{padding:0 20px;gap:20px;overflow:hidden}
-  .what-we-do .sentence{width:100%;font-size:clamp(19px,4.8vw,26px);line-height:1.32}
+  .what-we-do .sentence{width:92%;max-width:620px;font-size:clamp(19px,4.8vw,26px);line-height:1.34;text-align:center}
   .about-letter{display:inline-block;font-variant-numeric:tabular-nums}
 }
 @media(prefers-reduced-motion:reduce){.what-we-do{height:auto;min-height:100svh}.about-opening{position:relative}}

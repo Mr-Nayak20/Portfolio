@@ -158,15 +158,22 @@ export function boot(start) {
     lenis = new Lenis({
       lerp: 0.045,
       wheelMultiplier: 0.75,
-      touchMultiplier: 1.1,
+      touchMultiplier: 0.85,
       smoothWheel: true,
       syncTouch: true,
-      syncTouchLerp: 0.045,
-      touchInertiaExponent: 1.65,
+      syncTouchLerp: 0.04,
+      touchInertiaExponent: 1.25,
       autoRaf: true,
       autoResize: true,
       respectReducedMotion: true
     });
+    const origScrollTo = lenis.scrollTo.bind(lenis);
+    lenis.scrollTo = (target, options = {}) => {
+      if (options && !options.programmatic && options.lerp === 1 && lenis.isTouching) {
+        options.lerp = 0.075;
+      }
+      return origScrollTo(target, options);
+    };
     window.__lenis = lenis;
     lenis.on('scroll', onScroll);
     window.addEventListener('pagehide', () => {

@@ -163,8 +163,10 @@ export function home() {
       if (rect.bottom < 0 || rect.top > innerHeight) return;
       const distance = Math.max(1, rect.height - innerHeight);
       const progress = Math.max(0, Math.min(1, -rect.top / distance));
+      const animEnd = 0.60;
+      const animProgress = Math.min(1, progress / animEnd);
       letters.forEach((word, index) => {
-        const phase = Math.max(0, Math.min(1, progress * (letters.length + 2) / .8 - index));
+        const phase = Math.max(0, Math.min(1, animProgress * (letters.length + 2) - index));
         const state = phase >= 1 ? 8 : Math.floor(phase * 7);
         if (states[index] === state) return;
         states[index] = state;
