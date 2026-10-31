@@ -221,8 +221,27 @@ export function home() {
   chapters.innerHTML = `<div class="services-index">${services.map(service => {
     const phrase = phrases[service.id];
     const poster = service.id === 'websites' ? shot(studies[0].slug) : '/img/intelligence/orb.svg';
-    return `<a class="service-line" href="/services/${esc(service.id)}/" aria-label="Explore ${esc(service.name)}"><span>${phrase[0]}</span><span class="service-line__image"><img src="${poster}" alt="" loading="lazy" decoding="async"></span><span>${phrase[1]}</span></a>`;
+    const action = service.id === 'websites'
+      ? `<span class="service-line__action" aria-hidden="true"><span class="service-line__reel-tag"><span class="reel-dot"></span>REEL</span><span class="service-line__action-pill"><span class="action-icon">▶</span><span>EXPLORE</span><span class="action-arrow">↗</span></span></span>`
+      : `<span class="service-line__action" aria-hidden="true"><span class="neural-pulse"><span></span><span></span><span></span><span></span><span></span></span><span class="service-line__action-pill"><span class="action-icon action-icon--spark">✦</span><span>EXPLORE</span><span class="action-arrow">↗</span></span></span>`;
+    return `<a class="service-line service-line--${esc(service.id)}" href="/services/${esc(service.id)}/" aria-label="Explore ${esc(service.name)}"><span>${phrase[0]}</span><span class="service-line__image"><img src="${poster}" alt="" loading="lazy" decoding="async"></span><span>${phrase[1]}</span>${action}</a>`;
   }).join('')}</div>`;
+  const websiteImage = chapters.querySelector('a[href="/services/websites/"] .service-line__image img');
+  const reelStudies = studies.slice(0, 8);
+  let reelIndex = 0;
+  setInterval(() => {
+    if (document.hidden || reduce || !websiteImage || aiTransitioning) return;
+    reelIndex = (reelIndex + 1) % reelStudies.length;
+    const study = reelStudies[reelIndex];
+    websiteImage.style.opacity = '0.35';
+    websiteImage.style.transform = 'scale(0.92)';
+    setTimeout(() => {
+      websiteImage.srcset = shotSrcset(study.slug);
+      websiteImage.src = shot(study.slug);
+      websiteImage.style.opacity = '1';
+      websiteImage.style.transform = 'scale(1)';
+    }, 180);
+  }, 2200);
   const aiImage = chapters.querySelector('a[href="/services/ai/"] .service-line__image img');
   const aiMascots = ['/img/intelligence/scout.png', '/img/intelligence/orb.svg', '/img/intelligence/star.svg'];
   let aiMascotIndex = 1, aiTransitioning = false;
@@ -234,18 +253,27 @@ export function home() {
   window.addEventListener('pageshow', () => {
     aiTransitioning = false;
     document.querySelectorAll('.service-opening-transition').forEach(layer => layer.remove());
-    chapters.querySelectorAll('.service-line').forEach(line => { line.style.visibility = ''; line.getAnimations().forEach(animation => animation.cancel()); });
+    chapters.querySelectorAll('.service-line').forEach(line => {
+      line.style.visibility = '';
+      line.querySelectorAll('.service-line__action').forEach(action => { action.style.opacity = ''; action.style.transform = ''; });
+      line.getAnimations().forEach(animation => animation.cancel());
+    });
   });
   chapters.querySelectorAll('.service-line').forEach(link => {
     link.addEventListener('click', event => {
       if (reduce || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
       event.preventDefault();
+      chapters.querySelectorAll('.service-line__action').forEach(action => {
+        action.style.opacity = '0';
+        action.style.transform = 'scale(0.85)';
+      });
       if (link.getAttribute('href') === '/services/ai/') {
         aiTransitioning = true;
         const selected = aiMascotIndex;
         try { sessionStorage.setItem('intelligence-direct', String(selected)); } catch {}
         const line = link.cloneNode(true);
         line.removeAttribute('href');
+        line.querySelectorAll('.service-line__action').forEach(action => action.remove());
         const box = link.getBoundingClientRect();
         const layer = document.createElement('div'); layer.className = 'service-opening-transition service-opening-transition--ai';
         line.className = 'service-opening-transition__title';
