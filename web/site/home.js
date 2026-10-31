@@ -221,27 +221,72 @@ export function home() {
   chapters.innerHTML = `<div class="services-index">${services.map(service => {
     const phrase = phrases[service.id];
     const poster = service.id === 'websites' ? shot(studies[0].slug) : '/img/intelligence/orb.svg';
-    const action = service.id === 'websites'
-      ? `<span class="service-line__action" aria-hidden="true"><span class="service-line__reel-tag"><span class="reel-dot"></span>REEL</span><span class="service-line__action-pill"><span class="action-icon">▶</span><span>EXPLORE</span><span class="action-arrow">↗</span></span></span>`
-      : `<span class="service-line__action" aria-hidden="true"><span class="neural-pulse"><span></span><span></span><span></span><span></span><span></span></span><span class="service-line__action-pill"><span class="action-icon action-icon--spark">✦</span><span>EXPLORE</span><span class="action-arrow">↗</span></span></span>`;
-    return `<a class="service-line service-line--${esc(service.id)}" href="/services/${esc(service.id)}/" aria-label="Explore ${esc(service.name)}"><span>${phrase[0]}</span><span class="service-line__image"><img src="${poster}" alt="" loading="lazy" decoding="async"></span><span>${phrase[1]}</span>${action}</a>`;
+    return `<a class="service-line service-line--${esc(service.id)}" href="/services/${esc(service.id)}/" aria-label="Explore ${esc(service.name)}"><span>${phrase[0]}</span><span class="service-line__image"><img src="${poster}" alt="" loading="lazy" decoding="async"></span><span>${phrase[1]}</span></a>`;
   }).join('')}</div>`;
-  const websiteImage = chapters.querySelector('a[href="/services/websites/"] .service-line__image img');
-  const reelStudies = studies.slice(0, 8);
-  let reelIndex = 0;
-  setInterval(() => {
-    if (document.hidden || reduce || !websiteImage || aiTransitioning) return;
-    reelIndex = (reelIndex + 1) % reelStudies.length;
-    const study = reelStudies[reelIndex];
-    websiteImage.style.opacity = '0.35';
-    websiteImage.style.transform = 'scale(0.92)';
-    setTimeout(() => {
-      websiteImage.srcset = shotSrcset(study.slug);
-      websiteImage.src = shot(study.slug);
-      websiteImage.style.opacity = '1';
-      websiteImage.style.transform = 'scale(1)';
-    }, 180);
-  }, 2200);
+
+  const serviceLines = [...chapters.querySelectorAll('.service-line')];
+  let hoveredIndex = -1, chaptersQueued = false;
+
+  const updateChapters = () => {
+    chaptersQueued = false;
+    if (reduce) return;
+    const rect = chapters.getBoundingClientRect();
+    if (rect.bottom < 0 || rect.top > innerHeight) return;
+    const distance = Math.max(1, rect.height - innerHeight);
+    const progress = Math.max(0, Math.min(1, -rect.top / distance));
+
+    if (fine && hoveredIndex !== -1) {
+      serviceLines.forEach((line, idx) => {
+        const isHovered = idx === hoveredIndex;
+        line.style.transform = `scale(${isHovered ? 1.12 : 0.88})`;
+        line.style.opacity = isHovered ? '1' : '0.38';
+      });
+      return;
+    }
+
+    const t = Math.max(0, Math.min(1, (progress - 0.25) / 0.50));
+    const ease = t * t * (3 - 2 * t);
+
+    const scale0 = 1.12 - ease * (1.12 - 0.88);
+    const opacity0 = 1.0 - ease * (1.0 - 0.38);
+
+    const scale1 = 0.88 + ease * (1.12 - 0.88);
+    const opacity1 = 0.38 + ease * (1.0 - 0.38);
+
+    if (serviceLines[0]) {
+      serviceLines[0].style.transform = `scale(${scale0.toFixed(3)})`;
+      serviceLines[0].style.opacity = opacity0.toFixed(3);
+    }
+    if (serviceLines[1]) {
+      serviceLines[1].style.transform = `scale(${scale1.toFixed(3)})`;
+      serviceLines[1].style.opacity = opacity1.toFixed(3);
+    }
+  };
+
+  const scheduleChapters = () => {
+    if (!chaptersQueued) {
+      chaptersQueued = true;
+      requestAnimationFrame(updateChapters);
+    }
+  };
+
+  window.addEventListener('scroll', scheduleChapters, {passive: true});
+  window.addEventListener('resize', scheduleChapters, {passive: true});
+  updateChapters();
+
+  if (fine) {
+    serviceLines.forEach((line, idx) => {
+      line.addEventListener('pointerenter', () => {
+        hoveredIndex = idx;
+        scheduleChapters();
+      });
+      line.addEventListener('pointerleave', () => {
+        hoveredIndex = -1;
+        scheduleChapters();
+      });
+    });
+  }
+
   const aiImage = chapters.querySelector('a[href="/services/ai/"] .service-line__image img');
   const aiMascots = ['/img/intelligence/scout.png', '/img/intelligence/orb.svg', '/img/intelligence/star.svg'];
   let aiMascotIndex = 1, aiTransitioning = false;
@@ -250,30 +295,29 @@ export function home() {
     aiMascotIndex = (aiMascotIndex + 1) % aiMascots.length;
     aiImage.src = aiMascots[aiMascotIndex];
   }, 900);
+
   window.addEventListener('pageshow', () => {
     aiTransitioning = false;
     document.querySelectorAll('.service-opening-transition').forEach(layer => layer.remove());
-    chapters.querySelectorAll('.service-line').forEach(line => {
+    serviceLines.forEach(line => {
       line.style.visibility = '';
-      line.querySelectorAll('.service-line__action').forEach(action => { action.style.opacity = ''; action.style.transform = ''; });
       line.getAnimations().forEach(animation => animation.cancel());
     });
+    scheduleChapters();
   });
-  chapters.querySelectorAll('.service-line').forEach(link => {
+
+  serviceLines.forEach(link => {
     link.addEventListener('click', event => {
       if (reduce || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
       event.preventDefault();
-      chapters.querySelectorAll('.service-line__action').forEach(action => {
-        action.style.opacity = '0';
-        action.style.transform = 'scale(0.85)';
-      });
       if (link.getAttribute('href') === '/services/ai/') {
         aiTransitioning = true;
         const selected = aiMascotIndex;
         try { sessionStorage.setItem('intelligence-direct', String(selected)); } catch {}
         const line = link.cloneNode(true);
         line.removeAttribute('href');
-        line.querySelectorAll('.service-line__action').forEach(action => action.remove());
+        line.style.transform = '';
+        line.style.opacity = '1';
         const box = link.getBoundingClientRect();
         const layer = document.createElement('div'); layer.className = 'service-opening-transition service-opening-transition--ai';
         line.className = 'service-opening-transition__title';
@@ -292,8 +336,9 @@ export function home() {
         requestAnimationFrame(animate);
         return;
       }
-      const others = [...chapters.querySelectorAll('.service-line')].filter(line => line !== link);
+      const others = serviceLines.filter(line => line !== link);
       others.forEach(line => line.animate([{opacity: 1}, {opacity: 0}], {duration: 700, easing: 'ease-in-out', fill: 'forwards'}));
+      link.style.opacity = '1';
       const first = link.children[0].getBoundingClientRect();
       const frame = link.children[1].getBoundingClientRect();
       const font = getComputedStyle(link).fontSize;
