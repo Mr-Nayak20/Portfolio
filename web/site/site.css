@@ -971,7 +971,7 @@ button,a,input,textarea {touch-action:manipulation;}
   line-height: 1.08;
   letter-spacing: -.05em;
   transform-origin: center center;
-  transition: transform .35s cubic-bezier(.22, 1, .36, 1), opacity .3s ease;
+  transition: transform .25s cubic-bezier(.22, 1, .36, 1), opacity .25s ease;
   will-change: transform, opacity;
 }
 .service-line:first-child { border-top: 1px solid color-mix(in srgb, currentColor 14%, transparent); }

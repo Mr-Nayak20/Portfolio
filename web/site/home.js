@@ -227,31 +227,55 @@ export function home() {
   const serviceLines = [...chapters.querySelectorAll('.service-line')];
   let hoveredIndex = -1, chaptersQueued = false;
 
+  const smoothstep = t => t * t * (3 - 2 * t);
+
   const updateChapters = () => {
     chaptersQueued = false;
     if (reduce) return;
     const rect = chapters.getBoundingClientRect();
     if (rect.bottom < 0 || rect.top > innerHeight) return;
-    const distance = Math.max(1, rect.height - innerHeight);
-    const progress = Math.max(0, Math.min(1, -rect.top / distance));
+
+    const maxScale = innerWidth <= 768 ? 1.10 : 1.16;
+    const minScale = 0.88;
+    const minOpacity = 0.35;
 
     if (fine && hoveredIndex !== -1) {
       serviceLines.forEach((line, idx) => {
         const isHovered = idx === hoveredIndex;
-        line.style.transform = `scale(${isHovered ? 1.12 : 0.88})`;
-        line.style.opacity = isHovered ? '1' : '0.38';
+        line.style.transform = `scale(${isHovered ? maxScale : minScale})`;
+        line.style.opacity = isHovered ? '1' : String(minOpacity);
       });
       return;
     }
 
-    const t = Math.max(0, Math.min(1, (progress - 0.25) / 0.50));
-    const ease = t * t * (3 - 2 * t);
+    // Phase 1: Entry into section - as the user scrolls into #chapters
+    const entryDistance = Math.max(1, innerHeight * 0.75);
+    const entryT = Math.max(0, Math.min(1, 1 - (rect.top / entryDistance)));
+    const entryEase = smoothstep(entryT);
 
-    const scale0 = 1.12 - ease * (1.12 - 0.88);
-    const opacity0 = 1.0 - ease * (1.0 - 0.38);
+    // Phase 2: Pinned scroll progression through the section
+    const pinDistance = Math.max(1, rect.height - innerHeight);
+    const pinProgress = Math.max(0, Math.min(1, -rect.top / pinDistance));
 
-    const scale1 = 0.88 + ease * (1.12 - 0.88);
-    const opacity1 = 0.38 + ease * (1.0 - 0.38);
+    let scale0, opacity0, scale1, opacity1;
+
+    if (rect.top > 0) {
+      // As user enters the section: first sentence (Websites) magnifies to maxScale
+      scale0 = minScale + entryEase * (maxScale - minScale);
+      opacity0 = minOpacity + entryEase * (1.0 - minOpacity);
+      scale1 = minScale;
+      opacity1 = minOpacity;
+    } else {
+      // Pinned: scroll handoff from first sentence to second sentence
+      const handoffT = Math.max(0, Math.min(1, (pinProgress - 0.20) / 0.52));
+      const handoffEase = smoothstep(handoffT);
+
+      scale0 = maxScale - handoffEase * (maxScale - minScale);
+      opacity0 = 1.0 - handoffEase * (1.0 - minOpacity);
+
+      scale1 = minScale + handoffEase * (maxScale - minScale);
+      opacity1 = minOpacity + handoffEase * (1.0 - minOpacity);
+    }
 
     if (serviceLines[0]) {
       serviceLines[0].style.transform = `scale(${scale0.toFixed(3)})`;
