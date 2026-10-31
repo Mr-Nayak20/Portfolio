@@ -22,7 +22,7 @@ const worlds = [
 ];
 
 const services = [
-  {id:'web', n:'01', name:'Website development', line:'Interactive sites with a point of view.', body:'Scroll, 3D and editorial pages built as experiences. The twenty studies on this site are the proof.'},
+  {id:'web', n:'01', name:'Website development', line:'Interactive sites with a point of view.', body:'Scroll, 3D and editorial pages built as experiences. The interactive studies on this site are the proof.'},
   {id:'soft', n:'02', name:'Software', line:'Interfaces for a real job.', body:'Product screens, states, and tools that help someone finish a task instead of admire a mock.'},
   {id:'ai', n:'03', name:'AI development', line:'Tools a visitor can try.', body:'Summaries, rewrites, vision and voice that run in the browser. No key, no account.'},
   {id:'write', n:'04', name:'Writing & design', line:'Words and a visual system that agree.', body:'Headlines, identity and layout. If the sentence is vague, the design cannot rescue it.'}

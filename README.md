@@ -23,7 +23,7 @@
 
 ## Overview
 
-A modern multi-page portfolio and digital showcase engineered with **Vite**, **Three.js**, **GSAP**, and **Lenis**. The platform demonstrates high-fidelity front-end craft across four core services — **Website Development**, **Software Engineering**, **AI Agents & Automation**, and **Strategic Writing & Design** — accompanied by **twenty self-contained interactive 3D WebGL studies**.
+A modern multi-page portfolio and digital showcase engineered with **Vite**, **Three.js**, **GSAP**, and **Lenis**. The platform demonstrates high-fidelity front-end craft across four core services — **Website Development**, **Software Engineering**, **AI Agents & Automation**, and **Strategic Writing & Design** — accompanied by **self-contained interactive 3D WebGL studies**.
 
 ---
 
@@ -174,7 +174,7 @@ npx vite preview --port 5174
 
 ## Credits & Attributions
 
-- The twenty 3D study foundations are adapted from **[Dioramas by Blendi](https://github.com/blendi-remade/dioramas)** (licensed under MIT; 3D models and generated assets retain their upstream CC BY 4.0 notices).
+- The 3D study foundations are adapted from **[Dioramas by Blendi](https://github.com/blendi-remade/dioramas)** (licensed under MIT; 3D models and generated assets retain their upstream CC BY 4.0 notices).
 - Interactive showcase adaptations include **Fizzi** and **The Substance**.
 - Designed and engineered by **Shivansh Nayak**.
 

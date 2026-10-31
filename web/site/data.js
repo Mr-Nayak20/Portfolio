@@ -31,7 +31,7 @@ export const services = [
       ['Editorial layout', 'Typography, images and structure arranged around the message.'],
       ['Motion', 'Measured transitions and interaction, with attention to loading and reduced motion.'],
       ['Front-end build', 'Responsive layouts, accessible controls and careful implementation.'],
-      ['Study sites', 'Twenty interactive studies, with their open-source foundations credited.']
+      ['Study sites', 'Interactive studies, with their open-source foundations credited.']
     ]
   },
   {
@@ -116,7 +116,7 @@ export const notes = [
     "image": "reliquary",
     "body": [
       "A website begins before its first sentence. The scale of an image, the rhythm of the type and the way a page responds tell the visitor what sort of care has gone into it. I want those details to make the purpose clearer.",
-      "The twenty studies collected here explore a particular interaction each: moving a light through a museum, changing the sun over a house, or examining the construction of a shoe. Their foundations come from the open-source Dioramas collection and are credited throughout.",
+      "The studies collected here explore a particular interaction each: moving a light through a museum, changing the sun over a house, or examining the construction of a shoe. Their foundations come from the open-source Dioramas collection and are credited throughout.",
       "A study gives an idea room to be tested. It is a place to examine what an interaction contributes, what it costs to load, and whether it remains useful on a smaller screen. These are experiments, rather than claims of commissioned client work.",
       "For a business website, the brief comes first. The choice of motion, layout or technology follows from the people using it and the decision they need to make. The finished work should make that decision easier."
     ]
