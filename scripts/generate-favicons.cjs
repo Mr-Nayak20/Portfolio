@@ -29,6 +29,22 @@ async function generate() {
     .toFile(path.join(publicDir, 'favicon.png'));
   console.log('Created favicon.png');
 
+  // 2b. favicon-48x48.png & favicon-96x96.png (Google Search Bot specifically requires multiples of 48px square)
+  const svg48 = `<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
+    <circle cx="24" cy="24" r="18" fill="#111111"/>
+  </svg>`;
+  await sharp(Buffer.from(svg48))
+    .png()
+    .toFile(path.join(publicDir, 'favicon-48x48.png'));
+
+  const svg96 = `<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 96 96">
+    <circle cx="48" cy="48" r="36" fill="#111111"/>
+  </svg>`;
+  await sharp(Buffer.from(svg96))
+    .png()
+    .toFile(path.join(publicDir, 'favicon-96x96.png'));
+  console.log('Created favicon-48x48.png and favicon-96x96.png for Google Search');
+
   // 3. favicon.ico (fallback 32x32 ICO buffer)
   const icoBuf = await sharp(Buffer.from(svg32)).png().toBuffer();
   fs.writeFileSync(path.join(publicDir, 'favicon.ico'), icoBuf);
