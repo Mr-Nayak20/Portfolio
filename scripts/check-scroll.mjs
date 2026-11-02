@@ -4,7 +4,7 @@ import assert from 'node:assert/strict';
 for(const filename of ['web/src/core/scroll.js','web/diorama-core/scroll.js']) {
  const code=fs.readFileSync(filename,'utf8').replace(/^import .*;$/gm,'').replace(/^export \{.*\};$/gm,'').replace(/export function /g,'function ');
  let listener; const style={overflow:'scroll'};
- const context={scrollY:0,innerHeight:800,performance,setTimeout,clearTimeout,gsap:{registerPlugin(){}},ScrollTrigger:{update(){},refresh(){}},SplitText:{},document:{documentElement:{scrollHeight:2000,style},querySelector(){return {getBoundingClientRect(){return {top:100}}}}},window:{addEventListener(name,fn){if(name==='scroll')listener=fn},removeEventListener(){},scrollTo({top}){context.scrollY=top}}};
+  const context={matchMedia:()=>({matches:true}),scrollY:0,innerHeight:800,performance,setTimeout,clearTimeout,gsap:{registerPlugin(){}},ScrollTrigger:{update(){},refresh(){}},SplitText:{},document:{documentElement:{scrollHeight:2000,style},querySelector(){return {getBoundingClientRect(){return {top:100}}}}},window:{addEventListener(name,fn){if(name==='scroll')listener=fn},removeEventListener(name,fn){if(name==='scroll'&&listener===fn)listener=()=>{}},scrollTo({top}){context.scrollY=top}}};
  vm.createContext(context);vm.runInContext(code,context);
  const api=context.smoothScroll();
  api.scrollTo(500);assert.equal(context.scrollY,500);

@@ -156,24 +156,14 @@ export function boot(start) {
   let lenis = null;
   if (!reduce) {
     lenis = new Lenis({
-      lerp: 0.045,
-      wheelMultiplier: 0.75,
-      touchMultiplier: 0.85,
+      lerp: 0.075,
+      wheelMultiplier: 0.82,
       smoothWheel: true,
-      syncTouch: true,
-      syncTouchLerp: 0.04,
-      touchInertiaExponent: 1.25,
+      syncTouch: false,
       autoRaf: true,
       autoResize: true,
       respectReducedMotion: true
     });
-    const origScrollTo = lenis.scrollTo.bind(lenis);
-    lenis.scrollTo = (target, options = {}) => {
-      if (options && !options.programmatic && options.lerp === 1 && lenis.isTouching) {
-        options.lerp = 0.075;
-      }
-      return origScrollTo(target, options);
-    };
     window.__lenis = lenis;
     lenis.on('scroll', onScroll);
     window.addEventListener('pagehide', () => {

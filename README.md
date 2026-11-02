@@ -77,8 +77,8 @@ A modern multi-page portfolio and digital showcase engineered with **Vite**, **T
 
 ## Key Features & Architecture
 
-- **Weighted Inertia Smooth Scroll**: Powered by Lenis v1.3 with calibrated physical damping (`lerp: 0.045`, `wheelMultiplier: 0.75`), delivering a viscous, high-momentum glide across all viewports.
-- **Mobile Touch Inertia**: Integrated `syncTouch: true` with exponential inertia decay (`touchInertiaExponent: 1.65`), giving touchscreens the same smooth gliding physics as high-end desktop trackpads.
+- **Weighted Inertia Smooth Scroll**: Powered by Lenis v1.3 with calibrated physical damping (`lerp: 0.075`, `wheelMultiplier: 0.82`), delivering a luxurious, high-momentum glide on desktop mouse wheels and trackpads.
+- **Native Hardware Mobile Scroll**: Uses uninhibited 1:1 GPU-accelerated touch physics on mobile viewports (`syncTouch: false`), ensuring instantaneous, zero-latency touch response and fluid swipe momentum on iOS Safari and Android Chrome.
 - **Cinematic Hero Opening**: Zero-layout-thrashing Hermite smoothstep cubic interpolation coordinated through a single `requestAnimationFrame` loop, ensuring sub-pixel alignment (`<0.05px`) between deck cards and expanding hero views.
 - **20 Standalone WebGL Studies**: Real-time 3D environments rendered in Three.js and Rapier3D, featuring custom post-processing pipelines, contact shadows, procedural materials, and ambient lighting.
 - **Calm Auto-Scroll Navigation**: Floating dock navigation with auto-scroll calibrated to a readable, steady ~280px/s across all studies.
@@ -165,7 +165,7 @@ npx vite preview --port 5174
 | **Build Tooling** | Vite v8.3 with Rollup bundling |
 | **3D Rendering** | Three.js v0.186 with ACES Filmic Tone Mapping |
 | **Physics** | Rapier3D Compat v0.21 (Wasm) |
-| **Smooth Scrolling** | Lenis v1.3 (`lerp: 0.045`, `wheelMultiplier: 0.75`, `syncTouch: true`) |
+| **Smooth Scrolling** | Lenis v1.3 (`lerp: 0.075`, `wheelMultiplier: 0.82`, `syncTouch: false`) |
 | **Animations** | GSAP 3.15 + ScrollTrigger + Custom Hermite RAF loops |
 | **Performance** | DPR capped at 1.25 on mobile, 1.5 on desktop |
 | **Accessibility** | Semantic HTML5, ARIA dialogs, and `prefers-reduced-motion` compliance |

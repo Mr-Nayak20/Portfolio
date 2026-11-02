@@ -20,23 +20,20 @@ export function smoothScroll(options = {}) {
       on(event, fn) { window.addEventListener(event, fn); return () => window.removeEventListener(event, fn); },
       scrollTo(target, opts = {}) {
         const y = typeof target === 'number' ? target : (typeof target === 'string' ? document.querySelector(target) : target)?.getBoundingClientRect().top + scrollY;
-        window.scrollTo({ top: Math.max(0, y + (opts.offset || 0)), behavior: 'instant' });
+        window.scrollTo({ top: Math.max(0, Math.min(api.limit, y + (opts.offset || 0))), behavior: 'instant' });
       },
-      stop() {}, start() {}, raf() {}, resize() { ScrollTrigger.refresh(); }, destroy() {}
+      stop() { document.documentElement.style.overflow = 'hidden'; }, start() { document.documentElement.style.overflow = 'scroll'; }, raf() {}, resize() { ScrollTrigger.refresh(); }, destroy() {}
     };
     return api;
   }
 
-  const HEAVY_LERP = 0.045;
-  const HEAVY_WHEEL = 0.75;
+  const HEAVY_LERP = 0.075;
+  const HEAVY_WHEEL = 0.82;
   const lenis = new Lenis({
     lerp: HEAVY_LERP,
     wheelMultiplier: HEAVY_WHEEL,
-    touchMultiplier: 0.85,
     smoothWheel: true,
-    syncTouch: true,
-    syncTouchLerp: 0.04,
-    touchInertiaExponent: 1.25,
+    syncTouch: false,
     autoRaf: true,
     autoResize: true,
     respectReducedMotion: true,
@@ -44,13 +41,6 @@ export function smoothScroll(options = {}) {
     lerp: options.lerp ? Math.min(options.lerp, HEAVY_LERP) : HEAVY_LERP,
     wheelMultiplier: options.wheelMultiplier ? Math.min(options.wheelMultiplier, HEAVY_WHEEL) : HEAVY_WHEEL
   });
-  const origScrollTo = lenis.scrollTo.bind(lenis);
-  lenis.scrollTo = (target, opts = {}) => {
-    if (opts && !opts.programmatic && opts.lerp === 1 && lenis.isTouching) {
-      opts.lerp = 0.075;
-    }
-    return origScrollTo(target, opts);
-  };
 
   lenis.on('scroll', ScrollTrigger.update);
   window.__lenis = lenis;
